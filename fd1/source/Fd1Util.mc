@@ -33,12 +33,13 @@ module Fd1Util {
                                         ];            
             Attention.vibrate(vibeData);
         }
-        public function changeMode() as Void {
+        public function changeMode(session) as Void {
             if ("REST".equals(mode)){
-                
+                session.startSession();
                 holdTime = 0;
                 mode = "DIVE";
             }else{
+                session.stopSession();
                 sessionCycle=sessionCycle + 1;
                 sessionTime =sessionTime+holdTime;
                 holdTime = holdTime * _timeCoef;

@@ -18,8 +18,8 @@ class Fd1Delegate extends WatchUi.BehaviorDelegate {
     }
 
     function onSelect()  as Boolean  {
-        _session.startLap();
-        _FdState.changeMode();
+        
+        _FdState.changeMode(_session);
         _FdState.informNotice();
          return true;
     }

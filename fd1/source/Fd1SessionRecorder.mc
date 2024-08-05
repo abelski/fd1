@@ -29,14 +29,34 @@ module Fd1SessionRecorder {
 		private var mMinHrField;
 		private var mMinHr;
 		private var mHRHistory = [];
+
+		private var _isItFirstLap = true;
         
         function onBeforeStart(fitSession) {
 		}
 
 		public function startLap() as Void {
-			_FitSession.addLap();
-            
+			if (me._FitSession.isRecording()){
+				me._FitSession.addLap();
+			}	   
         }
+
+		public function startSession() {
+			if (me._FitSession.isRecording()==false) {
+				me._FitSession.start();
+				if (_isItFirstLap==false){
+					startLap();
+				}else{
+					_isItFirstLap = false;
+				}
+			}
+		}
+
+		public function stopSession() {
+			if (me._FitSession.isRecording()) {
+				me._FitSession.stop();
+			}
+		}
 
         private function createMinHrDataField() as Void{
 			me.mMinHrField = me._FitSession.createField(
@@ -78,7 +98,7 @@ module Fd1SessionRecorder {
              me._FitSession = ActivityRecording.createSession(Fd1SessionSpec.createFdSession("Freediving"));
 			 me.createMinHrDataField();	
 			 me.onBeforeStart(me._FitSession);
-			 me._FitSession.start(); 
+			//  me._FitSession.start(); 
 		     me._RefreshActivityTimer = new Timer.Timer();		
 		     me._RefreshActivityTimer.start(method(:refreshActivityStats), _RefreshActivityInterval, true);
              System.println("Session started:" + me._FitSession);
