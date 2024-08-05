@@ -1,0 +1,306 @@
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 1; ]
+using Toybox.Timer;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 2; ]
+using Toybox.FitContributor;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 3; ]
+using Toybox.ActivityRecording;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 4; ]
+using Toybox.Sensor;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 5; ]
+using Toybox.System as :Sys;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 6; ]
+using Toybox.FitContributor;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 9; ]
+module Fd1SessionRecorder {
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 9; ]
+    <init> {
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 10; ]
+    class Fd1SessionSpec{
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 10; ]
+        <init> {
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 10; ]
+        static
+        <init> {
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 11; @position = 23; ]
+        private static
+        const SUB_SPORT_BREATHWORKS = 62;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 14; ]
+        static
+        function createFdSession(sessionName) {
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_14_47_20_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 15 3 ]
+            %tmp.1 = newd 3;
+            %tmp.3 = const :name;
+            %tmp.5 = lgetv %sessionName;
+            %tmp.6 = dup %tmp.1;
+            %tmp.7 = aputv %tmp.6 %tmp.3 %tmp.5;
+            %tmp.9 = const :sport;
+            %tmp.10 = getm $.Toybox.ActivityRecording;
+            %tmp.11 = getv %tmp.10 :SPORT_SWIMMING;
+            %tmp.12 = dup %tmp.7;
+            %tmp.13 = aputv %tmp.12 %tmp.9 %tmp.11;
+            %tmp.15 = const :subSport;
+            %tmp.17 = getv ? :SUB_SPORT_BREATHWORKS;
+            %tmp.18 = dup %tmp.13;
+            %tmp.19 = aputv %tmp.18 %tmp.15 %tmp.17;
+            ret %tmp.19;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_14_47_20_2_stop:
+        }
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 23; ]
+    class Fd1Activity{
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 23; ]
+        <init> {
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 31 14 ]
+            %tmp.20 = newa 0;
+            putv self :mHRHistory %tmp.20;
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 23; ]
+        static
+        <init> {
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 24; @position = 20; ]
+        private
+        var _FitSession;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 25; @position = 19; ]
+        private
+        const _RefreshActivityInterval = 1000;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 26; @position = 17; ]
+        private
+        var _RefreshActivityTimer;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 28; @position = 22; ]
+        private
+        const MinHrFieldId = 0;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 29; @position = 14; ]
+        private
+        var mMinHrField;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 30; @position = 14; ]
+        private
+        var mMinHr;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 31; @position = 14; ]
+        private
+        var mHRHistory;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 33; ]
+        function onBeforeStart(fitSession) {
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 36; ]
+        private
+        function createMinHrDataField() as Void {
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_36_55_45_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 37 3 ]
+            %tmp.1 = lgetv %self;
+            %tmp.2 = getv %tmp.1 :_FitSession;
+            %tmp.3 = getv function %tmp.2 :createField;
+            %tmp.4 = "min_hr";
+            %tmp.5 = lgetv %self;
+            %tmp.6 = getv %tmp.5 :MinHrFieldId;
+            %tmp.7 = getm $.Toybox.FitContributor;
+            %tmp.8 = getv %tmp.7 :DATA_TYPE_UINT16;
+            %tmp.9 = newd 2;
+            %tmp.11 = const :mesgType;
+            %tmp.12 = getm $.Toybox.FitContributor;
+            %tmp.13 = getv %tmp.12 :MESG_TYPE_SESSION;
+            %tmp.14 = dup %tmp.9;
+            %tmp.15 = aputv %tmp.14 %tmp.11 %tmp.13;
+            %tmp.17 = const :units;
+            %tmp.18 = "bpm";
+            %tmp.19 = dup %tmp.15;
+            %tmp.20 = aputv %tmp.19 %tmp.17 %tmp.18;
+            %tmp.21 = invoke %tmp.2 %tmp.3(%tmp.4, %tmp.6, %tmp.8, %tmp.20);
+            putv self :mMinHrField %tmp.21;
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 44 9 ]
+            %tmp.22 = lgetv %self;
+            %tmp.23 = getv %tmp.22 :mMinHrField;
+            %tmp.24 = getv function %tmp.23 :setData;
+            %tmp.25 = 0;
+            invoke %tmp.23 %tmp.24(%tmp.25);
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_36_55_45_2_stop:
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 47; ]
+        protected
+        function onRefreshHrActivityStats(activityInfo, minHr) {
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 50; ]
+        function refreshActivityStats() as Void {
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_50_47_68_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 51 12 ]
+            %tmp.2 = getv ? :System;
+            %tmp.3 = getv function %tmp.2 :println;
+            %tmp.4 = "State updated";
+            invoke %tmp.2 %tmp.3(%tmp.4);
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 53 6 ]
+            [ "_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_50_47_68_2_start" "_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_50_47_68_2_stop" ]
+            %activityInfo.1 = local;
+            %tmp.6 = getv ? :Activity;
+            %tmp.7 = getv function %tmp.6 :getActivityInfo;
+            %tmp.8 = invoke %tmp.6 %tmp.7();
+            lputv %activityInfo.1 %tmp.8;
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 54 6 ]
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_54_6_56_3_if_stmt:
+            %tmp.10 = lgetv %activityInfo.1;
+            %tmp.11 = null;
+            %tmp.12 = eq %tmp.10 %tmp.11;
+            bf %tmp.12 @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_54_6_56_3_if_end;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_54_6_56_3_if_true:
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_54_32_56_3_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 55 4 ]
+            ret ?;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_54_32_56_3_stop:
+            goto @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_54_6_56_3_if_end;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_54_6_56_3_if_end:
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 58 3 ]
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_58_3_65_3_if_stmt:
+            %tmp.13 = lgetv %self;
+            %tmp.14 = getv %tmp.13 :_FitSession;
+            %tmp.15 = getv function %tmp.14 :isRecording;
+            %tmp.16 = invoke %tmp.14 %tmp.15();
+            bf %tmp.16 @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_58_3_65_3_if_end;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_58_3_65_3_if_true:
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_58_37_65_3_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 60 4 ]
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_4_62_4_if_stmt:
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_8_60_112_begin:
+            %tmp.17 = lgetv %activityInfo.1;
+            %tmp.18 = getv %tmp.17 :currentHeartRate;
+            %tmp.19 = null;
+            %tmp.20 = ne %tmp.18 %tmp.19;
+            bf %tmp.20 @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_4_62_4_if_end;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_49_60_112_true:
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_50_60_96_begin:
+            %tmp.21 = lgetv %self;
+            %tmp.22 = getv %tmp.21 :mMinHr;
+            %tmp.23 = null;
+            %tmp.24 = eq %tmp.22 %tmp.23;
+            bt %tmp.24 @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_4_62_4_if_true;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_71_60_96_false:
+            %tmp.25 = lgetv %self;
+            %tmp.26 = getv %tmp.25 :mMinHr;
+            %tmp.27 = lgetv %activityInfo.1;
+            %tmp.28 = getv %tmp.27 :currentHeartRate;
+            %tmp.29 = gt %tmp.26 %tmp.28;
+            push %tmp.29;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_71_60_96_end:
+            %tmp.30 = phi [%tmp.24 @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_50_60_96_begin] [%tmp.29 @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_71_60_96_false] [%tmp.30 @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_71_60_96_end];
+            push %tmp.30;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_49_60_112_end:
+            %tmp.31 = phi [%tmp.20 @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_8_60_112_begin] [%tmp.30 @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_49_60_112_true] [%tmp.31 @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_49_60_112_end];
+            bf %tmp.31 @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_4_62_4_if_end;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_4_62_4_if_true:
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_115_62_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 61 5 ]
+            %tmp.32 = lgetv %activityInfo.1;
+            %tmp.33 = getv %tmp.32 :currentHeartRate;
+            putv self :mMinHr %tmp.33;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_115_62_4_stop:
+            goto @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_4_62_4_if_end;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_60_4_62_4_if_end:
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 64 4 ]
+            %tmp.35 = getv ? :mHRHistory;
+            %tmp.36 = getv function %tmp.35 :add;
+            %tmp.37 = lgetv %activityInfo.1;
+            %tmp.38 = getv %tmp.37 :currentHeartRate;
+            invoke %tmp.35 %tmp.36(%tmp.38);
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_58_37_65_3_stop:
+            goto @_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_58_3_65_3_if_end;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_58_3_65_3_if_end:
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 67 7 ]
+            %tmp.39 = lgetv %self;
+            %tmp.40 = getv function %tmp.39 :onRefreshHrActivityStats;
+            %tmp.42 = lgetv %activityInfo.1;
+            %tmp.43 = lgetv %self;
+            %tmp.44 = getv %tmp.43 :mMinHr;
+            invoke %tmp.39 %tmp.40(%tmp.42, %tmp.44);
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_50_47_68_2_stop:
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 72; ]
+        function initialize() as Void {
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_72_30_80_8_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 73 13 ]
+            %tmp.1 = getm $.Toybox.ActivityRecording;
+            %tmp.2 = getv function %tmp.1 :createSession;
+            %tmp.4 = getv ? :Fd1SessionSpec;
+            %tmp.5 = getv function %tmp.4 :createFdSession;
+            %tmp.6 = "Freediving";
+            %tmp.7 = invoke %tmp.4 %tmp.5(%tmp.6);
+            %tmp.8 = invoke %tmp.1 %tmp.2(%tmp.7);
+            putv self :_FitSession %tmp.8;
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 74 4 ]
+            %tmp.9 = lgetv %self;
+            %tmp.10 = getv function %tmp.9 :createMinHrDataField;
+            invoke %tmp.9 %tmp.10();
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 75 4 ]
+            %tmp.11 = lgetv %self;
+            %tmp.12 = getv function %tmp.11 :onBeforeStart;
+            %tmp.13 = lgetv %self;
+            %tmp.14 = getv %tmp.13 :_FitSession;
+            invoke %tmp.11 %tmp.12(%tmp.14);
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 76 4 ]
+            %tmp.15 = lgetv %self;
+            %tmp.16 = getv %tmp.15 :_FitSession;
+            %tmp.17 = getv function %tmp.16 :start;
+            invoke %tmp.16 %tmp.17();
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 77 7 ]
+            %tmp.20 = getm $.Toybox.Timer;
+            %tmp.21 = getv function ? %tmp.20 :Timer;
+            %tmp.18 = newc %tmp.21 ();
+            putv self :_RefreshActivityTimer %tmp.18;
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 78 7 ]
+            %tmp.22 = lgetv %self;
+            %tmp.23 = getv %tmp.22 :_RefreshActivityTimer;
+            %tmp.24 = getv function %tmp.23 :start;
+            %tmp.25 = self;
+            %tmp.26 = getv function %tmp.25 :method;
+            %tmp.28 = const :refreshActivityStats;
+            %tmp.29 = invoke %tmp.25 %tmp.26(%tmp.28);
+            %tmp.31 = getv ? :_RefreshActivityInterval;
+            %tmp.32 = true;
+            invoke %tmp.23 %tmp.24(%tmp.29, %tmp.31, %tmp.32);
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 79 13 ]
+            %tmp.34 = getv ? :System;
+            %tmp.35 = getv function %tmp.34 :println;
+            %tmp.36 = "Session started:";
+            %tmp.37 = lgetv %self;
+            %tmp.38 = getv %tmp.37 :_FitSession;
+            %tmp.39 = add %tmp.36 %tmp.38;
+            invoke %tmp.34 %tmp.35(%tmp.39);
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_72_30_80_8_stop:
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 82; ]
+        function finish() {
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_82_26_86_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 83 12 ]
+            %tmp.1 = lgetv %self;
+            %tmp.2 = getv %tmp.1 :_FitSession;
+            %tmp.3 = getv function %tmp.2 :stop;
+            invoke %tmp.2 %tmp.3();
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 84 3 ]
+            %tmp.4 = lgetv %self;
+            %tmp.5 = getv %tmp.4 :_FitSession;
+            %tmp.6 = getv function %tmp.5 :save;
+            invoke %tmp.5 %tmp.6();
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 85 3 ]
+            %tmp.7 = null;
+            putv self :_FitSession %tmp.7;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_82_26_86_2_stop:
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 88; ]
+        function discard() {
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_88_27_91_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 89 3 ]
+            %tmp.1 = lgetv %self;
+            %tmp.2 = getv %tmp.1 :_FitSession;
+            %tmp.3 = getv function %tmp.2 :discard;
+            invoke %tmp.2 %tmp.3();
+[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc" 90 3 ]
+            %tmp.4 = null;
+            putv self :_FitSession %tmp.4;
+_Users_Artur_Belski_Documents_src_fd1_source_Fd1SessionRecorder_mc_88_27_91_2_stop:
+        }
+    }
+}
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1SessionRecorder.mc"; @line = 1; ]
+<init> {
+}
