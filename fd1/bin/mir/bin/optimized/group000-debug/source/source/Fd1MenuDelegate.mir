@@ -1,0 +1,66 @@
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc"; @line = 1; ]
+import Toybox.Lang;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc"; @line = 2; ]
+import Toybox.System;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc"; @line = 3; ]
+import Toybox.WatchUi;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc"; @line = 5; ]
+class Fd1MenuDelegate extends WatchUi.MenuInputDelegate{
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc"; @line = 5; ]
+    <init> {
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc"; @line = 5; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc"; @line = 6; ]
+    function initialize() as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_6_24_8_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc" 7 4 ]
+        %tmp.2 = getv ? :MenuInputDelegate;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_6_24_8_2_stop:
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc"; @line = 10; ]
+    function onMenuItem(item as Symbol) as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_10_46_16_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc" 11 4 ]
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_11_4_15_4_if_stmt:
+        %tmp.2 = lgetv %item;
+        %tmp.4 = const :item_1;
+        %tmp.5 = eq %tmp.2 %tmp.4;
+        bf %tmp.5 @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_11_4_15_4_if_false;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_11_4_15_4_if_true:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_11_25_13_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc" 12 6 ]
+        %tmp.6 = getm $.Toybox.System;
+        %tmp.7 = getv function %tmp.6 :println;
+        %tmp.8 = "item 1";
+        invoke %tmp.6 %tmp.7(%tmp.8);
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_11_25_13_4_stop:
+        goto @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_11_4_15_4_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_11_4_15_4_if_false:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc" 13 11 ]
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_13_11_15_4_if_stmt:
+        %tmp.10 = lgetv %item;
+        %tmp.12 = const :item_2;
+        %tmp.13 = eq %tmp.10 %tmp.12;
+        bf %tmp.13 @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_13_11_15_4_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_13_11_15_4_if_true:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_13_32_15_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc" 14 6 ]
+        %tmp.14 = getm $.Toybox.System;
+        %tmp.15 = getv function %tmp.14 :println;
+        %tmp.16 = "item 2";
+        invoke %tmp.14 %tmp.15(%tmp.16);
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_13_32_15_4_stop:
+        goto @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_13_11_15_4_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_13_11_15_4_if_end:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_11_4_15_4_if_end:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1MenuDelegate_mc_10_46_16_2_stop:
+    }
+}
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1MenuDelegate.mc"; @line = 1; ]
+<init> {
+}

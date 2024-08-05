@@ -1,119 +1,117 @@
-[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 1; ]
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 1; ]
 import Toybox.Application;
-[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 2; ]
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 2; ]
 import Toybox.Lang;
-[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 3; ]
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 3; ]
 import Toybox.WatchUi;
-[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 4; ]
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 4; ]
 import Fd1Util;
-[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 5; ]
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 5; ]
 import Fd1SessionRecorder;
-[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 8; ]
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 8; ]
 class Fd1App extends Application.AppBase{
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 8; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 8; ]
     <init> {
     }
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 8; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 8; ]
     static
     <init> {
     }
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 9; @position = 14; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 9; @position = 14; ]
     private
     var _session;
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 11; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 11; ]
     function initialize() as Void {
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_11_26_13_4_start:
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc" 12 8 ]
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_11_26_13_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 12 8 ]
         %tmp.2 = getv ? :AppBase;
         %tmp.3 = getv function %tmp.2 :initialize;
         invoke %tmp.2 %tmp.3();
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_11_26_13_4_stop:
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_11_26_13_4_stop:
     }
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 16; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 16; ]
     function onStart(state as Dictionary or Null) as Void {
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_16_51_19_4_start:
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc" 17 8 ]
-        %tmp.2 = getv ? :System;
-        %tmp.3 = getv function %tmp.2 :println;
-        %tmp.4 = "started";
-        invoke %tmp.2 %tmp.3(%tmp.4);
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc" 18 8 ]
-        %tmp.7 = getm $.Fd1SessionRecorder;
-        %tmp.8 = getv function ? %tmp.7 :Fd1Activity;
-        %tmp.5 = newc %tmp.8 ();
-        putv self :_session %tmp.5;
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_16_51_19_4_stop:
     }
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 22; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 20; ]
     function onStop(state as Dictionary or Null) as Void {
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_22_50_25_4_start:
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc" 23 8 ]
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_20_50_23_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 21 8 ]
         %tmp.2 = getv ? :System;
         %tmp.3 = getv function %tmp.2 :println;
         %tmp.4 = "finished";
         invoke %tmp.2 %tmp.3(%tmp.4);
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc" 24 8 ]
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 22 8 ]
         %tmp.6 = getv ? :_session;
         %tmp.7 = getv function %tmp.6 :finish;
         invoke %tmp.6 %tmp.7();
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_22_50_25_4_stop:
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_20_50_23_4_stop:
     }
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 28; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 26; ]
     function getInitialView() as [Views] or [Views, InputDelegates] {
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_28_68_35_4_start:
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc" 29 8 ]
-        [ "_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_28_68_35_4_start" "_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_28_68_35_4_stop" ]
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 27 9 ]
+        %tmp.3 = getm $.Fd1SessionRecorder;
+        %tmp.4 = getv function ? %tmp.3 :Fd1Activity;
+        %tmp.1 = newc %tmp.4 ();
+        putv self :_session %tmp.1;
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 29 8 ]
+        [ "_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_start" "_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_stop" ]
         %fd1State.1 = local;
-        %tmp.3 = getm $.Fd1Util;
-        %tmp.4 = getv function ? %tmp.3 :Fd1State;
-        %tmp.5 = 2;
-        %tmp.1 = newc %tmp.4 (%tmp.5);
-        lputv %fd1State.1 %tmp.1;
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc" 30 8 ]
-        [ "_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_28_68_35_4_start" "_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_28_68_35_4_stop" ]
+        %tmp.7 = getm $.Fd1Util;
+        %tmp.8 = getv function ? %tmp.7 :Fd1State;
+        %tmp.9 = 2;
+        %tmp.5 = newc %tmp.8 (%tmp.9);
+        lputv %fd1State.1 %tmp.5;
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 31 8 ]
+        [ "_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_start" "_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_stop" ]
         %fd1Viev.2 = local;
-        %tmp.9 = getv ? :Fd1View;
-        %tmp.6 = newc %tmp.9 ();
-        lputv %fd1Viev.2 %tmp.6;
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc" 31 8 ]
-        %tmp.10 = lgetv %fd1Viev.2;
-        %tmp.11 = getv function %tmp.10 :setvarfd1State;
-        %tmp.13 = lgetv %fd1State.1;
-        invoke %tmp.10 %tmp.11(%tmp.13);
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc" 32 8 ]
-        [ "_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_28_68_35_4_start" "_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_28_68_35_4_stop" ]
+        %tmp.13 = getv ? :Fd1View;
+        %tmp.10 = newc %tmp.13 ();
+        lputv %fd1Viev.2 %tmp.10;
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 32 8 ]
+        %tmp.14 = lgetv %fd1Viev.2;
+        %tmp.15 = getv function %tmp.14 :setvarfd1State;
+        %tmp.17 = lgetv %fd1State.1;
+        invoke %tmp.14 %tmp.15(%tmp.17);
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 34 8 ]
+        [ "_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_start" "_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_stop" ]
         %fd1delegate.3 = local;
-        %tmp.17 = getv ? :Fd1Delegate;
-        %tmp.14 = newc %tmp.17 ();
-        lputv %fd1delegate.3 %tmp.14;
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc" 33 8 ]
-        %tmp.18 = lgetv %fd1delegate.3;
-        %tmp.19 = getv function %tmp.18 :setvarfd1State;
-        %tmp.21 = lgetv %fd1State.1;
-        invoke %tmp.18 %tmp.19(%tmp.21);
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc" 34 8 ]
-        %tmp.22 = newa 2;
-        %tmp.24 = lgetv %fd1Viev.2;
-        %tmp.25 = dup %tmp.22;
-        %tmp.26 = aputv %tmp.25 0 %tmp.24;
-        %tmp.28 = lgetv %fd1delegate.3;
-        %tmp.29 = dup %tmp.26;
-        %tmp.30 = aputv %tmp.29 1 %tmp.28;
-        ret %tmp.30;
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_28_68_35_4_stop:
+        %tmp.21 = getv ? :Fd1Delegate;
+        %tmp.18 = newc %tmp.21 ();
+        lputv %fd1delegate.3 %tmp.18;
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 35 8 ]
+        %tmp.22 = lgetv %fd1delegate.3;
+        %tmp.23 = getv function %tmp.22 :setvarfd1State;
+        %tmp.25 = lgetv %fd1State.1;
+        invoke %tmp.22 %tmp.23(%tmp.25);
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 36 8 ]
+        %tmp.26 = lgetv %fd1delegate.3;
+        %tmp.27 = getv function %tmp.26 :setSession;
+        %tmp.29 = getv ? :_session;
+        invoke %tmp.26 %tmp.27(%tmp.29);
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 37 8 ]
+        %tmp.30 = newa 2;
+        %tmp.32 = lgetv %fd1Viev.2;
+        %tmp.33 = dup %tmp.30;
+        %tmp.34 = aputv %tmp.33 0 %tmp.32;
+        %tmp.36 = lgetv %fd1delegate.3;
+        %tmp.37 = dup %tmp.34;
+        %tmp.38 = aputv %tmp.37 1 %tmp.36;
+        ret %tmp.38;
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_stop:
     }
 }
-[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 42; ]
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 42; ]
 function getApp() as Fd1App {
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_42_28_44_0_start:
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc" 43 4 ]
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_42_28_44_0_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 43 4 ]
     %tmp.1 = getm $.Toybox.Application;
     %tmp.2 = getv function %tmp.1 :getApp;
     %tmp.3 = invoke %tmp.1 %tmp.2();
     %tmp.4 = as %tmp.3 Fd1App;
     ret %tmp.4;
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1App_mc_42_28_44_0_stop:
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_42_28_44_0_stop:
 }
-[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1App.mc"; @line = 1; ]
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc"; @line = 1; ]
 <init> {
 }

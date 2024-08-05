@@ -24,13 +24,22 @@ module Fd1Util {
             _timeCoef = timeCoef;
         }
 
+        
+
+        public function informNotice() as Void{
+            Attention.playTone(Attention.TONE_START);
+                        var vibeData =  [
+                                            new Attention.VibeProfile(100, 2000) // On for two seconds
+                                        ];            
+            Attention.vibrate(vibeData);
+        }
         public function changeMode() as Void {
             if ("REST".equals(mode)){
                 
                 holdTime = 0;
                 mode = "DIVE";
             }else{
-                sessionCycle=sessionCycle+1;
+                sessionCycle=sessionCycle + 1;
                 sessionTime =sessionTime+holdTime;
                 holdTime = holdTime * _timeCoef;
                 mode = "REST";
@@ -56,7 +65,9 @@ module Fd1Util {
             }
             holdTime = holdTime + 1;
         }
-        }
+    }
+
+
 
         public function updateHeartrate() as Void {
             var currentHeartRate = Activity.getActivityInfo().currentHeartRate;

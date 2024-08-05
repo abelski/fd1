@@ -1,0 +1,264 @@
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 1; ]
+import Toybox.ActivityMonitor;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 2; ]
+import Toybox.Activity;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 3; ]
+import Toybox.Attention;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 4; ]
+import Toybox.Lang;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 6; ]
+module Fd1Util {
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 6; ]
+    <init> {
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 7; ]
+    function formatSecundes(sec) as String {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_7_41_9_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 8 4 ]
+        %tmp.2 = lgetv %sec;
+        %tmp.3 = 60;
+        %tmp.4 = div %tmp.2 %tmp.3;
+        %tmp.5 = ":";
+        %tmp.6 = add %tmp.4 %tmp.5;
+        %tmp.8 = lgetv %sec;
+        %tmp.9 = 60;
+        %tmp.10 = mod %tmp.8 %tmp.9;
+        %tmp.11 = add %tmp.6 %tmp.10;
+        ret %tmp.11;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_7_41_9_2_stop:
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 11; ]
+    class Fd1State{
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 11; ]
+        <init> {
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 11; ]
+        static
+        <init> {
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 12; @position = 18; ]
+        protected
+        var _timeCoef;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 13; @position = 15; ]
+        public
+        var mode = "REST";
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 14; @position = 15; ]
+        public
+        var holdTime = 0;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 15; @position = 15; ]
+        public
+        var heartRate = 0;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 16; @position = 15; ]
+        public
+        var sessionCycle = 0;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 17; @position = 15; ]
+        public
+        var sessionTime = 0;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 18; @position = 16; ]
+        private
+        var _needBeep = false;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 20; ]
+        public
+        function initialize(timeCoef) as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_20_41_22_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 21 6 ]
+            %tmp.2 = lgetv %timeCoef;
+            putv self :_timeCoef %tmp.2;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_20_41_22_4_stop:
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 24; ]
+        public
+        function changeMode() as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_24_41_34_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 25 6 ]
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_25_6_33_6_if_stmt:
+            %tmp.1 = "REST";
+            %tmp.2 = getv function %tmp.1 :equals;
+            %tmp.4 = getv ? :mode;
+            %tmp.5 = invoke %tmp.1 %tmp.2(%tmp.4);
+            bf %tmp.5 @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_25_6_33_6_if_false;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_25_6_33_6_if_true:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_25_31_28_6_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 26 8 ]
+            %tmp.6 = 0;
+            putv self :holdTime %tmp.6;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 27 8 ]
+            %tmp.7 = "DIVE";
+            putv self :mode %tmp.7;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_25_31_28_6_stop:
+            goto @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_25_6_33_6_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_25_6_33_6_if_false:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_28_13_33_6_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 29 8 ]
+            %tmp.9 = getv ? :sessionCycle;
+            %tmp.10 = 1;
+            %tmp.11 = add %tmp.9 %tmp.10;
+            putv self :sessionCycle %tmp.11;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 30 8 ]
+            %tmp.13 = getv ? :sessionTime;
+            %tmp.15 = getv ? :holdTime;
+            %tmp.16 = add %tmp.13 %tmp.15;
+            putv self :sessionTime %tmp.16;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 31 8 ]
+            %tmp.18 = getv ? :holdTime;
+            %tmp.20 = getv ? :_timeCoef;
+            %tmp.21 = mul %tmp.18 %tmp.20;
+            putv self :holdTime %tmp.21;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 32 8 ]
+            %tmp.22 = "REST";
+            putv self :mode %tmp.22;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_28_13_33_6_stop:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_25_6_33_6_if_end:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_24_41_34_4_stop:
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 35; ]
+        public
+        function updateTimer() as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_35_42_52_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 36 6 ]
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_36_6_51_6_if_stmt:
+            %tmp.1 = "REST";
+            %tmp.2 = getv function %tmp.1 :equals;
+            %tmp.4 = getv ? :mode;
+            %tmp.5 = invoke %tmp.1 %tmp.2(%tmp.4);
+            bf %tmp.5 @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_36_6_51_6_if_false;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_36_6_51_6_if_true:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_36_31_46_6_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 37 8 ]
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_37_8_45_8_if_stmt:
+            %tmp.7 = getv ? :holdTime;
+            %tmp.8 = 0;
+            %tmp.9 = gt %tmp.7 %tmp.8;
+            bf %tmp.9 @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_37_8_45_8_if_false;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_37_8_45_8_if_true:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_37_26_39_8_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 38 10 ]
+            %tmp.11 = getv ? :holdTime;
+            %tmp.12 = 1;
+            %tmp.13 = sub %tmp.11 %tmp.12;
+            putv self :holdTime %tmp.13;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_37_26_39_8_stop:
+            goto @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_37_8_45_8_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_37_8_45_8_if_false:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_39_15_45_8_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 40 10 ]
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_40_10_44_10_if_stmt:
+            %tmp.15 = getv ? :_needBeep;
+            bf %tmp.15 @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_40_10_44_10_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_40_10_44_10_if_true:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_40_25_44_10_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 41 12 ]
+            %tmp.16 = false;
+            putv self :_needBeep %tmp.16;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 42 12 ]
+            %tmp.17 = getm $.Toybox.Attention;
+            %tmp.18 = getv function %tmp.17 :playTone;
+            %tmp.19 = 6;
+            %tmp.20 = as %tmp.19 Toybox.Attention.Tone;
+            invoke %tmp.17 %tmp.18(%tmp.20);
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 43 12 ]
+            %tmp.21 = getm $.Toybox.Attention;
+            %tmp.22 = getv function %tmp.21 :vibrate;
+            %tmp.23 = newa 1;
+            %tmp.26 = getm $.Toybox.Attention;
+            %tmp.27 = getv function ? %tmp.26 :VibeProfile;
+            %tmp.28 = 100;
+            %tmp.29 = 2000;
+            %tmp.24 = newc %tmp.27 (%tmp.28, %tmp.29);
+            %tmp.30 = dup %tmp.23;
+            %tmp.31 = aputv %tmp.30 0 %tmp.24;
+            invoke %tmp.21 %tmp.22(%tmp.31);
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_40_25_44_10_stop:
+            goto @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_40_10_44_10_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_40_10_44_10_if_end:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_39_15_45_8_stop:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_37_8_45_8_if_end:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_36_31_46_6_stop:
+            goto @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_36_6_51_6_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_36_6_51_6_if_false:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_46_13_51_6_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 47 8 ]
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_47_8_49_8_if_stmt:
+            %tmp.33 = getv ? :_needBeep;
+            %tmp.34 = false;
+            %tmp.35 = eq %tmp.33 %tmp.34;
+            bf %tmp.35 @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_47_8_49_8_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_47_8_49_8_if_true:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_47_32_49_8_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 48 10 ]
+            %tmp.36 = true;
+            putv self :_needBeep %tmp.36;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_47_32_49_8_stop:
+            goto @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_47_8_49_8_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_47_8_49_8_if_end:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 50 8 ]
+            %tmp.38 = getv ? :holdTime;
+            %tmp.39 = 1;
+            %tmp.40 = add %tmp.38 %tmp.39;
+            putv self :holdTime %tmp.40;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_46_13_51_6_stop:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_36_6_51_6_if_end:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_35_42_52_4_stop:
+        }
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 54; ]
+        public
+        function updateHeartrate() as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_54_46_68_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 55 6 ]
+            [ "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_54_46_68_4_start" "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_54_46_68_4_stop" ]
+            %currentHeartRate.1 = local;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 56 6 ]
+            %tmp.1 = getm $.Toybox.Activity;
+            %tmp.2 = getv function %tmp.1 :getActivityInfo;
+            %tmp.3 = invoke %tmp.1 %tmp.2();
+            %tmp.4 = getv %tmp.3 :currentHeartRate;
+            lputv %currentHeartRate.1 %tmp.4;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 57 6 ]
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_57_6_67_6_if_stmt:
+            %tmp.6 = lgetv %currentHeartRate.1;
+            %tmp.7 = null;
+            %tmp.8 = ne %tmp.6 %tmp.7;
+            bf %tmp.8 @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_57_6_67_6_if_false;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_57_6_67_6_if_true:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_57_36_59_6_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 58 8 ]
+            %tmp.10 = lgetv %currentHeartRate.1;
+            %tmp.11 = as %tmp.10 { (!Null) };
+            putv self :heartRate %tmp.11;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_57_36_59_6_stop:
+            goto @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_57_6_67_6_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_57_6_67_6_if_false:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_59_13_67_6_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 60 8 ]
+            %tmp.12 = getm $.Toybox.ActivityMonitor;
+            %tmp.13 = getv function %tmp.12 :getHeartRateHistory;
+            %tmp.14 = 1;
+            %tmp.15 = true;
+            %tmp.16 = invoke %tmp.12 %tmp.13(%tmp.14, %tmp.15);
+            %tmp.17 = getv function %tmp.16 :next;
+            %tmp.18 = invoke %tmp.16 %tmp.17();
+            %tmp.19 = getv %tmp.18 :heartRate;
+            lputv %currentHeartRate.1 %tmp.19;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 64 8 ]
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_64_8_66_8_if_stmt:
+            %tmp.21 = lgetv %currentHeartRate.1;
+            %tmp.22 = 255;
+            %tmp.23 = ne %tmp.21 %tmp.22;
+            bf %tmp.23 @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_64_8_66_8_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_64_8_66_8_if_true:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_64_50_66_8_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc" 65 10 ]
+            %tmp.25 = lgetv %currentHeartRate.1;
+            putv self :heartRate %tmp.25;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_64_50_66_8_stop:
+            goto @_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_64_8_66_8_if_end;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_64_8_66_8_if_end:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_59_13_67_6_stop:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_57_6_67_6_if_end:
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1Util_mc_54_46_68_4_stop:
+        }
+    }
+}
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1Util.mc"; @line = 1; ]
+<init> {
+}

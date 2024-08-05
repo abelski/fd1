@@ -1,0 +1,250 @@
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 1; ]
+using Toybox.System;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 2; ]
+using Rez;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 3; ]
+import Toybox.Graphics;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 4; ]
+import Toybox.WatchUi;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 5; ]
+import Fd1Util;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 6; ]
+using Toybox.WatchUi as :Ui;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 7; ]
+using Toybox.Graphics as :Gfx;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 8; ]
+using Toybox.System as :Sys;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 9; ]
+using Toybox.Timer;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 11; ]
+class Fd1View extends WatchUi.View{
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 11; ]
+    <init> {
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 11; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 12; @position = 13; ]
+    static
+    var mFdState;
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 14; ]
+    function initialize() as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_14_24_16_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 15 4 ]
+        %tmp.2 = getv ? :View;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_14_24_16_2_stop:
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 18; ]
+    function setvarfd1State(fd1State) {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_18_36_20_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 19 4 ]
+        %tmp.2 = lgetv %fd1State;
+        putv self :mFdState %tmp.2;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_18_36_20_2_stop:
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 21; ]
+    function timerCallback() as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_21_35_23_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 22 4 ]
+        %tmp.1 = getm $.Toybox.WatchUi;
+        %tmp.2 = getv function %tmp.1 :requestUpdate;
+        invoke %tmp.1 %tmp.2();
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_21_35_23_2_stop:
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 26; ]
+    function onLayout(dc as Dc) as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_26_38_30_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 27 4 ]
+        %tmp.1 = self;
+        %tmp.2 = getv function %tmp.1 :setLayout;
+        %tmp.3 = getm $.Rez;
+        %tmp.4 = getv %tmp.3 :Layouts;
+        %tmp.5 = getv function %tmp.4 :MainLayout;
+        %tmp.7 = lgetv %dc;
+        %tmp.8 = invoke %tmp.4 %tmp.5(%tmp.7);
+        invoke %tmp.1 %tmp.2(%tmp.8);
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 29 4 ]
+        %tmp.11 = getm $.Toybox.Timer;
+        %tmp.12 = getv function ? %tmp.11 :Timer;
+        %tmp.9 = newc %tmp.12 ();
+        %tmp.13 = getv function %tmp.9 :start;
+        %tmp.14 = self;
+        %tmp.15 = getv function %tmp.14 :method;
+        %tmp.17 = const :timerCallback;
+        %tmp.18 = invoke %tmp.14 %tmp.15(%tmp.17);
+        %tmp.19 = 1000;
+        %tmp.20 = true;
+        invoke %tmp.9 %tmp.13(%tmp.18, %tmp.19, %tmp.20);
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_26_38_30_2_stop:
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 35; ]
+    function onShow() as Void {
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 38; ]
+    function onUpdate(dc as Dc) as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_38_38_97_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 39 4 ]
+        [ "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_38_38_97_2_start" "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_38_38_97_2_stop" ]
+        %myTime.1 = local;
+        [ "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_38_38_97_2_start" "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_38_38_97_2_stop" ]
+        %pre_1.2 = local;
+        [ "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_38_38_97_2_start" "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_38_38_97_2_stop" ]
+        %pre_2.3 = local;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 40 4 ]
+        %tmp.1 = 2;
+        lputv %pre_2.3 %tmp.1;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 41 4 ]
+        %tmp.2 = 1;
+        lputv %pre_1.2 %tmp.2;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 43 4 ]
+        %tmp.4 = getv ? :View;
+        %tmp.5 = getv function %tmp.4 :onUpdate;
+        %tmp.7 = lgetv %dc;
+        invoke %tmp.4 %tmp.5(%tmp.7);
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 44 4 ]
+        %tmp.8 = lgetv %dc;
+        %tmp.9 = getv function %tmp.8 :clear;
+        invoke %tmp.8 %tmp.9();
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 48 4 ]
+        [ "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_38_38_97_2_start" "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_38_38_97_2_stop" ]
+        %x.4 = local;
+        %tmp.10 = lgetv %dc;
+        %tmp.11 = getv function %tmp.10 :getWidth;
+        %tmp.12 = invoke %tmp.10 %tmp.11();
+        %tmp.14 = lgetv %pre_2.3;
+        %tmp.15 = div %tmp.12 %tmp.14;
+        lputv %x.4 %tmp.15;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 49 4 ]
+        [ "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_38_38_97_2_start" "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_38_38_97_2_stop" ]
+        %y.5 = local;
+        %tmp.16 = lgetv %dc;
+        %tmp.17 = getv function %tmp.16 :getHeight;
+        %tmp.18 = invoke %tmp.16 %tmp.17();
+        %tmp.20 = lgetv %pre_2.3;
+        %tmp.21 = div %tmp.18 %tmp.20;
+        lputv %y.5 %tmp.21;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 51 4 ]
+        %tmp.22 = lgetv %dc;
+        %tmp.23 = getv function %tmp.22 :drawText;
+        %tmp.25 = lgetv %x.4;
+        %tmp.27 = lgetv %y.5;
+        %tmp.28 = 4;
+        %tmp.29 = as %tmp.28 Toybox.Graphics.FontDefinition;
+        %tmp.30 = "Mode:";
+        %tmp.32 = getv ? :mFdState;
+        %tmp.33 = getv %tmp.32 :mode;
+        %tmp.34 = add %tmp.30 %tmp.33;
+        %tmp.36 = lgetv %pre_1.2;
+        %tmp.37 = as %tmp.36 Toybox.Graphics.TextJustification;
+        invoke %tmp.22 %tmp.23(%tmp.25, %tmp.27, %tmp.29, %tmp.34, %tmp.37);
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 59 4 ]
+        %tmp.38 = getm $.Toybox.System;
+        %tmp.39 = getv function %tmp.38 :getClockTime;
+        %tmp.40 = invoke %tmp.38 %tmp.39();
+        lputv %myTime.1 %tmp.40;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 60 4 ]
+        %tmp.41 = lgetv %myTime.1;
+        %tmp.42 = getv %tmp.41 :hour;
+        %tmp.43 = getv function %tmp.42 :format;
+        %tmp.44 = "%02d";
+        %tmp.45 = invoke %tmp.42 %tmp.43(%tmp.44);
+        %tmp.46 = ":";
+        %tmp.47 = add %tmp.45 %tmp.46;
+        %tmp.48 = lgetv %myTime.1;
+        %tmp.49 = getv %tmp.48 :min;
+        %tmp.50 = getv function %tmp.49 :format;
+        %tmp.51 = "%02d";
+        %tmp.52 = invoke %tmp.49 %tmp.50(%tmp.51);
+        %tmp.53 = add %tmp.47 %tmp.52;
+        lputv %myTime.1 %tmp.53;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 62 4 ]
+        %tmp.54 = lgetv %dc;
+        %tmp.55 = getv function %tmp.54 :drawText;
+        %tmp.57 = lgetv %x.4;
+        %tmp.59 = lgetv %y.5;
+        %tmp.60 = 30;
+        %tmp.61 = add %tmp.59 %tmp.60;
+        %tmp.62 = 18;
+        %tmp.63 = as %tmp.62 Toybox.Graphics.FontDefinition;
+        %tmp.64 = "time: ";
+        %tmp.65 = getm $.Fd1Util;
+        %tmp.66 = getv function %tmp.65 :formatSecundes;
+        %tmp.68 = getv ? :mFdState;
+        %tmp.69 = getv %tmp.68 :holdTime;
+        %tmp.70 = invoke %tmp.65 %tmp.66(%tmp.69);
+        %tmp.71 = add %tmp.64 %tmp.70;
+        %tmp.73 = lgetv %pre_1.2;
+        %tmp.74 = as %tmp.73 Toybox.Graphics.TextJustification;
+        invoke %tmp.54 %tmp.55(%tmp.57, %tmp.61, %tmp.63, %tmp.71, %tmp.74);
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 70 4 ]
+        %tmp.76 = getv ? :mFdState;
+        %tmp.77 = getv function %tmp.76 :updateTimer;
+        invoke %tmp.76 %tmp.77();
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 71 4 ]
+        %tmp.79 = getv ? :mFdState;
+        %tmp.80 = getv function %tmp.79 :updateHeartrate;
+        invoke %tmp.79 %tmp.80();
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 73 4 ]
+        %tmp.81 = lgetv %dc;
+        %tmp.82 = getv function %tmp.81 :drawText;
+        %tmp.84 = lgetv %x.4;
+        %tmp.85 = 15;
+        %tmp.86 = sub %tmp.84 %tmp.85;
+        %tmp.88 = lgetv %y.5;
+        %tmp.89 = 90;
+        %tmp.90 = sub %tmp.88 %tmp.89;
+        %tmp.92 = lgetv %pre_2.3;
+        %tmp.93 = as %tmp.92 Toybox.Graphics.FontDefinition;
+        %tmp.95 = lgetv %myTime.1;
+        %tmp.97 = lgetv %pre_1.2;
+        %tmp.98 = as %tmp.97 Toybox.Graphics.TextJustification;
+        invoke %tmp.81 %tmp.82(%tmp.86, %tmp.90, %tmp.93, %tmp.95, %tmp.98);
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 80 4 ]
+        %tmp.99 = lgetv %dc;
+        %tmp.100 = getv function %tmp.99 :drawText;
+        %tmp.102 = lgetv %x.4;
+        %tmp.103 = 55;
+        %tmp.104 = sub %tmp.102 %tmp.103;
+        %tmp.106 = lgetv %y.5;
+        %tmp.107 = 70;
+        %tmp.108 = sub %tmp.106 %tmp.107;
+        %tmp.110 = lgetv %pre_2.3;
+        %tmp.111 = as %tmp.110 Toybox.Graphics.FontDefinition;
+        %tmp.113 = getv ? :mFdState;
+        %tmp.114 = getv %tmp.113 :sessionCycle;
+        %tmp.115 = "/";
+        %tmp.116 = add %tmp.114 %tmp.115;
+        %tmp.117 = getm $.Fd1Util;
+        %tmp.118 = getv function %tmp.117 :formatSecundes;
+        %tmp.120 = getv ? :mFdState;
+        %tmp.121 = getv %tmp.120 :sessionTime;
+        %tmp.122 = invoke %tmp.117 %tmp.118(%tmp.121);
+        %tmp.123 = add %tmp.116 %tmp.122;
+        %tmp.125 = lgetv %pre_1.2;
+        %tmp.126 = as %tmp.125 Toybox.Graphics.TextJustification;
+        invoke %tmp.99 %tmp.100(%tmp.104, %tmp.108, %tmp.111, %tmp.123, %tmp.126);
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc" 90 4 ]
+        %tmp.127 = lgetv %dc;
+        %tmp.128 = getv function %tmp.127 :drawText;
+        %tmp.130 = lgetv %x.4;
+        %tmp.131 = 60;
+        %tmp.132 = add %tmp.130 %tmp.131;
+        %tmp.134 = lgetv %y.5;
+        %tmp.135 = 80;
+        %tmp.136 = sub %tmp.134 %tmp.135;
+        %tmp.137 = 15;
+        %tmp.138 = as %tmp.137 Toybox.Graphics.FontDefinition;
+        %tmp.140 = getv ? :mFdState;
+        %tmp.141 = getv %tmp.140 :heartRate;
+        %tmp.143 = lgetv %pre_1.2;
+        %tmp.144 = as %tmp.143 Toybox.Graphics.TextJustification;
+        invoke %tmp.127 %tmp.128(%tmp.132, %tmp.136, %tmp.138, %tmp.141, %tmp.144);
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1View_mc_38_38_97_2_stop:
+    }
+}
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1View.mc"; @line = 1; ]
+<init> {
+}

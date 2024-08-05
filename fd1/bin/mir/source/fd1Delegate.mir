@@ -1,57 +1,76 @@
-[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc"; @line = 1; ]
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 1; ]
 import Toybox.Lang;
-[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc"; @line = 2; ]
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 2; ]
 import Toybox.WatchUi;
-[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc"; @line = 4; ]
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 4; ]
 class Fd1Delegate extends WatchUi.BehaviorDelegate{
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc"; @line = 4; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 4; ]
     <init> {
     }
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc"; @line = 4; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 4; ]
     static
     <init> {
     }
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc"; @line = 5; @position = 15; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 5; @position = 15; ]
     static
-    var mFdState;
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc"; @line = 7; ]
+    var _FdState;
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 6; @position = 15; ]
+    static
+    var _session;
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 8; ]
     function setvarfd1State(fd1State) {
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1Delegate_mc_7_37_9_4_start:
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc" 8 8 ]
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_8_37_10_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 9 8 ]
         %tmp.2 = lgetv %fd1State;
-        putv self :mFdState %tmp.2;
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1Delegate_mc_7_37_9_4_stop:
+        putv self :_FdState %tmp.2;
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_8_37_10_4_stop:
     }
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc"; @line = 10; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 12; ]
+    function setSession(session) {
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_12_32_14_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 13 8 ]
+        %tmp.2 = lgetv %session;
+        putv self :_session %tmp.2;
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_12_32_14_4_stop:
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 15; ]
     function initialize() as Void {
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1Delegate_mc_10_26_13_4_start:
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc" 11 8 ]
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_15_26_18_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 16 8 ]
         %tmp.2 = getv ? :BehaviorDelegate;
         %tmp.3 = getv function %tmp.2 :initialize;
         invoke %tmp.2 %tmp.3();
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1Delegate_mc_10_26_13_4_stop:
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_15_26_18_4_stop:
     }
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc"; @line = 15; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 20; ]
     function onSelect() as Boolean {
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1Delegate_mc_15_37_18_4_start:
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc" 16 8 ]
-        %tmp.2 = getv ? :mFdState;
-        %tmp.3 = getv function %tmp.2 :changeMode;
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_20_37_25_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 21 8 ]
+        %tmp.2 = getv ? :_session;
+        %tmp.3 = getv function %tmp.2 :startLap;
         invoke %tmp.2 %tmp.3();
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc" 17 9 ]
-        %tmp.4 = true;
-        ret %tmp.4;
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1Delegate_mc_15_37_18_4_stop:
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 22 8 ]
+        %tmp.5 = getv ? :_FdState;
+        %tmp.6 = getv function %tmp.5 :changeMode;
+        invoke %tmp.5 %tmp.6();
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 23 8 ]
+        %tmp.8 = getv ? :_FdState;
+        %tmp.9 = getv function %tmp.8 :informNotice;
+        invoke %tmp.8 %tmp.9();
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 24 9 ]
+        %tmp.10 = true;
+        ret %tmp.10;
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_20_37_25_4_stop:
     }
-    [ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc"; @line = 20; ]
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 27; ]
     function onMenu() as Boolean {
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1Delegate_mc_20_33_24_4_start:
-[ "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc" 23 8 ]
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_27_33_31_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 30 8 ]
         %tmp.1 = true;
         ret %tmp.1;
-_Users_Artur_Belski_Documents_src_fd1_source_Fd1Delegate_mc_20_33_24_4_stop:
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_27_33_31_4_stop:
     }
 }
-[ @file = "/Users/Artur_Belski/Documents/src/fd1/source/Fd1Delegate.mc"; @line = 1; ]
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 1; ]
 <init> {
 }

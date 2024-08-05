@@ -1,0 +1,121 @@
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 1; ]
+using Toybox.System;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 2; ]
+import Toybox.Application;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 3; ]
+import Toybox.Lang;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 4; ]
+import Toybox.WatchUi;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 5; ]
+import Fd1Util;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 6; ]
+import Fd1SessionRecorder;
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 8; ]
+class Fd1App extends Application.AppBase{
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 8; ]
+    <init> {
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 8; ]
+    static
+    <init> {
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 9; @position = 14; ]
+    private
+    var _session;
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 11; ]
+    function initialize() as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_11_24_13_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc" 12 4 ]
+        %tmp.2 = getv ? :AppBase;
+        %tmp.3 = getv function %tmp.2 :initialize;
+        invoke %tmp.2 %tmp.3();
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_11_24_13_2_stop:
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 16; ]
+    function onStart(state as Dictionary or Null) as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_16_49_19_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc" 17 4 ]
+        %tmp.1 = getm $.Toybox.System;
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "started";
+        invoke %tmp.1 %tmp.2(%tmp.3);
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc" 18 4 ]
+        %tmp.6 = getm $.Fd1SessionRecorder;
+        %tmp.7 = getv function ? %tmp.6 :Fd1Activity;
+        %tmp.4 = newc %tmp.7 ();
+        putv self :_session %tmp.4;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_16_49_19_2_stop:
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 22; ]
+    function onStop(state as Dictionary or Null) as Void {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_22_48_25_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc" 23 4 ]
+        %tmp.1 = getm $.Toybox.System;
+        %tmp.2 = getv function %tmp.1 :println;
+        %tmp.3 = "finished";
+        invoke %tmp.1 %tmp.2(%tmp.3);
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc" 24 4 ]
+        %tmp.5 = getv ? :_session;
+        %tmp.6 = getv function %tmp.5 :finish;
+        invoke %tmp.5 %tmp.6();
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_22_48_25_2_stop:
+    }
+    [ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 28; ]
+    function getInitialView() as [Views] or [Views, InputDelegates] {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_28_66_35_2_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc" 29 4 ]
+        [ "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_28_66_35_2_start" "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_28_66_35_2_stop" ]
+        %fd1State.1 = local;
+        %tmp.3 = getm $.Fd1Util;
+        %tmp.4 = getv function ? %tmp.3 :Fd1State;
+        %tmp.5 = 2;
+        %tmp.1 = newc %tmp.4 (%tmp.5);
+        lputv %fd1State.1 %tmp.1;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc" 30 4 ]
+        [ "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_28_66_35_2_start" "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_28_66_35_2_stop" ]
+        %fd1Viev.2 = local;
+        %tmp.9 = getv ? :Fd1View;
+        %tmp.6 = newc %tmp.9 ();
+        lputv %fd1Viev.2 %tmp.6;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc" 31 4 ]
+        %tmp.10 = lgetv %fd1Viev.2;
+        %tmp.11 = getv function %tmp.10 :setvarfd1State;
+        %tmp.13 = lgetv %fd1State.1;
+        invoke %tmp.10 %tmp.11(%tmp.13);
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc" 32 4 ]
+        [ "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_28_66_35_2_start" "_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_28_66_35_2_stop" ]
+        %fd1delegate.3 = local;
+        %tmp.17 = getv ? :Fd1Delegate;
+        %tmp.14 = newc %tmp.17 ();
+        lputv %fd1delegate.3 %tmp.14;
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc" 33 4 ]
+        %tmp.18 = lgetv %fd1delegate.3;
+        %tmp.19 = getv function %tmp.18 :setvarfd1State;
+        %tmp.21 = lgetv %fd1State.1;
+        invoke %tmp.18 %tmp.19(%tmp.21);
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc" 34 4 ]
+        %tmp.22 = newa 2;
+        %tmp.24 = lgetv %fd1Viev.2;
+        %tmp.25 = dup %tmp.22;
+        %tmp.26 = aputv %tmp.25 0 %tmp.24;
+        %tmp.28 = lgetv %fd1delegate.3;
+        %tmp.29 = dup %tmp.26;
+        %tmp.30 = aputv %tmp.29 1 %tmp.28;
+        ret %tmp.30;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_28_66_35_2_stop:
+    }
+}
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 38; ]
+function getApp() as Fd1App {
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_38_28_40_0_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc" 39 2 ]
+    %tmp.1 = getm $.Toybox.Application;
+    %tmp.2 = getv function %tmp.1 :getApp;
+    %tmp.3 = invoke %tmp.1 %tmp.2();
+    %tmp.4 = as %tmp.3 Fd1App;
+    ret %tmp.4;
+_Users_Artur_Belski_Documents_src_fd1_bin_optimized_group000_debug_source_source_Fd1App_mc_38_28_40_0_stop:
+}
+[ @file = "/Users/Artur_Belski/Documents/src/fd1/bin/optimized/group000-debug/source/source/Fd1App.mc"; @line = 1; ]
+<init> {
+}

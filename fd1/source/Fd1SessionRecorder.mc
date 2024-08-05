@@ -7,16 +7,16 @@ using  Toybox.FitContributor;
 
 
 module Fd1SessionRecorder {
-class Fd1SessionSpec {
+    class Fd1SessionSpec {
 		private static const SUB_SPORT_BREATHWORKS = 62;
 		
 	
 		static function createFdSession(sessionName) {
 			return {
                  :name => sessionName,                              
-                 :sport => ActivityRecording.SPORT_SWIMMING,      
+                 :sport => ActivityRecording.SPORT_GENERIC,      
                  :subSport => SUB_SPORT_BREATHWORKS
-                };
+            };
 		}
 	}
 
@@ -33,12 +33,17 @@ class Fd1SessionSpec {
         function onBeforeStart(fitSession) {
 		}
 
+		public function startLap() as Void {
+			_FitSession.addLap();
+            
+        }
+
         private function createMinHrDataField() as Void{
 			me.mMinHrField = me._FitSession.createField(
 	            "min_hr",
 	            me.MinHrFieldId,
 	            FitContributor.DATA_TYPE_UINT16,
-	            {:mesgType=>FitContributor.MESG_TYPE_SESSION, :units=>"bpm"}
+	            {:mesgType=>FitContributor.MESG_TYPE_SESSION, :units=> "bpm"}
 	        );
 			
 	        me.mMinHrField.setData(0);
@@ -76,7 +81,7 @@ class Fd1SessionSpec {
 			 me._FitSession.start(); 
 		     me._RefreshActivityTimer = new Timer.Timer();		
 		     me._RefreshActivityTimer.start(method(:refreshActivityStats), _RefreshActivityInterval, true);
-             System.println("Session started:"+me._FitSession);
+             System.println("Session started:" + me._FitSession);
         }
 
         function finish() {	

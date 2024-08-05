@@ -2,10 +2,15 @@ import Toybox.Lang;
 import Toybox.WatchUi;
 
 class Fd1Delegate extends WatchUi.BehaviorDelegate {
-    static var mFdState;
+    static var _FdState;
+    static var _session;
 
     function setvarfd1State(fd1State){
-        mFdState = fd1State;
+        _FdState = fd1State;
+    }
+
+    function setSession(session){
+        _session = session;
     }
     function initialize() {
         BehaviorDelegate.initialize();
@@ -13,7 +18,9 @@ class Fd1Delegate extends WatchUi.BehaviorDelegate {
     }
 
     function onSelect()  as Boolean  {
-        mFdState.changeMode();
+        _session.startLap();
+        _FdState.changeMode();
+        _FdState.informNotice();
          return true;
     }
 
