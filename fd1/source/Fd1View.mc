@@ -59,12 +59,25 @@ class Fd1View extends WatchUi.View {
         dc.clear();
     }
     function drawUI(dc as Dc,x,y) as Void{
-        dc.drawText(x-30, y, Gfx.FONT_LARGE, "Mode:", Gfx.TEXT_JUSTIFY_CENTER);
-        dc.drawText(x-20, y + 30, Gfx.FONT_GLANCE, "time: ", Gfx.TEXT_JUSTIFY_CENTER);
+        //heatrate area
+        dc.fillCircle(x+57, y-57, 30);
+        dc.drawBitmap(x+30,y-60, Ui.loadResource( Rez.Drawables.Heart));
+
+        //mode area
+        dc.fillRectangle(0, y-5, 200, 40);
+        dc.drawBitmap(10,y-15, Ui.loadResource( Rez.Drawables.DivingMask));
+        //dc.drawText(x-30, y, Gfx.FONT_LARGE, "Mode:", Gfx.TEXT_JUSTIFY_CENTER);
+
+        
+        //time area
+        //dc.drawText(x-20, y + 34, Gfx.FONT_GLANCE, "time: ", Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawBitmap(30,y + 44, Ui.loadResource( Rez.Drawables.Clock));
     }
     function drawValues(dc as Dc,x,y) {
-        dc.drawText(x+30, y, Gfx.FONT_LARGE, mFdState.mode, Gfx.TEXT_JUSTIFY_CENTER);
-        dc.drawText(x+20, y + 30, Gfx.FONT_GLANCE,  Fd1Util.formatSecundes(mFdState.holdTime), Gfx.TEXT_JUSTIFY_CENTER);
+        //white values
+        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
+        
+        dc.drawText(105, y + 44, Gfx.FONT_LARGE,  Fd1Util.formatSecundes(mFdState.holdTime), Gfx.TEXT_JUSTIFY_CENTER);
         
 
         var myTime = System.getClockTime();
@@ -72,9 +85,12 @@ class Fd1View extends WatchUi.View {
                             myTime.min.format("%02d") ;
         dc.drawText(x - 15, y - 90, Gfx.FONT_SMALL, formatedTime, Gfx.TEXT_JUSTIFY_CENTER);
         
-        dc.drawText(x - 55, y - 70, Gfx.FONT_SMALL,mFdState.sessionCycle+"/"+Fd1Util.formatSecundes(mFdState.sessionTime), Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(x - 10, y - 70, Gfx.FONT_SMALL,mFdState.sessionCycle+"/"+Fd1Util.formatSecundes(mFdState.sessionTime), Gfx.TEXT_JUSTIFY_RIGHT);
 
-        dc.drawText(x + 60, y - 80 , Gfx.FONT_SYSTEM_NUMBER_MEDIUM, mFdState.heartRate, Gfx.TEXT_JUSTIFY_CENTER);  
+        //black values
+        dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_WHITE);
+        dc.drawText(x + 60, y - 70 , Gfx.FONT_SYSTEM_MEDIUM, mFdState.heartRate, Gfx.TEXT_JUSTIFY_CENTER);  
+        dc.drawText(x+30, y, Gfx.FONT_LARGE, mFdState.mode, Gfx.TEXT_JUSTIFY_CENTER);
     }
     
 

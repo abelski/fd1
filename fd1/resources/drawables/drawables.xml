@@ -1,3 +1,7 @@
 <drawables>
     <bitmap id="LauncherIcon" filename="launcher_icon.png" />
+    <bitmap id="Heart" filename="heart.png" />
+    <bitmap id="DivingMask" filename="dive.png" />
+    <bitmap id="Clock" filename="time.png" />
+
 </drawables>
