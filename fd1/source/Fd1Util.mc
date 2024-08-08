@@ -50,6 +50,13 @@ module Fd1Util {
         if ("REST".equals(mode)){
                 if(holdTime>0){
                     holdTime = holdTime - 1;
+                    //shortly vibrate last 10 sec before dive
+                    if(holdTime<11){
+                            var vibeData =  [
+                                            new Attention.VibeProfile(30, 500) 
+                                        ];
+                            Attention.vibrate(vibeData);
+                    }
                 }else{
                     if(_needBeep){
                         _needBeep = false;
@@ -64,6 +71,15 @@ module Fd1Util {
             if(_needBeep == false){
                 _needBeep = true;
             }
+            //vibrate every minute
+            var holdSec = holdTime%60;
+            if(holdSec==0){
+                var vibeData =  [
+                                     new Attention.VibeProfile(30, 100) 
+                                 ];
+                Attention.vibrate(vibeData);
+            }
+
             holdTime = holdTime + 1;
         }
     }
