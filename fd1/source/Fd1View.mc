@@ -40,32 +40,42 @@ class Fd1View extends WatchUi.View {
     function onUpdate(dc as Dc) as Void {
         // Call the parent onUpdate function to redraw the layout
         View.onUpdate(dc);
-        dc.clear();
+        clearValues(dc);
+        mFdState.updateTimer();
+        mFdState.updateHeartrate();
         
-        // Set the font and justify settings
-        var font = Gfx.FONT_LARGE;
-        var justify = Gfx.TEXT_JUSTIFY_CENTER;
-
+        
         // Determine the position on the screen (centered)
         var x = dc.getWidth() / 2;
         var y = dc.getHeight() / 2;
+        drawUI(dc, x, y);
+        drawValues(dc, x, y);
+        
 
-        dc.drawText(x, y, font, "Mode:"+mFdState.mode, justify);
+        
+    }
+
+    function clearValues(dc as Dc) as Void{
+        dc.clear();
+    }
+    function drawUI(dc as Dc,x,y) as Void{
+        dc.drawText(x-30, y, Gfx.FONT_LARGE, "Mode:", Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(x-20, y + 30, Gfx.FONT_GLANCE, "time: ", Gfx.TEXT_JUSTIFY_CENTER);
+    }
+    function drawValues(dc as Dc,x,y) {
+        dc.drawText(x+30, y, Gfx.FONT_LARGE, mFdState.mode, Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(x+20, y + 30, Gfx.FONT_GLANCE,  Fd1Util.formatSecundes(mFdState.holdTime), Gfx.TEXT_JUSTIFY_CENTER);
+        
 
         var myTime = System.getClockTime();
         var formatedTime = myTime.hour.format("%02d") + ":" +
                             myTime.min.format("%02d") ;
-        dc.drawText(x, y + 30, Gfx.FONT_GLANCE, "time: "+ Fd1Util.formatSecundes(mFdState.holdTime), justify);
+        dc.drawText(x - 15, y - 90, Gfx.FONT_SMALL, formatedTime, Gfx.TEXT_JUSTIFY_CENTER);
         
-        mFdState.updateTimer();
-        mFdState.updateHeartrate();
+        dc.drawText(x - 55, y - 70, Gfx.FONT_SMALL,mFdState.sessionCycle+"/"+Fd1Util.formatSecundes(mFdState.sessionTime), Gfx.TEXT_JUSTIFY_CENTER);
 
-        dc.drawText(x - 15, y - 90, Gfx.FONT_SMALL, formatedTime, justify);
-        dc.drawText(x - 55, y - 70, Gfx.FONT_SMALL,mFdState.sessionCycle+"/"+Fd1Util.formatSecundes(mFdState.sessionTime), justify);
-
-        dc.drawText(x + 60, y - 80 , Gfx.FONT_SYSTEM_NUMBER_MEDIUM, mFdState.heartRate, justify);  
+        dc.drawText(x + 60, y - 80 , Gfx.FONT_SYSTEM_NUMBER_MEDIUM, mFdState.heartRate, Gfx.TEXT_JUSTIFY_CENTER);  
     }
-
     
 
 
