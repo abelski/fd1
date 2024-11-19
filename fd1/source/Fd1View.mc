@@ -43,6 +43,7 @@ class Fd1View extends WatchUi.View {
         clearValues(dc);
         mFdState.updateTimer();
         mFdState.updateHeartrate();
+        mFdState.updatePressure();
         
         
         // Determine the position on the screen (centered)
@@ -75,19 +76,24 @@ class Fd1View extends WatchUi.View {
     }
     function drawValues(dc as Dc,x,y) {
         //white values
+        //-------------------------------------
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
         
         dc.drawText(105, y + 44, Gfx.FONT_LARGE,  Fd1Util.formatSecundes(mFdState.holdTime), Gfx.TEXT_JUSTIFY_CENTER);
         
+        dc.drawText(5, y - 30, Gfx.FONT_SMALL,mFdState.autoStart+"/"+mFdState.autoEnd+"/"+mFdState.pressureNow, Gfx.TEXT_JUSTIFY_LEFT);
 
+
+        //clock
         var myTime = System.getClockTime();
         var formatedTime = myTime.hour.format("%02d") + ":" +
                             myTime.min.format("%02d") ;
         dc.drawText(x - 15, y - 90, Gfx.FONT_SMALL, formatedTime, Gfx.TEXT_JUSTIFY_CENTER);
-        
+        //session data
         dc.drawText(x - 10, y - 70, Gfx.FONT_SMALL,mFdState.sessionCycle+"/"+Fd1Util.formatSecundes(mFdState.sessionTime), Gfx.TEXT_JUSTIFY_RIGHT);
 
         //black values
+        //-------------------------------------
         dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_WHITE);
         dc.drawText(x + 60, y - 70 , Gfx.FONT_SYSTEM_MEDIUM, mFdState.heartRate, Gfx.TEXT_JUSTIFY_CENTER);  
         dc.drawText(x+30, y, Gfx.FONT_LARGE, mFdState.mode, Gfx.TEXT_JUSTIFY_CENTER);

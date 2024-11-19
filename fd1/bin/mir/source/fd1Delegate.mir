@@ -45,30 +45,49 @@ _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_15_26_18_4_stop:
     [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 20; ]
     function onSelect() as Boolean {
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_20_37_25_4_start:
-[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 21 8 ]
-        %tmp.2 = getv ? :_session;
-        %tmp.3 = getv function %tmp.2 :startLap;
-        invoke %tmp.2 %tmp.3();
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 22 8 ]
-        %tmp.5 = getv ? :_FdState;
-        %tmp.6 = getv function %tmp.5 :changeMode;
-        invoke %tmp.5 %tmp.6();
+        %tmp.2 = getv ? :_FdState;
+        %tmp.3 = getv function %tmp.2 :changeMode;
+        %tmp.5 = getv ? :_session;
+        invoke %tmp.2 %tmp.3(%tmp.5);
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 23 8 ]
-        %tmp.8 = getv ? :_FdState;
-        %tmp.9 = getv function %tmp.8 :informNotice;
-        invoke %tmp.8 %tmp.9();
+        %tmp.7 = getv ? :_FdState;
+        %tmp.8 = getv function %tmp.7 :informNotice;
+        invoke %tmp.7 %tmp.8();
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 24 9 ]
-        %tmp.10 = true;
-        ret %tmp.10;
+        %tmp.9 = true;
+        ret %tmp.9;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_20_37_25_4_stop:
     }
     [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 27; ]
     function onMenu() as Boolean {
-_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_27_33_31_4_start:
-[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 30 8 ]
-        %tmp.1 = true;
-        ret %tmp.1;
-_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_27_33_31_4_stop:
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_27_33_32_4_start:
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 28 8 ]
+        [ "_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_27_33_32_4_start" "_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_27_33_32_4_stop" ]
+        %menuDelegate.1 = local;
+        %tmp.4 = getv ? :Fd1MenuDelegate;
+        %tmp.1 = newc %tmp.4 ();
+        lputv %menuDelegate.1 %tmp.1;
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 29 8 ]
+        %tmp.5 = lgetv %menuDelegate.1;
+        %tmp.6 = getv function %tmp.5 :setvarfd1State;
+        %tmp.8 = getv ? :_FdState;
+        invoke %tmp.5 %tmp.6(%tmp.8);
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 30 9 ]
+        %tmp.9 = getm $.Toybox.WatchUi;
+        %tmp.10 = getv function %tmp.9 :pushView;
+        %tmp.14 = getv ? :Rez;
+        %tmp.15 = getv %tmp.14 :Menus;
+        %tmp.16 = getv function ? %tmp.15 :MainMenu;
+        %tmp.11 = newc %tmp.16 ();
+        %tmp.18 = lgetv %menuDelegate.1;
+        %tmp.19 = getm $.Toybox.WatchUi;
+        %tmp.20 = getv %tmp.19 :SLIDE_UP;
+        invoke %tmp.9 %tmp.10(%tmp.11, %tmp.18, %tmp.20);
+[ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc" 31 8 ]
+        %tmp.21 = true;
+        ret %tmp.21;
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Delegate_mc_27_33_32_4_stop:
     }
 }
 [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Delegate.mc"; @line = 1; ]

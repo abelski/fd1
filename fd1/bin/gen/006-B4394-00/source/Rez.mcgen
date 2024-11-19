@@ -6,6 +6,9 @@ using Toybox.Graphics as Gfx;
 
 module Rez {
     module Drawables {
+        (:initialized) var Heart as ResourceId;
+        (:initialized) var DivingMask as ResourceId;
+        (:initialized) var Clock as ResourceId;
         (:initialized) var LauncherIcon as ResourceId;
     } // Drawables
 
@@ -21,15 +24,15 @@ module Rez {
         class MainMenu extends WatchUi.Menu {
             function initialize() {
                 Menu.initialize();
-                addItem((WatchUi.loadResource($.Rez.Strings.menu_label_1) as String), :item_1);
-                addItem((WatchUi.loadResource($.Rez.Strings.menu_label_2) as String), :item_2);
+                addItem((WatchUi.loadResource($.Rez.Strings.set_surface) as String), :set_surface);
+                addItem((WatchUi.loadResource($.Rez.Strings.set_deep) as String), :set_deep);
             }
         }
     } // Menus
 
     module Strings {
-        (:initialized) var menu_label_1 as ResourceId;
-        (:initialized) var menu_label_2 as ResourceId;
+        (:initialized) var set_deep as ResourceId;
+        (:initialized) var set_surface as ResourceId;
         (:initialized) var prompt as ResourceId;
         (:initialized) var AppName as ResourceId;
     } // Strings

@@ -25,8 +25,9 @@ class Fd1Delegate extends WatchUi.BehaviorDelegate {
     }
 
     function onMenu() as Boolean {
-        // WatchUi.pushView(new Rez.Menus.MainMenu(), new Fd1MenuDelegate(), WatchUi.SLIDE_UP);
-        
+        var menuDelegate = new Fd1MenuDelegate();
+        menuDelegate.setvarfd1State(_FdState);
+         WatchUi.pushView(new Rez.Menus.MainMenu(), menuDelegate, WatchUi.SLIDE_UP);
         return true;
     }
 }

@@ -11,17 +11,53 @@ module Fd1Util {
     }
     
     class Fd1State {
+        public var _session;
+
         protected var _timeCoef;
         public var mode = "REST";
         public var holdTime = 0;
         public var heartRate = 0;
         public var sessionCycle = 0;
         public var sessionTime = 0;
+        public var autoStart = "m";
+        public var autoStartPressure = 0;
+
+        public var autoEnd = "m";
+        public var autoEndPressure = 0;
+
+        public var pressureNow = 0;
         private var _needBeep = false;
 
 
-        public function initialize( timeCoef ) {
+        public function initialize( timeCoef, session ) {
             _timeCoef = timeCoef;
+            _session = session;
+        }
+
+        function setSession(session){
+             _session = session;
+        }
+
+        public function setsurface() as Void {
+            if(autoEndPressure==0){
+                autoEnd="a";
+                autoEndPressure = pressureNow;
+            }else{
+                autoEnd="m";
+                autoEndPressure = 0;
+            }
+
+        }
+
+        public function setdeep() as Void {
+            if(autoStartPressure==0){
+                autoStart="a";
+                autoStartPressure=pressureNow;
+
+            }else{
+                autoStart="m";
+                autoStartPressure = 0;
+            }
         }
 
         
@@ -46,8 +82,10 @@ module Fd1Util {
                 mode = "REST";
             }
         }
-        public function updateTimer() as Void {
+    public function updateTimer() as Void {
+        
         if ("REST".equals(mode)){
+                
                 if(holdTime>0){
                     holdTime = holdTime - 1;
                     //shortly vibrate last 10 sec before dive
@@ -85,6 +123,25 @@ module Fd1Util {
     }
 
 
+        public function updatePressure() as Void {
+            var currentPressure = Activity.getActivityInfo().ambientPressure;
+            
+            if(currentPressure!=null){
+                pressureNow = (currentPressure/1000).format("%.2f");
+                if("REST".equals(mode)){
+                    if(autoStartPressure>0 && autoStartPressure<pressureNow){
+                        changeMode(_session);
+                    }
+                }else{
+                    if(autoEndPressure>0 && autoEndPressure>pressureNow){
+                        changeMode(_session);
+                    }
+                }
+            
+            }else{
+                pressureNow = 0;
+            }
+        }
 
         public function updateHeartrate() as Void {
             var currentHeartRate = Activity.getActivityInfo().currentHeartRate;
