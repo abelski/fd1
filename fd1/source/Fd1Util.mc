@@ -41,7 +41,7 @@ module Fd1Util {
         public function setsurface() as Void {
             if(autoEndPressure==0){
                 autoEnd="a";
-                autoEndPressure = pressureNow;
+                autoEndPressure = pressureNow.toFloat();
             }else{
                 autoEnd="m";
                 autoEndPressure = 0;
@@ -52,7 +52,7 @@ module Fd1Util {
         public function setdeep() as Void {
             if(autoStartPressure==0){
                 autoStart="a";
-                autoStartPressure=pressureNow;
+                autoStartPressure=pressureNow.toFloat();
 
             }else{
                 autoStart="m";
@@ -125,9 +125,10 @@ module Fd1Util {
 
         public function updatePressure() as Void {
             var currentPressure = Activity.getActivityInfo().ambientPressure;
+            //var currentPressure = 97.7;
             
             if(currentPressure!=null){
-                pressureNow = (currentPressure/1000).format("%.2f");
+                pressureNow = (currentPressure/1000);
                 if("REST".equals(mode)){
                     if(autoStartPressure>0 && autoStartPressure<pressureNow){
                         changeMode(_session);

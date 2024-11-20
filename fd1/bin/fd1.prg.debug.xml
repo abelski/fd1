@@ -85,135 +85,135 @@
         <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="80" parent="globals/Fd1View" pc="268436873" symbol="drawValues"/>
         <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="82" parent="globals/Fd1View" pc="268436895" symbol="drawValues"/>
         <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="84" parent="globals/Fd1View" pc="268436959" symbol="drawValues"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="88" parent="globals/Fd1View" pc="268437050" symbol="drawValues"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="89" parent="globals/Fd1View" pc="268437069" symbol="drawValues"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="91" parent="globals/Fd1View" pc="268437122" symbol="drawValues"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="93" parent="globals/Fd1View" pc="268437162" symbol="drawValues"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="97" parent="globals/Fd1View" pc="268437250" symbol="drawValues"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="98" parent="globals/Fd1View" pc="268437272" symbol="drawValues"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="99" parent="globals/Fd1View" pc="268437324" symbol="drawValues"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="29" lineNum="20" parent="globals/Fd1View" pc="268437371" symbol="timerCallback"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="29" lineNum="21" parent="globals/Fd1View" pc="268437373" symbol="timerCallback"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="30" lineNum="41" parent="globals/Fd1Util/Fd1State" pc="268437390" symbol="setsurface"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="30" lineNum="42" parent="globals/Fd1Util/Fd1State" pc="268437392" symbol="setsurface"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="30" lineNum="43" parent="globals/Fd1Util/Fd1State" pc="268437409" symbol="setsurface"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="30" lineNum="44" parent="globals/Fd1Util/Fd1State" pc="268437422" symbol="setsurface"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="30" lineNum="46" parent="globals/Fd1Util/Fd1State" pc="268437441" symbol="setsurface"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="30" lineNum="47" parent="globals/Fd1Util/Fd1State" pc="268437454" symbol="setsurface"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="126" parent="globals/Fd1Util/Fd1State" pc="268437468" symbol="updatePressure"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="127" parent="globals/Fd1Util/Fd1State" pc="268437472" symbol="updatePressure"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="129" parent="globals/Fd1Util/Fd1State" pc="268437495" symbol="updatePressure"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="130" parent="globals/Fd1Util/Fd1State" pc="268437502" symbol="updatePressure"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="131" parent="globals/Fd1Util/Fd1State" pc="268437532" symbol="updatePressure"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="132" parent="globals/Fd1Util/Fd1State" pc="268437557" symbol="updatePressure"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="133" parent="globals/Fd1Util/Fd1State" pc="268437594" symbol="updatePressure"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="136" parent="globals/Fd1Util/Fd1State" pc="268437620" symbol="updatePressure"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="137" parent="globals/Fd1Util/Fd1State" pc="268437657" symbol="updatePressure"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="142" parent="globals/Fd1Util/Fd1State" pc="268437683" symbol="updatePressure"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="146" parent="globals/Fd1Util/Fd1State" pc="268437697" symbol="updateHeartrate"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="147" parent="globals/Fd1Util/Fd1State" pc="268437701" symbol="updateHeartrate"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="148" parent="globals/Fd1Util/Fd1State" pc="268437724" symbol="updateHeartrate"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="149" parent="globals/Fd1Util/Fd1State" pc="268437731" symbol="updateHeartrate"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="151" parent="globals/Fd1Util/Fd1State" pc="268437744" symbol="updateHeartrate"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="152" parent="globals/Fd1Util/Fd1State" pc="268437768" symbol="updateHeartrate"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="153" parent="globals/Fd1Util/Fd1State" pc="268437781" symbol="updateHeartrate"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="154" parent="globals/Fd1Util/Fd1State" pc="268437791" symbol="updateHeartrate"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="155" parent="globals/Fd1Util/Fd1State" pc="268437802" symbol="updateHeartrate"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="33" lineNum="65" parent="globals/Fd1Util/Fd1State" pc="268437816" symbol="informNotice"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="33" lineNum="66" parent="globals/Fd1Util/Fd1State" pc="268437820" symbol="informNotice"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="33" lineNum="67" parent="globals/Fd1Util/Fd1State" pc="268437841" symbol="informNotice"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="33" lineNum="70" parent="globals/Fd1Util/Fd1State" pc="268437893" symbol="informNotice"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="85" parent="globals/Fd1Util/Fd1State" pc="268437912" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="87" parent="globals/Fd1Util/Fd1State" pc="268437916" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="89" parent="globals/Fd1Util/Fd1State" pc="268437941" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="90" parent="globals/Fd1Util/Fd1State" pc="268437958" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="92" parent="globals/Fd1Util/Fd1State" pc="268437980" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="93" parent="globals/Fd1Util/Fd1State" pc="268437997" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="96" parent="globals/Fd1Util/Fd1State" pc="268438049" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="99" parent="globals/Fd1Util/Fd1State" pc="268438073" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="100" parent="globals/Fd1Util/Fd1State" pc="268438084" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="101" parent="globals/Fd1Util/Fd1State" pc="268438094" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="102" parent="globals/Fd1Util/Fd1State" pc="268438115" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="105" parent="globals/Fd1Util/Fd1State" pc="268438167" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="109" parent="globals/Fd1Util/Fd1State" pc="268438191" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="110" parent="globals/Fd1Util/Fd1State" pc="268438205" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="113" parent="globals/Fd1Util/Fd1State" pc="268438218" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="114" parent="globals/Fd1Util/Fd1State" pc="268438234" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="115" parent="globals/Fd1Util/Fd1State" pc="268438245" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="118" parent="globals/Fd1Util/Fd1State" pc="268438297" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="121" parent="globals/Fd1Util/Fd1State" pc="268438318" symbol="updateTimer"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="35" lineNum="52" parent="globals/Fd1Util/Fd1State" pc="268438341" symbol="setdeep"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="35" lineNum="53" parent="globals/Fd1Util/Fd1State" pc="268438343" symbol="setdeep"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="35" lineNum="54" parent="globals/Fd1Util/Fd1State" pc="268438360" symbol="setdeep"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="35" lineNum="55" parent="globals/Fd1Util/Fd1State" pc="268438373" symbol="setdeep"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="35" lineNum="58" parent="globals/Fd1Util/Fd1State" pc="268438392" symbol="setdeep"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="35" lineNum="59" parent="globals/Fd1Util/Fd1State" pc="268438405" symbol="setdeep"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="72" parent="globals/Fd1Util/Fd1State" pc="268438419" symbol="changeMode"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="73" parent="globals/Fd1Util/Fd1State" pc="268438421" symbol="changeMode"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="74" parent="globals/Fd1Util/Fd1State" pc="268438446" symbol="changeMode"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="75" parent="globals/Fd1Util/Fd1State" pc="268438458" symbol="changeMode"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="76" parent="globals/Fd1Util/Fd1State" pc="268438471" symbol="changeMode"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="78" parent="globals/Fd1Util/Fd1State" pc="268438487" symbol="changeMode"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="79" parent="globals/Fd1Util/Fd1State" pc="268438499" symbol="changeMode"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="80" parent="globals/Fd1Util/Fd1State" pc="268438521" symbol="changeMode"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="81" parent="globals/Fd1Util/Fd1State" pc="268438546" symbol="changeMode"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="82" parent="globals/Fd1Util/Fd1State" pc="268438571" symbol="changeMode"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="37" lineNum="32" parent="globals/Fd1Util/Fd1State" pc="268438585" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="37" lineNum="33" parent="globals/Fd1Util/Fd1State" pc="268438587" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="37" lineNum="34" parent="globals/Fd1Util/Fd1State" pc="268438597" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="38" lineNum="37" parent="globals/Fd1Util/Fd1State" pc="268438608" symbol="setSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="38" lineNum="38" parent="globals/Fd1Util/Fd1State" pc="268438610" symbol="setSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="39" lineNum="16" parent="globals/Rez/Layouts" pc="268438621" symbol="MainLayout"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="39" lineNum="17" parent="globals/Rez/Layouts" pc="268438633" symbol="MainLayout"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="39" lineNum="19" parent="globals/Rez/Layouts" pc="268438768" symbol="MainLayout"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="40" lineNum="24" parent="globals/Rez/Menus/MainMenu" pc="268438785" symbol="&lt;init&gt;"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="41" lineNum="14" parent="globals/Fd1SessionRecorder/Fd1SessionSpec" pc="268438804" symbol="createFdSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="41" lineNum="15" parent="globals/Fd1SessionRecorder/Fd1SessionSpec" pc="268438806" symbol="createFdSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="43" lineNum="113" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438849" symbol="discard"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="43" lineNum="114" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438851" symbol="discard"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="43" lineNum="115" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438869" symbol="discard"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="44" lineNum="38" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438879" symbol="startLap"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="44" lineNum="39" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438881" symbol="startLap"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="44" lineNum="40" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438901" symbol="startLap"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="45" lineNum="35" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438923" symbol="onBeforeStart"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="46" lineNum="55" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438926" symbol="stopSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="46" lineNum="56" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438928" symbol="stopSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="46" lineNum="57" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438948" symbol="stopSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="75" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438970" symbol="refreshActivityStats"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="76" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438974" symbol="refreshActivityStats"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="78" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438997" symbol="refreshActivityStats"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="79" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439016" symbol="refreshActivityStats"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="80" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439022" symbol="refreshActivityStats"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="83" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439026" symbol="refreshActivityStats"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="85" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439046" symbol="refreshActivityStats"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="86" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439091" symbol="refreshActivityStats"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="89" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439110" symbol="refreshActivityStats"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="92" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439139" symbol="refreshActivityStats"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="48" lineNum="61" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439162" symbol="&lt;globals/Fd1SessionRecorder/Fd1Activity/&lt;&gt;createMinHrDataField&gt;"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="48" lineNum="62" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439164" symbol="&lt;globals/Fd1SessionRecorder/Fd1Activity/&lt;&gt;createMinHrDataField&gt;"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="48" lineNum="69" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439236" symbol="&lt;globals/Fd1SessionRecorder/Fd1Activity/&lt;&gt;createMinHrDataField&gt;"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="49" lineNum="72" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439260" symbol="onRefreshHrActivityStats"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="50" lineNum="44" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439263" symbol="startSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="50" lineNum="45" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439265" symbol="startSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="50" lineNum="46" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439288" symbol="startSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="50" lineNum="47" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439306" symbol="startSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="50" lineNum="48" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439320" symbol="startSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="50" lineNum="50" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439335" symbol="startSession"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="51" lineNum="107" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439349" symbol="finish"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="51" lineNum="108" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439351" symbol="finish"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="51" lineNum="109" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439369" symbol="finish"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="51" lineNum="110" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439387" symbol="finish"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="97" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439397" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="98" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439399" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="99" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439448" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="100" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439460" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="102" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439480" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="103" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439514" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="104" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439555" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="53" lineNum="25" parent="globals/Rez/Menus/MainMenu" pc="268439588" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="53" lineNum="26" parent="globals/Rez/Menus/MainMenu" pc="268439590" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="53" lineNum="27" parent="globals/Rez/Menus/MainMenu" pc="268439608" symbol="initialize"/>
-        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="53" lineNum="28" parent="globals/Rez/Menus/MainMenu" pc="268439664" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="88" parent="globals/Fd1View" pc="268437064" symbol="drawValues"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="89" parent="globals/Fd1View" pc="268437083" symbol="drawValues"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="91" parent="globals/Fd1View" pc="268437136" symbol="drawValues"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="93" parent="globals/Fd1View" pc="268437176" symbol="drawValues"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="97" parent="globals/Fd1View" pc="268437264" symbol="drawValues"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="98" parent="globals/Fd1View" pc="268437286" symbol="drawValues"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="28" lineNum="99" parent="globals/Fd1View" pc="268437338" symbol="drawValues"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="29" lineNum="20" parent="globals/Fd1View" pc="268437385" symbol="timerCallback"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1View.mc" id="29" lineNum="21" parent="globals/Fd1View" pc="268437387" symbol="timerCallback"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="30" lineNum="41" parent="globals/Fd1Util/Fd1State" pc="268437404" symbol="setsurface"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="30" lineNum="42" parent="globals/Fd1Util/Fd1State" pc="268437406" symbol="setsurface"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="30" lineNum="43" parent="globals/Fd1Util/Fd1State" pc="268437423" symbol="setsurface"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="30" lineNum="44" parent="globals/Fd1Util/Fd1State" pc="268437436" symbol="setsurface"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="30" lineNum="46" parent="globals/Fd1Util/Fd1State" pc="268437464" symbol="setsurface"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="30" lineNum="47" parent="globals/Fd1Util/Fd1State" pc="268437477" symbol="setsurface"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="126" parent="globals/Fd1Util/Fd1State" pc="268437491" symbol="updatePressure"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="127" parent="globals/Fd1Util/Fd1State" pc="268437495" symbol="updatePressure"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="130" parent="globals/Fd1Util/Fd1State" pc="268437518" symbol="updatePressure"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="131" parent="globals/Fd1Util/Fd1State" pc="268437525" symbol="updatePressure"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="132" parent="globals/Fd1Util/Fd1State" pc="268437541" symbol="updatePressure"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="133" parent="globals/Fd1Util/Fd1State" pc="268437566" symbol="updatePressure"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="134" parent="globals/Fd1Util/Fd1State" pc="268437603" symbol="updatePressure"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="137" parent="globals/Fd1Util/Fd1State" pc="268437629" symbol="updatePressure"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="138" parent="globals/Fd1Util/Fd1State" pc="268437666" symbol="updatePressure"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="31" lineNum="143" parent="globals/Fd1Util/Fd1State" pc="268437692" symbol="updatePressure"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="147" parent="globals/Fd1Util/Fd1State" pc="268437706" symbol="updateHeartrate"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="148" parent="globals/Fd1Util/Fd1State" pc="268437710" symbol="updateHeartrate"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="149" parent="globals/Fd1Util/Fd1State" pc="268437733" symbol="updateHeartrate"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="150" parent="globals/Fd1Util/Fd1State" pc="268437740" symbol="updateHeartrate"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="152" parent="globals/Fd1Util/Fd1State" pc="268437753" symbol="updateHeartrate"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="153" parent="globals/Fd1Util/Fd1State" pc="268437777" symbol="updateHeartrate"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="154" parent="globals/Fd1Util/Fd1State" pc="268437790" symbol="updateHeartrate"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="155" parent="globals/Fd1Util/Fd1State" pc="268437800" symbol="updateHeartrate"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="32" lineNum="156" parent="globals/Fd1Util/Fd1State" pc="268437811" symbol="updateHeartrate"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="33" lineNum="65" parent="globals/Fd1Util/Fd1State" pc="268437825" symbol="informNotice"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="33" lineNum="66" parent="globals/Fd1Util/Fd1State" pc="268437829" symbol="informNotice"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="33" lineNum="67" parent="globals/Fd1Util/Fd1State" pc="268437850" symbol="informNotice"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="33" lineNum="70" parent="globals/Fd1Util/Fd1State" pc="268437902" symbol="informNotice"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="85" parent="globals/Fd1Util/Fd1State" pc="268437921" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="87" parent="globals/Fd1Util/Fd1State" pc="268437925" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="89" parent="globals/Fd1Util/Fd1State" pc="268437950" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="90" parent="globals/Fd1Util/Fd1State" pc="268437967" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="92" parent="globals/Fd1Util/Fd1State" pc="268437989" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="93" parent="globals/Fd1Util/Fd1State" pc="268438006" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="96" parent="globals/Fd1Util/Fd1State" pc="268438058" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="99" parent="globals/Fd1Util/Fd1State" pc="268438082" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="100" parent="globals/Fd1Util/Fd1State" pc="268438093" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="101" parent="globals/Fd1Util/Fd1State" pc="268438103" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="102" parent="globals/Fd1Util/Fd1State" pc="268438124" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="105" parent="globals/Fd1Util/Fd1State" pc="268438176" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="109" parent="globals/Fd1Util/Fd1State" pc="268438200" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="110" parent="globals/Fd1Util/Fd1State" pc="268438214" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="113" parent="globals/Fd1Util/Fd1State" pc="268438227" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="114" parent="globals/Fd1Util/Fd1State" pc="268438243" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="115" parent="globals/Fd1Util/Fd1State" pc="268438254" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="118" parent="globals/Fd1Util/Fd1State" pc="268438306" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="34" lineNum="121" parent="globals/Fd1Util/Fd1State" pc="268438327" symbol="updateTimer"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="35" lineNum="52" parent="globals/Fd1Util/Fd1State" pc="268438350" symbol="setdeep"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="35" lineNum="53" parent="globals/Fd1Util/Fd1State" pc="268438352" symbol="setdeep"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="35" lineNum="54" parent="globals/Fd1Util/Fd1State" pc="268438369" symbol="setdeep"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="35" lineNum="55" parent="globals/Fd1Util/Fd1State" pc="268438382" symbol="setdeep"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="35" lineNum="58" parent="globals/Fd1Util/Fd1State" pc="268438410" symbol="setdeep"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="35" lineNum="59" parent="globals/Fd1Util/Fd1State" pc="268438423" symbol="setdeep"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="72" parent="globals/Fd1Util/Fd1State" pc="268438437" symbol="changeMode"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="73" parent="globals/Fd1Util/Fd1State" pc="268438439" symbol="changeMode"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="74" parent="globals/Fd1Util/Fd1State" pc="268438464" symbol="changeMode"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="75" parent="globals/Fd1Util/Fd1State" pc="268438476" symbol="changeMode"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="76" parent="globals/Fd1Util/Fd1State" pc="268438489" symbol="changeMode"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="78" parent="globals/Fd1Util/Fd1State" pc="268438505" symbol="changeMode"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="79" parent="globals/Fd1Util/Fd1State" pc="268438517" symbol="changeMode"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="80" parent="globals/Fd1Util/Fd1State" pc="268438539" symbol="changeMode"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="81" parent="globals/Fd1Util/Fd1State" pc="268438564" symbol="changeMode"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="36" lineNum="82" parent="globals/Fd1Util/Fd1State" pc="268438589" symbol="changeMode"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="37" lineNum="32" parent="globals/Fd1Util/Fd1State" pc="268438603" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="37" lineNum="33" parent="globals/Fd1Util/Fd1State" pc="268438605" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="37" lineNum="34" parent="globals/Fd1Util/Fd1State" pc="268438615" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="38" lineNum="37" parent="globals/Fd1Util/Fd1State" pc="268438626" symbol="setSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" id="38" lineNum="38" parent="globals/Fd1Util/Fd1State" pc="268438628" symbol="setSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="39" lineNum="16" parent="globals/Rez/Layouts" pc="268438639" symbol="MainLayout"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="39" lineNum="17" parent="globals/Rez/Layouts" pc="268438651" symbol="MainLayout"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="39" lineNum="19" parent="globals/Rez/Layouts" pc="268438786" symbol="MainLayout"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="40" lineNum="24" parent="globals/Rez/Menus/MainMenu" pc="268438803" symbol="&lt;init&gt;"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="41" lineNum="14" parent="globals/Fd1SessionRecorder/Fd1SessionSpec" pc="268438822" symbol="createFdSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="41" lineNum="15" parent="globals/Fd1SessionRecorder/Fd1SessionSpec" pc="268438824" symbol="createFdSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="43" lineNum="113" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438867" symbol="discard"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="43" lineNum="114" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438869" symbol="discard"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="43" lineNum="115" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438887" symbol="discard"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="44" lineNum="38" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438897" symbol="startLap"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="44" lineNum="39" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438899" symbol="startLap"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="44" lineNum="40" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438919" symbol="startLap"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="45" lineNum="35" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438941" symbol="onBeforeStart"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="46" lineNum="55" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438944" symbol="stopSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="46" lineNum="56" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438946" symbol="stopSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="46" lineNum="57" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438966" symbol="stopSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="75" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438988" symbol="refreshActivityStats"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="76" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268438992" symbol="refreshActivityStats"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="78" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439015" symbol="refreshActivityStats"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="79" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439034" symbol="refreshActivityStats"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="80" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439040" symbol="refreshActivityStats"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="83" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439044" symbol="refreshActivityStats"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="85" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439064" symbol="refreshActivityStats"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="86" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439109" symbol="refreshActivityStats"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="89" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439128" symbol="refreshActivityStats"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="47" lineNum="92" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439157" symbol="refreshActivityStats"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="48" lineNum="61" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439180" symbol="&lt;globals/Fd1SessionRecorder/Fd1Activity/&lt;&gt;createMinHrDataField&gt;"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="48" lineNum="62" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439182" symbol="&lt;globals/Fd1SessionRecorder/Fd1Activity/&lt;&gt;createMinHrDataField&gt;"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="48" lineNum="69" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439254" symbol="&lt;globals/Fd1SessionRecorder/Fd1Activity/&lt;&gt;createMinHrDataField&gt;"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="49" lineNum="72" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439278" symbol="onRefreshHrActivityStats"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="50" lineNum="44" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439281" symbol="startSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="50" lineNum="45" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439283" symbol="startSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="50" lineNum="46" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439306" symbol="startSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="50" lineNum="47" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439324" symbol="startSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="50" lineNum="48" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439338" symbol="startSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="50" lineNum="50" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439353" symbol="startSession"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="51" lineNum="107" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439367" symbol="finish"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="51" lineNum="108" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439369" symbol="finish"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="51" lineNum="109" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439387" symbol="finish"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="51" lineNum="110" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439405" symbol="finish"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="97" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439415" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="98" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439417" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="99" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439466" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="100" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439478" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="102" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439498" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="103" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439532" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1SessionRecorder.mc" id="52" lineNum="104" parent="globals/Fd1SessionRecorder/Fd1Activity" pc="268439573" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="53" lineNum="25" parent="globals/Rez/Menus/MainMenu" pc="268439606" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="53" lineNum="26" parent="globals/Rez/Menus/MainMenu" pc="268439608" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="53" lineNum="27" parent="globals/Rez/Menus/MainMenu" pc="268439626" symbol="initialize"/>
+        <entry filename="/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" id="53" lineNum="28" parent="globals/Rez/Menus/MainMenu" pc="268439682" symbol="initialize"/>
     </pcToLineNum>
     <symbolTable>
         <entry id="8388639" module="true" symbol="Graphics"/>
@@ -359,29 +359,29 @@
         <entry arg="true" endPc="268436868" name="dc" stackId="1" startPc="268436702"/>
         <entry endPc="268436867" name="x" stackId="2" startPc="268436706"/>
         <entry endPc="268436867" name="y" stackId="3" startPc="268436706"/>
-        <entry arg="true" endPc="268437370" name="dc" stackId="1" startPc="268436869"/>
-        <entry arg="true" endPc="268437370" name="x" stackId="2" startPc="268436869"/>
-        <entry arg="true" endPc="268437370" name="y" stackId="3" startPc="268436869"/>
-        <entry endPc="268437369" name="myTime" stackId="4" startPc="268436873"/>
-        <entry endPc="268437369" name="formatedTime" stackId="5" startPc="268436873"/>
-        <entry endPc="268437695" name="currentPressure" stackId="1" startPc="268437472"/>
-        <entry endPc="268437814" name="currentHeartRate" stackId="1" startPc="268437701"/>
-        <entry endPc="268437814" name="HRH" stackId="2" startPc="268437744"/>
-        <entry endPc="268437814" name="HRS" stackId="3" startPc="268437744"/>
-        <entry endPc="268437814" name="HRSnow" stackId="4" startPc="268437744"/>
-        <entry endPc="268437910" name="vibeData" stackId="1" startPc="268437820"/>
-        <entry endPc="268438066" name="vibeData" stackId="1" startPc="268437997"/>
-        <entry endPc="268438184" name="vibeData" stackId="2" startPc="268438084"/>
-        <entry endPc="268438339" name="holdSec" stackId="3" startPc="268438191"/>
-        <entry endPc="268438314" name="vibeData" stackId="4" startPc="268438245"/>
-        <entry arg="true" endPc="268438584" name="session" stackId="1" startPc="268438419"/>
-        <entry arg="true" endPc="268438607" name="timeCoef" stackId="1" startPc="268438585"/>
-        <entry arg="true" endPc="268438607" name="session" stackId="2" startPc="268438585"/>
-        <entry arg="true" endPc="268438620" name="session" stackId="1" startPc="268438608"/>
-        <entry arg="true" endPc="268438784" name="dc" stackId="1" startPc="268438621"/>
-        <entry endPc="268438784" name="rez_cmp_local_text_timeLabel" stackId="2" startPc="268438633"/>
-        <entry arg="true" endPc="268438848" name="sessionName" stackId="1" startPc="268438804"/>
-        <entry endPc="268439160" name="activityInfo" stackId="1" startPc="268438974"/>
+        <entry arg="true" endPc="268437384" name="dc" stackId="1" startPc="268436869"/>
+        <entry arg="true" endPc="268437384" name="x" stackId="2" startPc="268436869"/>
+        <entry arg="true" endPc="268437384" name="y" stackId="3" startPc="268436869"/>
+        <entry endPc="268437383" name="myTime" stackId="4" startPc="268436873"/>
+        <entry endPc="268437383" name="formatedTime" stackId="5" startPc="268436873"/>
+        <entry endPc="268437704" name="currentPressure" stackId="1" startPc="268437495"/>
+        <entry endPc="268437823" name="currentHeartRate" stackId="1" startPc="268437710"/>
+        <entry endPc="268437823" name="HRH" stackId="2" startPc="268437753"/>
+        <entry endPc="268437823" name="HRS" stackId="3" startPc="268437753"/>
+        <entry endPc="268437823" name="HRSnow" stackId="4" startPc="268437753"/>
+        <entry endPc="268437919" name="vibeData" stackId="1" startPc="268437829"/>
+        <entry endPc="268438075" name="vibeData" stackId="1" startPc="268438006"/>
+        <entry endPc="268438193" name="vibeData" stackId="2" startPc="268438093"/>
+        <entry endPc="268438348" name="holdSec" stackId="3" startPc="268438200"/>
+        <entry endPc="268438323" name="vibeData" stackId="4" startPc="268438254"/>
+        <entry arg="true" endPc="268438602" name="session" stackId="1" startPc="268438437"/>
+        <entry arg="true" endPc="268438625" name="timeCoef" stackId="1" startPc="268438603"/>
+        <entry arg="true" endPc="268438625" name="session" stackId="2" startPc="268438603"/>
+        <entry arg="true" endPc="268438638" name="session" stackId="1" startPc="268438626"/>
+        <entry arg="true" endPc="268438802" name="dc" stackId="1" startPc="268438639"/>
+        <entry endPc="268438802" name="rez_cmp_local_text_timeLabel" stackId="2" startPc="268438651"/>
+        <entry arg="true" endPc="268438866" name="sessionName" stackId="1" startPc="268438822"/>
+        <entry endPc="268439178" name="activityInfo" stackId="1" startPc="268438992"/>
     </localVars>
     <deviceInfo deviceVersion="e7d237e00493f9381c1ba5c2204e06b5a3051145" partNumber="006-B4394-00"/>
     <annotations>
@@ -548,94 +548,94 @@
             <param id="dc"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437370" name="drawValues" parent="Fd1View" startPc="268436869">
+        <functionEntry accessMode="public" endPc="268437384" name="drawValues" parent="Fd1View" startPc="268436869">
             <param id="dc"/>
             <param id="x"/>
             <param id="y"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437389" name="timerCallback" parent="Fd1View" startPc="268437371">
+        <functionEntry accessMode="public" endPc="268437403" name="timerCallback" parent="Fd1View" startPc="268437385">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437467" name="setsurface" parent="Fd1State" startPc="268437390">
+        <functionEntry accessMode="public" endPc="268437490" name="setsurface" parent="Fd1State" startPc="268437404">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437696" name="updatePressure" parent="Fd1State" startPc="268437468">
+        <functionEntry accessMode="public" endPc="268437705" name="updatePressure" parent="Fd1State" startPc="268437491">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437815" name="updateHeartrate" parent="Fd1State" startPc="268437697">
+        <functionEntry accessMode="public" endPc="268437824" name="updateHeartrate" parent="Fd1State" startPc="268437706">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268437911" name="informNotice" parent="Fd1State" startPc="268437816">
+        <functionEntry accessMode="public" endPc="268437920" name="informNotice" parent="Fd1State" startPc="268437825">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438340" name="updateTimer" parent="Fd1State" startPc="268437912">
+        <functionEntry accessMode="public" endPc="268438349" name="updateTimer" parent="Fd1State" startPc="268437921">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438418" name="setdeep" parent="Fd1State" startPc="268438341">
+        <functionEntry accessMode="public" endPc="268438436" name="setdeep" parent="Fd1State" startPc="268438350">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438584" name="changeMode" parent="Fd1State" startPc="268438419">
+        <functionEntry accessMode="public" endPc="268438602" name="changeMode" parent="Fd1State" startPc="268438437">
             <param id="session"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438607" name="initialize" parent="Fd1State" startPc="268438585">
+        <functionEntry accessMode="public" endPc="268438625" name="initialize" parent="Fd1State" startPc="268438603">
             <param id="timeCoef"/>
             <param id="session"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438620" name="setSession" parent="Fd1State" startPc="268438608">
+        <functionEntry accessMode="public" endPc="268438638" name="setSession" parent="Fd1State" startPc="268438626">
             <param id="session"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438784" name="MainLayout" parent="Layouts" startPc="268438621">
+        <functionEntry accessMode="public" endPc="268438802" name="MainLayout" parent="Layouts" startPc="268438639">
             <param id="dc"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438803" name="&lt;init&gt;" parent="MainMenu" startPc="268438785">
+        <functionEntry accessMode="public" endPc="268438821" name="&lt;init&gt;" parent="MainMenu" startPc="268438803">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438848" name="createFdSession" parent="Fd1SessionSpec" startPc="268438804">
+        <functionEntry accessMode="public" endPc="268438866" name="createFdSession" parent="Fd1SessionSpec" startPc="268438822">
             <param id="sessionName"/>
             <documentation/>
         </functionEntry>
         <functionEntry accessMode="public" name="initialize" parent="Fd1SessionSpec">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438878" name="discard" parent="Fd1Activity" startPc="268438849">
+        <functionEntry accessMode="public" endPc="268438896" name="discard" parent="Fd1Activity" startPc="268438867">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438922" name="startLap" parent="Fd1Activity" startPc="268438879">
+        <functionEntry accessMode="public" endPc="268438940" name="startLap" parent="Fd1Activity" startPc="268438897">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438925" name="onBeforeStart" parent="Fd1Activity" startPc="268438923">
+        <functionEntry accessMode="public" endPc="268438943" name="onBeforeStart" parent="Fd1Activity" startPc="268438941">
             <param id="fitSession"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268438969" name="stopSession" parent="Fd1Activity" startPc="268438926">
+        <functionEntry accessMode="public" endPc="268438987" name="stopSession" parent="Fd1Activity" startPc="268438944">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268439161" name="refreshActivityStats" parent="Fd1Activity" startPc="268438970">
+        <functionEntry accessMode="public" endPc="268439179" name="refreshActivityStats" parent="Fd1Activity" startPc="268438988">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="private" endPc="268439259" name="&lt;globals/Fd1SessionRecorder/Fd1Activity/&lt;&gt;createMinHrDataField&gt;" parent="Fd1Activity" startPc="268439162">
+        <functionEntry accessMode="private" endPc="268439277" name="&lt;globals/Fd1SessionRecorder/Fd1Activity/&lt;&gt;createMinHrDataField&gt;" parent="Fd1Activity" startPc="268439180">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="protected" endPc="268439262" name="onRefreshHrActivityStats" parent="Fd1Activity" startPc="268439260">
+        <functionEntry accessMode="protected" endPc="268439280" name="onRefreshHrActivityStats" parent="Fd1Activity" startPc="268439278">
             <param id="activityInfo"/>
             <param id="minHr"/>
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268439348" name="startSession" parent="Fd1Activity" startPc="268439263">
+        <functionEntry accessMode="public" endPc="268439366" name="startSession" parent="Fd1Activity" startPc="268439281">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268439396" name="finish" parent="Fd1Activity" startPc="268439349">
+        <functionEntry accessMode="public" endPc="268439414" name="finish" parent="Fd1Activity" startPc="268439367">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268439587" name="initialize" parent="Fd1Activity" startPc="268439397">
+        <functionEntry accessMode="public" endPc="268439605" name="initialize" parent="Fd1Activity" startPc="268439415">
             <documentation/>
         </functionEntry>
-        <functionEntry accessMode="public" endPc="268439720" name="initialize" parent="MainMenu" startPc="268439588">
+        <functionEntry accessMode="public" endPc="268439738" name="initialize" parent="MainMenu" startPc="268439606">
             <documentation/>
         </functionEntry>
     </functions>
