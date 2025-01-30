@@ -24,16 +24,16 @@ module Rez {
         class MainMenu extends WatchUi.Menu {
             function initialize() {
                 Menu.initialize();
-                addItem((WatchUi.loadResource($.Rez.Strings.set_surface) as String), :set_surface);
-                addItem((WatchUi.loadResource($.Rez.Strings.set_deep) as String), :set_deep);
+                addItem((WatchUi.loadResource($.Rez.Strings.set_mode) as String), :set_mode);
+                addItem((WatchUi.loadResource($.Rez.Strings.wait_mode) as String), :wait_mode);
             }
         }
     } // Menus
 
     module Strings {
-        (:initialized) var set_deep as ResourceId;
-        (:initialized) var set_surface as ResourceId;
+        (:initialized) var set_mode as ResourceId;
         (:initialized) var prompt as ResourceId;
+        (:initialized) var wait_mode as ResourceId;
         (:initialized) var AppName as ResourceId;
     } // Strings
 

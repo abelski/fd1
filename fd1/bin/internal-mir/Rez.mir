@@ -118,10 +118,10 @@ _Users_Artur_Belski_Documents_src_fd1_fd1_bin_gen_006_B4394_00_source_Rez_mcgen_
                 %tmp.8 = getm $;
                 %tmp.9 = getv %tmp.8 :Rez;
                 %tmp.10 = getv %tmp.9 :Strings;
-                %tmp.11 = getv %tmp.10 :set_surface;
+                %tmp.11 = getv %tmp.10 :set_mode;
                 %tmp.12 = invoke %tmp.6 %tmp.7(%tmp.11);
                 %tmp.13 = as %tmp.12 String;
-                %tmp.15 = const :set_surface;
+                %tmp.15 = const :set_mode;
                 invoke %tmp.4 %tmp.5(%tmp.13, %tmp.15);
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen" 28 16 ]
                 %tmp.16 = self;
@@ -131,10 +131,10 @@ _Users_Artur_Belski_Documents_src_fd1_fd1_bin_gen_006_B4394_00_source_Rez_mcgen_
                 %tmp.20 = getm $;
                 %tmp.21 = getv %tmp.20 :Rez;
                 %tmp.22 = getv %tmp.21 :Strings;
-                %tmp.23 = getv %tmp.22 :set_deep;
+                %tmp.23 = getv %tmp.22 :wait_mode;
                 %tmp.24 = invoke %tmp.18 %tmp.19(%tmp.23);
                 %tmp.25 = as %tmp.24 String;
-                %tmp.27 = const :set_deep;
+                %tmp.27 = const :wait_mode;
                 invoke %tmp.16 %tmp.17(%tmp.25, %tmp.27);
 _Users_Artur_Belski_Documents_src_fd1_fd1_bin_gen_006_B4394_00_source_Rez_mcgen_25_34_29_12_stop:
             }
@@ -146,11 +146,11 @@ _Users_Artur_Belski_Documents_src_fd1_fd1_bin_gen_006_B4394_00_source_Rez_mcgen_
         <init> {
         }
         [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen"; @line = 34; @position = 27; initialized = true; ]
-        var set_deep as ResourceId;
+        var set_mode as ResourceId;
         [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen"; @line = 35; @position = 27; initialized = true; ]
-        var set_surface as ResourceId;
-        [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen"; @line = 36; @position = 27; initialized = true; ]
         var prompt as ResourceId;
+        [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen"; @line = 36; @position = 27; initialized = true; ]
+        var wait_mode as ResourceId;
         [ @file = "/Users/Artur_Belski/Documents/src/fd1/fd1/bin/gen/006-B4394-00/source/Rez.mcgen"; @line = 37; @position = 27; initialized = true; ]
         var AppName as ResourceId;
     }

@@ -1,4 +1,4 @@
 <menu id="MainMenu">
-    <menu-item id="set_surface" label="@Strings.set_surface" />
-    <menu-item id="set_deep" label="@Strings.set_deep" />
+    <menu-item id="set_mode" label="@Strings.set_mode" />
+    <menu-item id="wait_mode" label="@Strings.wait_mode" />
 </menu>

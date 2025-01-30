@@ -15,13 +15,14 @@ class Fd1MenuDelegate extends WatchUi.MenuInputDelegate {
     }
 
     function onMenuItem(item as Symbol) as Void {
-        if (item == :set_surface) {
-            System.println("set_surface 1");
-            _FdState.setsurface();
-        } else if (item == :set_deep) {
-            System.println("set_deep 2");
-            _FdState.setdeep();
+        if (item == :set_mode) {
+             _FdState.setMode();
         }
+        if (item == :wait_mode) {
+            _FdState.setWaitingMode();
+        }
+        
     }
+
 
 }

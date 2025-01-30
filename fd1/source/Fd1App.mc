@@ -26,7 +26,7 @@ class Fd1App extends Application.AppBase {
     function getInitialView() as [Views] or [Views, InputDelegates] {
          _session = new Fd1SessionRecorder.Fd1Activity();
 
-        var fd1State = new Fd1Util.Fd1State(2, _session);
+        var fd1State = new Fd1Util.Fd1State(_session);
         
         var fd1Viev = new Fd1View();
         fd1Viev.setvarfd1State(fd1State);

@@ -2,6 +2,7 @@
     <string id="AppName">FreeDive timer</string>
 
     <string id="prompt">Click the menu button</string>
-    <string id="set_deep">Set dive pressure</string>
-    <string id="set_surface">Set surface pressure</string>
+    <string id="set_mode">Start mode</string>
+    <string id="wait_mode">Wait mode</string>
+
 </strings>

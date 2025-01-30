@@ -59,46 +59,45 @@ _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_start:
         %fd1State.1 = local;
         %tmp.7 = getm $.Fd1Util;
         %tmp.8 = getv function ? %tmp.7 :Fd1State;
-        %tmp.9 = 2;
-        %tmp.11 = getv ? :_session;
-        %tmp.5 = newc %tmp.8 (%tmp.9, %tmp.11);
+        %tmp.10 = getv ? :_session;
+        %tmp.5 = newc %tmp.8 (%tmp.10);
         lputv %fd1State.1 %tmp.5;
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 31 8 ]
         [ "_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_start" "_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_stop" ]
         %fd1Viev.2 = local;
-        %tmp.15 = getv ? :Fd1View;
-        %tmp.12 = newc %tmp.15 ();
-        lputv %fd1Viev.2 %tmp.12;
+        %tmp.14 = getv ? :Fd1View;
+        %tmp.11 = newc %tmp.14 ();
+        lputv %fd1Viev.2 %tmp.11;
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 32 8 ]
-        %tmp.16 = lgetv %fd1Viev.2;
-        %tmp.17 = getv function %tmp.16 :setvarfd1State;
-        %tmp.19 = lgetv %fd1State.1;
-        invoke %tmp.16 %tmp.17(%tmp.19);
+        %tmp.15 = lgetv %fd1Viev.2;
+        %tmp.16 = getv function %tmp.15 :setvarfd1State;
+        %tmp.18 = lgetv %fd1State.1;
+        invoke %tmp.15 %tmp.16(%tmp.18);
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 34 8 ]
         [ "_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_start" "_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_stop" ]
         %fd1delegate.3 = local;
-        %tmp.23 = getv ? :Fd1Delegate;
-        %tmp.20 = newc %tmp.23 ();
-        lputv %fd1delegate.3 %tmp.20;
+        %tmp.22 = getv ? :Fd1Delegate;
+        %tmp.19 = newc %tmp.22 ();
+        lputv %fd1delegate.3 %tmp.19;
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 35 8 ]
-        %tmp.24 = lgetv %fd1delegate.3;
-        %tmp.25 = getv function %tmp.24 :setvarfd1State;
-        %tmp.27 = lgetv %fd1State.1;
-        invoke %tmp.24 %tmp.25(%tmp.27);
+        %tmp.23 = lgetv %fd1delegate.3;
+        %tmp.24 = getv function %tmp.23 :setvarfd1State;
+        %tmp.26 = lgetv %fd1State.1;
+        invoke %tmp.23 %tmp.24(%tmp.26);
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 36 8 ]
-        %tmp.28 = lgetv %fd1delegate.3;
-        %tmp.29 = getv function %tmp.28 :setSession;
-        %tmp.31 = getv ? :_session;
-        invoke %tmp.28 %tmp.29(%tmp.31);
+        %tmp.27 = lgetv %fd1delegate.3;
+        %tmp.28 = getv function %tmp.27 :setSession;
+        %tmp.30 = getv ? :_session;
+        invoke %tmp.27 %tmp.28(%tmp.30);
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1App.mc" 37 8 ]
-        %tmp.32 = newa 2;
-        %tmp.34 = lgetv %fd1Viev.2;
-        %tmp.35 = dup %tmp.32;
-        %tmp.36 = aputv %tmp.35 0 %tmp.34;
-        %tmp.38 = lgetv %fd1delegate.3;
-        %tmp.39 = dup %tmp.36;
-        %tmp.40 = aputv %tmp.39 1 %tmp.38;
-        ret %tmp.40;
+        %tmp.31 = newa 2;
+        %tmp.33 = lgetv %fd1Viev.2;
+        %tmp.34 = dup %tmp.31;
+        %tmp.35 = aputv %tmp.34 0 %tmp.33;
+        %tmp.37 = lgetv %fd1delegate.3;
+        %tmp.38 = dup %tmp.35;
+        %tmp.39 = aputv %tmp.38 1 %tmp.37;
+        ret %tmp.39;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1App_mc_26_68_38_4_stop:
     }
 }

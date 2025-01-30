@@ -13,24 +13,22 @@ module Fd1Util {
     class Fd1State {
         public var _session;
 
-        protected var _timeCoef;
         public var mode = "REST";
         public var holdTime = 0;
         public var heartRate = 0;
         public var sessionCycle = 0;
         public var sessionTime = 0;
-        public var autoStart = "m";
+        
+        public var startMode = "manual";
         public var autoStartPressure = 0;
 
-        public var autoEnd = "m";
-        public var autoEndPressure = 0;
+        public var waitMode = "x2";
 
         public var pressureNow = 0;
         private var _needBeep = false;
 
 
-        public function initialize( timeCoef, session ) {
-            _timeCoef = timeCoef;
+        public function initialize(  session ) {
             _session = session;
         }
 
@@ -38,24 +36,23 @@ module Fd1Util {
              _session = session;
         }
 
-        public function setsurface() as Void {
-            if(autoEndPressure==0){
-                autoEnd="a";
-                autoEndPressure = pressureNow.toFloat();
-            }else{
-                autoEnd="m";
-                autoEndPressure = 0;
+        public function setWaitingMode() as Void {
+            if ("x2".equals(waitMode)) {
+                waitMode = "x3";
+            } else if ("x3".equals(waitMode)) {
+                waitMode = "1min";
+            }else if ("1min".equals(waitMode)) {
+                waitMode = "x2";
             }
 
         }
-
-        public function setdeep() as Void {
+        public function setMode() as Void{
             if(autoStartPressure==0){
-                autoStart="a";
+                startMode="auto";
                 autoStartPressure=pressureNow.toFloat();
 
             }else{
-                autoStart="m";
+                startMode="manual";
                 autoStartPressure = 0;
             }
         }
@@ -78,7 +75,16 @@ module Fd1Util {
                 session.stopSession();
                 sessionCycle=sessionCycle + 1;
                 sessionTime =sessionTime+holdTime;
-                holdTime = holdTime * _timeCoef;
+                
+                if ( "x2".equals(waitMode)) {
+                    holdTime = holdTime * 2;
+                } else if ("x3".equals(waitMode)) {
+                    holdTime = holdTime * 3;
+                } else if ("1min".equals(waitMode)) {
+                    holdTime = 60;
+                }else{
+                    holdTime = 0;
+                }
                 mode = "REST";
             }
         }
@@ -113,7 +119,7 @@ module Fd1Util {
             var holdSec = holdTime%60;
             if(holdSec==0){
                 var vibeData =  [
-                                     new Attention.VibeProfile(30, 100) 
+                                     new Attention.VibeProfile(100, 100) 
                                  ];
                 Attention.vibrate(vibeData);
             }
@@ -130,11 +136,11 @@ module Fd1Util {
             if(currentPressure!=null){
                 pressureNow = (currentPressure/1000);
                 if("REST".equals(mode)){
-                    if(autoStartPressure>0 && autoStartPressure<pressureNow){
+                    if(autoStartPressure>0 && autoStartPressure<=pressureNow){
                         changeMode(_session);
                     }
                 }else{
-                    if(autoEndPressure>0 && autoEndPressure>pressureNow){
+                    if(autoStartPressure>0 && autoStartPressure>pressureNow){
                         changeMode(_session);
                     }
                 }
