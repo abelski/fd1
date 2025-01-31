@@ -2,6 +2,7 @@ import Toybox.ActivityMonitor;
 import Toybox.Activity;
 import Toybox.Attention;
 import Toybox.Lang;
+import Toybox.Application.Storage;
 
 module Fd1Util {
     function formatSecundes(sec)as String {
@@ -19,10 +20,10 @@ module Fd1Util {
         public var sessionCycle = 0;
         public var sessionTime = 0;
         
-        public var startMode = "manual";
+        public var startMode; //will be loaded from storage
         public var autoStartPressure = 0;
 
-        public var waitMode = "x2";
+        public var waitMode; //will be loaded from storage
 
         public var pressureNow = 0;
         private var _needBeep = false;
@@ -36,6 +37,24 @@ module Fd1Util {
              _session = session;
         }
 
+    // Function to save settings
+    public function saveSettings() as Void {
+        Storage.setValue("startMode", startMode);
+        Storage.setValue("waitMode", waitMode);
+    }
+
+    // Function to load settings
+    public function loadSettings() as Void {
+        startMode = Storage.getValue("startMode");
+        if (startMode == null) {
+            startMode = "manual";
+        }
+        waitMode = Storage.getValue("waitMode");
+        if (waitMode == null) {
+            waitMode = "x2";
+        }
+    }
+    
         public function setWaitingMode() as Void {
             if ("x2".equals(waitMode)) {
                 waitMode = "x3";
@@ -44,6 +63,7 @@ module Fd1Util {
             }else if ("1min".equals(waitMode)) {
                 waitMode = "x2";
             }
+            saveSettings();
 
         }
         public function setMode() as Void{
@@ -55,6 +75,7 @@ module Fd1Util {
                 startMode="manual";
                 autoStartPressure = 0;
             }
+            saveSettings();
         }
 
         

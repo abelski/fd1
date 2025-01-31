@@ -27,7 +27,7 @@ class Fd1App extends Application.AppBase {
          _session = new Fd1SessionRecorder.Fd1Activity();
 
         var fd1State = new Fd1Util.Fd1State(_session);
-        
+        fd1State.loadSettings();
         var fd1Viev = new Fd1View();
         fd1Viev.setvarfd1State(fd1State);
         
