@@ -401,7 +401,7 @@
         <entry arg="true" endPc="268439217" name="sessionName" stackId="1" startPc="268439173"/>
         <entry endPc="268439529" name="activityInfo" stackId="1" startPc="268439343"/>
     </localVars>
-    <deviceInfo deviceVersion="e7d237e00493f9381c1ba5c2204e06b5a3051145" partNumber="006-B4394-00"/>
+    <deviceInfo deviceVersion="8fc30743a4191ec19bcafa28e3ffcc2b5a958a17" partNumber="006-B4394-00"/>
     <annotations>
         <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="set_mode"/>
         <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="wait_mode"/>

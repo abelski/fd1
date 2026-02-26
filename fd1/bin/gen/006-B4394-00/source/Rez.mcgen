@@ -224,7 +224,7 @@ module Rez {
         } // prompt_color_light__body
 
         module system_loc__subwindow {
-            const x as Number = 116;
+            const x as Number = 114;
             const y as Number = 0;
         } // system_loc__subwindow
 
@@ -634,6 +634,7 @@ module Rez {
             const screenWidth as Number = 176;
             const screenShape = Toybox.System.SCREEN_SHAPE_SEMI_OCTAGON;
             const hasNightMode as Boolean = false;
+            const hasGpu as Boolean = false;
             const screenHeight as Number = 176;
             const hasTouchScreen as Boolean = false;
             const hasEnhancedReadabilityMode as Boolean = false;
