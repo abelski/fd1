@@ -57,8 +57,8 @@ module Fd1Util {
     
         public function setWaitingMode() as Void {
             if ("x2".equals(waitMode)) {
-                waitMode = "x3";
-            } else if ("x3".equals(waitMode)) {
+                waitMode = "30sec";
+            } else if ("30sec".equals(waitMode)) {
                 waitMode = "1min";
             }else if ("1min".equals(waitMode)) {
                 waitMode = "x2";
@@ -99,8 +99,8 @@ module Fd1Util {
                 
                 if ( "x2".equals(waitMode)) {
                     holdTime = holdTime * 2;
-                } else if ("x3".equals(waitMode)) {
-                    holdTime = holdTime * 3;
+                } else if ("30sec".equals(waitMode)) {
+                    holdTime = 30;
                 } else if ("1min".equals(waitMode)) {
                     holdTime = 60;
                 }else{

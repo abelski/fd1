@@ -81,7 +81,7 @@ class Fd1View extends WatchUi.View {
         
         dc.drawText(105, y + 44, Gfx.FONT_LARGE,  Fd1Util.formatSecundes(mFdState.holdTime), Gfx.TEXT_JUSTIFY_CENTER);
         
-        dc.drawText(5, y - 30, Gfx.FONT_SMALL,mFdState.startMode+"/"+mFdState.pressureNow.format("%.2f"), Gfx.TEXT_JUSTIFY_LEFT);
+        dc.drawText(5, y - 30, Gfx.FONT_SMALL,mFdState.startMode, Gfx.TEXT_JUSTIFY_LEFT);
         dc.drawText(5, y - 50, Gfx.FONT_SMALL, mFdState.waitMode, Gfx.TEXT_JUSTIFY_LEFT);
 
         //clock

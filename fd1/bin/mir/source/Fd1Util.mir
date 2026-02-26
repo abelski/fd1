@@ -176,24 +176,24 @@ _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_59_12_65_12_if_stmt:
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_59_12_65_12_if_true:
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_59_39_61_12_start:
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" 60 16 ]
-            %tmp.6 = "x3";
+            %tmp.6 = "30sec";
             putv self :waitMode %tmp.6;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_59_39_61_12_stop:
             goto @_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_59_12_65_12_if_end;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_59_12_65_12_if_false:
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" 61 19 ]
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_61_19_65_12_if_stmt:
-            %tmp.7 = "x3";
+            %tmp.7 = "30sec";
             %tmp.8 = getv function %tmp.7 :equals;
             %tmp.10 = getv ? :waitMode;
             %tmp.11 = invoke %tmp.7 %tmp.8(%tmp.10);
             bf %tmp.11 @_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_61_19_65_12_if_false;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_61_19_65_12_if_true:
-_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_61_46_63_12_start:
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_61_49_63_12_start:
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" 62 16 ]
             %tmp.12 = "1min";
             putv self :waitMode %tmp.12;
-_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_61_46_63_12_stop:
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_61_49_63_12_stop:
             goto @_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_61_19_65_12_if_end;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_61_19_65_12_if_false:
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" 63 18 ]
@@ -346,47 +346,45 @@ _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_100_44_102_16_stop:
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_100_16_108_16_if_false:
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" 102 23 ]
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_102_23_108_16_if_stmt:
-            %tmp.30 = "x3";
+            %tmp.30 = "30sec";
             %tmp.31 = getv function %tmp.30 :equals;
             %tmp.33 = getv ? :waitMode;
             %tmp.34 = invoke %tmp.30 %tmp.31(%tmp.33);
             bf %tmp.34 @_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_102_23_108_16_if_false;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_102_23_108_16_if_true:
-_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_102_50_104_16_start:
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_102_53_104_16_start:
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" 103 20 ]
-            %tmp.36 = getv ? :holdTime;
-            %tmp.37 = 3;
-            %tmp.38 = mul %tmp.36 %tmp.37;
-            putv self :holdTime %tmp.38;
-_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_102_50_104_16_stop:
+            %tmp.35 = 30;
+            putv self :holdTime %tmp.35;
+_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_102_53_104_16_stop:
             goto @_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_102_23_108_16_if_end;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_102_23_108_16_if_false:
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" 104 23 ]
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_104_23_108_16_if_stmt:
-            %tmp.39 = "1min";
-            %tmp.40 = getv function %tmp.39 :equals;
-            %tmp.42 = getv ? :waitMode;
-            %tmp.43 = invoke %tmp.39 %tmp.40(%tmp.42);
-            bf %tmp.43 @_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_104_23_108_16_if_false;
+            %tmp.36 = "1min";
+            %tmp.37 = getv function %tmp.36 :equals;
+            %tmp.39 = getv ? :waitMode;
+            %tmp.40 = invoke %tmp.36 %tmp.37(%tmp.39);
+            bf %tmp.40 @_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_104_23_108_16_if_false;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_104_23_108_16_if_true:
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_104_52_106_16_start:
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" 105 20 ]
-            %tmp.44 = 60;
-            putv self :holdTime %tmp.44;
+            %tmp.41 = 60;
+            putv self :holdTime %tmp.41;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_104_52_106_16_stop:
             goto @_Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_104_23_108_16_if_end;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_104_23_108_16_if_false:
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_106_21_108_16_start:
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" 107 20 ]
-            %tmp.45 = 0;
-            putv self :holdTime %tmp.45;
+            %tmp.42 = 0;
+            putv self :holdTime %tmp.42;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_106_21_108_16_stop:
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_104_23_108_16_if_end:
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_102_23_108_16_if_end:
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_100_16_108_16_if_end:
 [ "/Users/Artur_Belski/Documents/src/fd1/fd1/source/Fd1Util.mc" 109 16 ]
-            %tmp.46 = "REST";
-            putv self :mode %tmp.46;
+            %tmp.43 = "REST";
+            putv self :mode %tmp.43;
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_95_17_110_12_stop:
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_91_12_110_12_if_end:
 _Users_Artur_Belski_Documents_src_fd1_fd1_source_Fd1Util_mc_90_52_111_8_stop:
