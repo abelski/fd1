@@ -61,6 +61,8 @@ module Fd1Util {
             } else if ("30sec".equals(waitMode)) {
                 waitMode = "1min";
             }else if ("1min".equals(waitMode)) {
+                waitMode = "co2";
+            }else if ("co2".equals(waitMode)) {
                 waitMode = "x2";
             }
             saveSettings();
@@ -87,6 +89,17 @@ module Fd1Util {
                                         ];            
             Attention.vibrate(vibeData);
         }
+        // helper that returns 120 s − 15 s×cycles, floor 30 s
+        private function getCo2Rest() as Number {
+            var base = 120;                   // two minutes
+            var dec = 15 * sessionCycle;
+            var r = base - dec;          
+            if(r < 30) {
+                return 30;
+            }else{
+                return r;
+            }
+        }
         public function changeMode(session) as Void {
             if ("REST".equals(mode)){
                 session.startSession();
@@ -103,6 +116,8 @@ module Fd1Util {
                     holdTime = 30;
                 } else if ("1min".equals(waitMode)) {
                     holdTime = 60;
+                } else if ("co2".equals(waitMode)) {
+                    holdTime = getCo2Rest();    
                 }else{
                     holdTime = 0;
                 }
