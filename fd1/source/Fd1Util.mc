@@ -55,24 +55,23 @@ module Fd1Util {
         }
     }
     
-        public function setWaitingMode() as Void {
-            if ("x2".equals(waitMode)) {
+        public function setWaitingMode(str) as Void {
+            if ("wait_mode_30sec".equals(str)) {
                 waitMode = "30sec";
-            } else if ("30sec".equals(waitMode)) {
+            } else if ("wait_mode_1min".equals(str)) {
                 waitMode = "1min";
-            }else if ("1min".equals(waitMode)) {
+            }else if ("wait_mode_co2".equals(str)) {
                 waitMode = "co2";
-            }else if ("co2".equals(waitMode)) {
+            }else if ("wait_mode_x2".equals(str)) {
                 waitMode = "x2";
             }
             saveSettings();
 
         }
-        public function setMode() as Void{
-            if(autoStartPressure==0){
+        public function setStartMode(str) as Void{
+            if("start_mode_auto".equals(str)){
                 startMode="auto";
                 autoStartPressure=pressureNow.toFloat();
-
             }else{
                 startMode="manual";
                 autoStartPressure = 0;
