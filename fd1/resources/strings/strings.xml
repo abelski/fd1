@@ -5,4 +5,11 @@
     <string id="set_mode">Start mode</string>
     <string id="wait_mode">Wait mode</string>
 
+    <string id="wait_mode_x2">x2</string>
+    <string id="wait_mode_1min">1min</string>
+    <string id="wait_mode_30sec">30sec</string>
+    <string id="wait_mode_co2">CO2</string>
+
+    <string id="start_mode_auto">Auto Start</string>
+    <string id="start_mode_manual">Manual Start</string>
 </strings>

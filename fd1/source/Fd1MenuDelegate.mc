@@ -29,10 +29,10 @@ class Fd1MenuDelegate extends WatchUi.MenuInputDelegate {
         System.println("Показать меню выбора режима ожидания");
         var menu = new WatchUi.Menu();
         menu.setTitle("Wait mode");
-        menu.addItem("wait_mode_x2", :wait_mode_x2);
-        menu.addItem("wait_mode_1min", :wait_mode_1min);
-        menu.addItem("wait_mode_30sec", :wait_mode_30sec);
-        menu.addItem("wait_mode_co2", :wait_mode_co2);
+        menu.addItem(WatchUi.loadResource(Rez.Strings.wait_mode_x2), :wait_mode_x2);
+        menu.addItem(WatchUi.loadResource(Rez.Strings.wait_mode_1min), :wait_mode_1min);
+        menu.addItem(WatchUi.loadResource(Rez.Strings.wait_mode_30sec), :wait_mode_30sec);
+        menu.addItem(WatchUi.loadResource(Rez.Strings.wait_mode_co2), :wait_mode_co2);
 
         WatchUi.pushView(menu, new WaitModeMenuDelegate(_FdState), WatchUi.SLIDE_IMMEDIATE);
     }
@@ -41,8 +41,8 @@ class Fd1MenuDelegate extends WatchUi.MenuInputDelegate {
         System.println("Показать меню выбора режима");
         var menu = new WatchUi.Menu();
         menu.setTitle("Mode");
-        menu.addItem("start_mode_auto", :start_mode_auto);
-        menu.addItem("start_mode_manual", :start_mode_manual);
+        menu.addItem(WatchUi.loadResource(Rez.Strings.start_mode_auto), :start_mode_auto);
+        menu.addItem(WatchUi.loadResource(Rez.Strings.start_mode_manual), :start_mode_manual);
 
         WatchUi.pushView(menu, new StartModeMenuDelegate(_FdState), WatchUi.SLIDE_IMMEDIATE);
     }
