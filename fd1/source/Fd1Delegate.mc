@@ -24,10 +24,32 @@ class Fd1Delegate extends WatchUi.BehaviorDelegate {
          return true;
     }
 
+    function onBack() as Boolean{
+        var dialog = new WatchUi.Confirmation("Save \n&exit?");
+        WatchUi.pushView(dialog, new ConfirmationDelegate(), WatchUi.SLIDE_UP);
+        return true;
+    }
+
     function onMenu() as Boolean {
         var menuDelegate = new Fd1MenuDelegate();
         menuDelegate.setvarfd1State(_FdState);
          WatchUi.pushView(new Rez.Menus.MainMenu(), menuDelegate, WatchUi.SLIDE_UP);
+        return true;
+    }
+}
+
+class ConfirmationDelegate extends WatchUi.ConfirmationDelegate {
+    function initialize() {
+        ConfirmationDelegate.initialize();
+    }
+
+    function onResponse(response) as Boolean {
+        if (response == WatchUi.CONFIRM_YES) {
+            // User pressed Yes - exit or perform action
+            WatchUi.popView(WatchUi.SLIDE_DOWN);
+        } else {
+            // User pressed No - stay on current view
+        }
         return true;
     }
 }
