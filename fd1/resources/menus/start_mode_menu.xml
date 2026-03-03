@@ -1,0 +1,4 @@
+<menu id="StartModeMenu">
+    <menu-item id="start_mode_auto" label="@Strings.start_mode_auto" />
+    <menu-item id="start_mode_manual" label="@Strings.start_mode_manual" />
+</menu>

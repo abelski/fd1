@@ -1,0 +1,6 @@
+<menu id="WaitModeMenu">
+    <menu-item id="wait_mode_x2" label="@Strings.wait_mode_x2" />
+    <menu-item id="wait_mode_1min" label="@Strings.wait_mode_1min" />
+    <menu-item id="wait_mode_30sec" label="@Strings.wait_mode_30sec" />
+    <menu-item id="wait_mode_co2" label="@Strings.wait_mode_co2" />
+</menu>
