@@ -25,6 +25,12 @@ module Fd1Util {
 
         public var waitMode; //will be loaded from storage
 
+        public var notification_option_label; //will be loaded from storage
+        public var needNotify1min = false;
+        public var needNotify30sec = false;
+        public var needNotifyStart = false;
+
+
         public var pressureNow = 0;
         private var _needBeep = false;
 
@@ -41,6 +47,11 @@ module Fd1Util {
     public function saveSettings() as Void {
         Storage.setValue("startMode", startMode);
         Storage.setValue("waitMode", waitMode);
+
+        Storage.setValue("notification_option_label", notification_option_label);
+        Storage.setValue("needNotify1min", needNotify1min);
+        Storage.setValue("needNotify30sec", needNotify30sec);
+        Storage.setValue("needNotifyStart", needNotifyStart);
     }
 
     // Function to load settings
@@ -53,8 +64,44 @@ module Fd1Util {
         if (waitMode == null) {
             waitMode = "x2";
         }
+        notification_option_label = Storage.getValue("notification_option_label");
+        if (notification_option_label == null) {
+            notification_option_label = "off";
+        }  
+        needNotify1min = Storage.getValue("needNotify1min");
+        if (needNotify1min == null) {
+            needNotify1min = false;
+        }
+        needNotify30sec = Storage.getValue("needNotify30sec");
+        if (needNotify30sec == null) {
+            needNotify30sec = false;
+        }
+        needNotifyStart = Storage.getValue("needNotifyStart");
+        if (needNotifyStart == null) {
+            needNotifyStart = false;
+        }
     }
     
+        public function setNotificationOption(str) as Void {            
+            if ("notification_mode_off".equals(str)) {
+                notification_option_label="off";
+                needNotifyStart = false;
+                needNotify1min = false;
+                needNotify30sec = false;
+            } else if ("notification_mode_1min".equals(str)) {
+                notification_option_label="1min";
+                needNotify1min = true;
+                needNotify30sec = false;
+                needNotifyStart = true;
+            } else if ("notification_mode_30sec".equals(str)) {
+                notification_option_label="30sec";
+                needNotify1min = true;
+                needNotify30sec = true;
+                needNotifyStart = true;
+                
+            }
+        }
+
         public function setWaitingMode(str) as Void {
             if ("wait_mode_30sec".equals(str)) {
                 waitMode = "30sec";
@@ -130,7 +177,7 @@ module Fd1Util {
                 if(holdTime>0){
                     holdTime = holdTime - 1;
                     //shortly vibrate last 10 sec before dive
-                    if(holdTime<11){
+                    if(holdTime<11 && needNotifyStart){
                             var vibeData =  [
                                             new Attention.VibeProfile(30, 500) 
                                         ];
@@ -150,9 +197,13 @@ module Fd1Util {
             if(_needBeep == false){
                 _needBeep = true;
             }
-            //vibrate every minute
-            var holdSec = holdTime%60;
-            if(holdSec==0){
+            //vibrate every minute or 30sec if particular option is on
+            var divCoef = 60;
+            if(needNotify30sec){
+                divCoef = 30;
+            }
+            var holdSecMin = holdTime % divCoef;
+            if(holdSecMin==0 && (needNotify1min || needNotify30sec)){
                 var vibeData =  [
                                      new Attention.VibeProfile(100, 100) 
                                  ];
