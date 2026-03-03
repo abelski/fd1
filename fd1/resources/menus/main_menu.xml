@@ -1,4 +1,5 @@
 <menu id="MainMenu">
-    <menu-item id="set_mode" label="@Strings.set_mode" />
     <menu-item id="wait_mode" label="@Strings.wait_mode" />
+    <menu-item id="set_mode" label="@Strings.set_mode" />
+    <menu-item id="notification_options" label="@Strings.notification_options" />
 </menu>

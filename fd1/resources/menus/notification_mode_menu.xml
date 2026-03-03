@@ -1,0 +1,5 @@
+<menu id="NotificationMenu">
+    <menu-item id="notification_mode_off" label="@Strings.notification_mode_off" />
+    <menu-item id="notification_mode_1min" label="@Strings.notification_mode_1min" />
+    <menu-item id="notification_mode_30sec" label="@Strings.notification_mode_30sec" />
+</menu>

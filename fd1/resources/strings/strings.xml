@@ -12,4 +12,10 @@
 
     <string id="start_mode_auto">Auto Start</string>
     <string id="start_mode_manual">Manual Start</string>
+
+    <string id="notification_options">Notification Options</string>
+    
+    <string id="notification_mode_off">Off</string>
+    <string id="notification_mode_1min">1min</string>
+    <string id="notification_mode_30sec">30sec</string>
 </strings>
