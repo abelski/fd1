@@ -36,6 +36,17 @@ class Fd1Delegate extends WatchUi.BehaviorDelegate {
          WatchUi.pushView(new Rez.Menus.MainMenu(), menuDelegate, WatchUi.SLIDE_UP);
         return true;
     }
+
+    function onNextPage() as Boolean {
+        _FdState.showPage = _FdState.showPage == 1 ? 2 : 1; // toggle between page 1 and page 2
+        return true;
+        
+    }
+    function onPreviousPage() as Boolean {
+        _FdState.showPage = _FdState.showPage == 1 ? 2 : 1; // toggle between page 1 and page 2
+        return true;
+        
+    }
 }
 
 class ConfirmationDelegate extends WatchUi.ConfirmationDelegate {

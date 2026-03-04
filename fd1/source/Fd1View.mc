@@ -49,8 +49,13 @@ class Fd1View extends WatchUi.View {
         // Determine the position on the screen (centered)
         var x = dc.getWidth() / 2;
         var y = dc.getHeight() / 2;
-        drawUI(dc, x, y);
-        drawValues(dc, x, y);
+        if(mFdState.showPage == 1){
+            drawPage1UI(dc, x, y);
+            drawPage1Values(dc, x, y);
+        }else{
+            drawPage2UI(dc, x, y);
+            drawPage2Values(dc, x, y);
+        }
         
 
         
@@ -59,7 +64,10 @@ class Fd1View extends WatchUi.View {
     function clearValues(dc as Dc) as Void{
         dc.clear();
     }
-    function drawUI(dc as Dc,x,y) as Void{
+
+    // Draw the UI elements on the main screen Page 1 (main session info)
+    function drawPage1UI(dc as Dc,x,y) as Void{
+        if (mFdState.showPage == 1){}
         //heatrate area
         dc.fillCircle(x+57, y-57, 30);
         dc.drawBitmap(x+30,y-60, Ui.loadResource( Rez.Drawables.Heart));
@@ -69,36 +77,45 @@ class Fd1View extends WatchUi.View {
         dc.drawBitmap(10,y-15, Ui.loadResource( Rez.Drawables.DivingMask));
         //dc.drawText(x-30, y, Gfx.FONT_LARGE, "Mode:", Gfx.TEXT_JUSTIFY_CENTER);
 
-        
         //time area
         //dc.drawText(x-20, y + 34, Gfx.FONT_GLANCE, "time: ", Gfx.TEXT_JUSTIFY_CENTER);
         dc.drawBitmap(30,y + 44, Ui.loadResource( Rez.Drawables.Clock));
     }
-    function drawValues(dc as Dc,x,y) {
+    // Draw the values on the main screen Page 1 (main session info)
+    function drawPage1Values(dc as Dc,x,y) {
         //white values
         //-------------------------------------
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
         
         dc.drawText(105, y + 44, Gfx.FONT_LARGE,  Fd1Util.formatSecundes(mFdState.holdTime), Gfx.TEXT_JUSTIFY_CENTER);
         
-        dc.drawText(5, y - 30, Gfx.FONT_SMALL,mFdState.startMode, Gfx.TEXT_JUSTIFY_LEFT);
-        dc.drawText(5, y - 50, Gfx.FONT_SMALL, mFdState.waitMode+"("+mFdState.notification_option_label+")", Gfx.TEXT_JUSTIFY_LEFT);
-
+        
         //clock
         var myTime = System.getClockTime();
         var formatedTime = myTime.hour.format("%02d") + ":" +
                             myTime.min.format("%02d") ;
-        dc.drawText(x - 15, y - 90, Gfx.FONT_SMALL, formatedTime, Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(20, y - 30, Gfx.FONT_SMALL, formatedTime, Gfx.TEXT_JUSTIFY_LEFT);
         //session data
-        dc.drawText(x - 10, y - 70, Gfx.FONT_SMALL,mFdState.sessionCycle+"/"+Fd1Util.formatSecundes(mFdState.sessionTime), Gfx.TEXT_JUSTIFY_RIGHT);
+        dc.drawText(20, y - 50, Gfx.FONT_SMALL,mFdState.sessionCycle+"/"+Fd1Util.formatSecundes(mFdState.sessionTime), Gfx.TEXT_JUSTIFY_LEFT);
 
         //black values
         //-------------------------------------
         dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_WHITE);
         dc.drawText(x + 60, y - 70 , Gfx.FONT_SYSTEM_MEDIUM, mFdState.heartRate, Gfx.TEXT_JUSTIFY_CENTER);  
-        dc.drawText(x+30, y, Gfx.FONT_LARGE, mFdState.mode, Gfx.TEXT_JUSTIFY_CENTER);
+        dc.drawText(x + 30, y, Gfx.FONT_LARGE, mFdState.mode, Gfx.TEXT_JUSTIFY_CENTER);
     }
+    // Draw the UI elements on the main screen Page 2 (pressure info)
+    function drawPage2UI(dc as Dc,x,y) as Void{
+        
+    }
+    // Draw the values on the main screen Page 2 (pressure info)
+    function drawPage2Values(dc as Dc,x,y) as Void{
+        dc.drawText(20, y - 30, Gfx.FONT_SMALL,"Start:" + mFdState.startMode, Gfx.TEXT_JUSTIFY_LEFT);
+        dc.drawText(20, y - 50, Gfx.FONT_SMALL, "Wait:" + mFdState.waitMode, Gfx.TEXT_JUSTIFY_LEFT);
+        dc.drawText(20, y - 70, Gfx.FONT_SMALL, "Notify:" + mFdState.notification_option_label, Gfx.TEXT_JUSTIFY_LEFT);
+
     
+    }
 
 
 }

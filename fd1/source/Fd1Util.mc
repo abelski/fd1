@@ -26,13 +26,16 @@ module Fd1Util {
         public var waitMode; //will be loaded from storage
 
         public var notification_option_label; //will be loaded from storage
-        public var needNotify1min = false;
-        public var needNotify30sec = false;
-        public var needNotifyStart = false;
+        private var needNotify1min = false;
+        private var needNotify30sec = false;
+        private var needNotifyStart = false;
 
 
         public var pressureNow = 0;
         private var _needBeep = false;
+
+        //setings for main screen UI showing 
+        public var showPage = 1; //1- main
 
 
         public function initialize(  session ) {
