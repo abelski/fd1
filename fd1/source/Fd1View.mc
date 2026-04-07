@@ -43,9 +43,7 @@ class Fd1View extends WatchUi.View {
         clearValues(dc);
         mFdState.updateTimer();
         mFdState.updateHeartrate();
-        mFdState.updatePressure();
-        
-        
+        mFdState.updatePressure();  
         // Determine the position on the screen (centered)
         var x = dc.getWidth() / 2;
         var y = dc.getHeight() / 2;
@@ -55,10 +53,7 @@ class Fd1View extends WatchUi.View {
         }else{
             drawPage2UI(dc, x, y);
             drawPage2Values(dc, x, y);
-        }
-        
-
-        
+        }   
     }
 
     function clearValues(dc as Dc) as Void{
@@ -68,40 +63,43 @@ class Fd1View extends WatchUi.View {
     // Draw the UI elements on the main screen Page 1 (main session info)
     function drawPage1UI(dc as Dc,x,y) as Void{
         if (mFdState.showPage == 1){}
+        var margin = dc.getWidth() / 10;
+
         //heatrate area
         dc.fillCircle(x+57, y-57, 30);
         dc.drawBitmap(x+30,y-60, Ui.loadResource( Rez.Drawables.Heart));
 
         //mode area
-        dc.fillRectangle(0, y-5, 200, 40);
-        dc.drawBitmap(10,y-15, Ui.loadResource( Rez.Drawables.DivingMask));
-        //dc.drawText(x-30, y, Gfx.FONT_LARGE, "Mode:", Gfx.TEXT_JUSTIFY_CENTER);
+        dc.fillRectangle(0, y-10, dc.getWidth(), 51);
+        dc.drawBitmap(margin, y-15 , Ui.loadResource( Rez.Drawables.DivingMask));
 
         //time area
-        //dc.drawText(x-20, y + 34, Gfx.FONT_GLANCE, "time: ", Gfx.TEXT_JUSTIFY_CENTER);
-        dc.drawBitmap(30,y + 44, Ui.loadResource( Rez.Drawables.Clock));
+        var timeRowY = y + 44;
+        dc.drawBitmap(margin, timeRowY, Ui.loadResource( Rez.Drawables.Clock));
     }
     // Draw the values on the main screen Page 1 (main session info)
     function drawPage1Values(dc as Dc,x,y) {
+        var margin = dc.getWidth() / 10;
+
         //white values
         //-------------------------------------
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
-        
-        dc.drawText(105, y + 44, Gfx.FONT_LARGE,  Fd1Util.formatSecundes(mFdState.holdTime), Gfx.TEXT_JUSTIFY_CENTER);
-        
-        
+
+        var timeRowY = y + 44;
+        dc.drawText(x - margin / 2, timeRowY, Gfx.FONT_LARGE, Fd1Util.formatSecundes(mFdState.holdTime), Gfx.TEXT_JUSTIFY_CENTER);
+
         //clock
         var myTime = System.getClockTime();
         var formatedTime = myTime.hour.format("%02d") + ":" +
                             myTime.min.format("%02d") ;
-        dc.drawText(20, y - 30, Gfx.FONT_SMALL, formatedTime, Gfx.TEXT_JUSTIFY_LEFT);
+        dc.drawText(margin, y - y * 2 / 4, Gfx.FONT_SMALL, formatedTime, Gfx.TEXT_JUSTIFY_LEFT);
         //session data
-        dc.drawText(20, y - 50, Gfx.FONT_SMALL,mFdState.sessionCycle+"/"+Fd1Util.formatSecundes(mFdState.sessionTime), Gfx.TEXT_JUSTIFY_LEFT);
+        dc.drawText(margin, y - y * 3 / 4, Gfx.FONT_SMALL, mFdState.sessionCycle+"/"+Fd1Util.formatSecundes(mFdState.sessionTime), Gfx.TEXT_JUSTIFY_LEFT);
 
         //black values
         //-------------------------------------
         dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_WHITE);
-        dc.drawText(x + 60, y - 70 , Gfx.FONT_SYSTEM_MEDIUM, mFdState.heartRate, Gfx.TEXT_JUSTIFY_CENTER);  
+        dc.drawText(x + 60, y - 70, Gfx.FONT_SYSTEM_MEDIUM, mFdState.heartRate, Gfx.TEXT_JUSTIFY_CENTER);
         dc.drawText(x + 30, y, Gfx.FONT_LARGE, mFdState.mode, Gfx.TEXT_JUSTIFY_CENTER);
     }
     // Draw the UI elements on the main screen Page 2 (pressure info)
@@ -110,11 +108,10 @@ class Fd1View extends WatchUi.View {
     }
     // Draw the values on the main screen Page 2 (pressure info)
     function drawPage2Values(dc as Dc,x,y) as Void{
-        dc.drawText(20, y - 30, Gfx.FONT_SMALL,"Start:" + mFdState.startMode, Gfx.TEXT_JUSTIFY_LEFT);
-        dc.drawText(20, y - 50, Gfx.FONT_SMALL, "Wait:" + mFdState.waitMode, Gfx.TEXT_JUSTIFY_LEFT);
-        dc.drawText(20, y - 70, Gfx.FONT_SMALL, "Notify:" + mFdState.notification_option_label, Gfx.TEXT_JUSTIFY_LEFT);
-
-    
+        var margin = dc.getWidth() / 10;
+        dc.drawText(margin, y - 30, Gfx.FONT_SMALL, "Start:" + mFdState.startMode, Gfx.TEXT_JUSTIFY_LEFT);
+        dc.drawText(margin, y - 50, Gfx.FONT_SMALL, "Wait:" + mFdState.waitMode, Gfx.TEXT_JUSTIFY_LEFT);
+        dc.drawText(margin, y - 70, Gfx.FONT_SMALL, "Notify:" + mFdState.notification_option_label, Gfx.TEXT_JUSTIFY_LEFT);
     }
 
 
