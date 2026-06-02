@@ -34,6 +34,11 @@ module Fd1Util {
         public var pressureNow = 0;
         private var _needBeep = false;
 
+        private const PRESSURE_DIVE_THRESHOLD = 5.0;    // kPa ≈ 0.5 m depth
+        private const PRESSURE_SURFACE_THRESHOLD = 1.0; // kPa deadband at surface
+        private const PRESSURE_CONFIRM_TICKS = 3;        // consecutive ticks before trigger
+        private var _pressureCount = 0;
+
         //setings for main screen UI showing 
         public var showPage = 1; //1- main
 
@@ -49,6 +54,7 @@ module Fd1Util {
     // Function to save settings
     public function saveSettings() as Void {
         Storage.setValue("startMode", startMode);
+        Storage.setValue("autoStartPressure", autoStartPressure);
         Storage.setValue("waitMode", waitMode);
 
         Storage.setValue("notification_option_label", notification_option_label);
@@ -62,6 +68,10 @@ module Fd1Util {
         startMode = Storage.getValue("startMode");
         if (startMode == null) {
             startMode = "manual";
+        }
+        autoStartPressure = Storage.getValue("autoStartPressure");
+        if (autoStartPressure == null) {
+            autoStartPressure = 0;
         }
         waitMode = Storage.getValue("waitMode");
         if (waitMode == null) {
@@ -118,14 +128,15 @@ module Fd1Util {
             saveSettings();
 
         }
-        public function setStartMode(str) as Void{
-            if("start_mode_auto".equals(str)){
-                startMode="auto";
-                autoStartPressure=pressureNow.toFloat();
-            }else{
-                startMode="manual";
+        public function setStartMode(str) as Void {
+            if ("start_mode_auto".equals(str)) {
+                startMode = "auto";
+                autoStartPressure = pressureNow.toFloat();
+            } else {
+                startMode = "manual";
                 autoStartPressure = 0;
             }
+            _pressureCount = 0;
             saveSettings();
         }
 
@@ -219,23 +230,45 @@ module Fd1Util {
 
 
         public function updatePressure() as Void {
-            var currentPressure = Activity.getActivityInfo().ambientPressure;
-            //var currentPressure = 97.7;
-            
-            if(currentPressure!=null){
-                pressureNow = (currentPressure/1000);
-                if("REST".equals(mode)){
-                    if(autoStartPressure>0 && autoStartPressure<=pressureNow){
-                        changeMode(_session);
-                    }
-                }else{
-                    if(autoStartPressure>0 && autoStartPressure>pressureNow){
-                        changeMode(_session);
-                    }
-                }
-            
-            }else{
+            var rawPressure;
+
+            var ap = Activity.getActivityInfo().ambientPressure;
+            if (ap == null) {
                 pressureNow = 0;
+                return;
+            }
+            rawPressure = ap / 1000.0;
+
+            pressureNow = rawPressure;
+
+            // Re-capture baseline on first valid reading after restart with auto mode
+            if ("auto".equals(startMode) && autoStartPressure == 0 && rawPressure > 0) {
+                autoStartPressure = rawPressure.toFloat();
+                saveSettings();
+                return;
+            }
+
+            if (autoStartPressure <= 0 || !"auto".equals(startMode)) {
+                return;
+            }
+
+            var conditionMet = false;
+            if ("REST".equals(mode)) {
+                // diver went deep enough: pressure rose by at least PRESSURE_DIVE_THRESHOLD
+                conditionMet = pressureNow >= autoStartPressure + PRESSURE_DIVE_THRESHOLD;
+            } else {
+                // diver surfaced: pressure returned within PRESSURE_SURFACE_THRESHOLD of baseline
+                conditionMet = pressureNow <= autoStartPressure + PRESSURE_SURFACE_THRESHOLD;
+            }
+
+            if (conditionMet) {
+                _pressureCount = _pressureCount + 1;
+                if (_pressureCount >= PRESSURE_CONFIRM_TICKS) {
+                    _pressureCount = 0;
+                    changeMode(_session);
+                }
+            } else {
+                _pressureCount = 0;
             }
         }
 

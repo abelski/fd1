@@ -38,14 +38,13 @@ class Fd1Delegate extends WatchUi.BehaviorDelegate {
     }
 
     function onNextPage() as Boolean {
-        _FdState.showPage = _FdState.showPage == 1 ? 2 : 1; // toggle between page 1 and page 2
+        _FdState.showPage = _FdState.showPage == 1 ? 2 : 1;
         return true;
-        
     }
+
     function onPreviousPage() as Boolean {
-        _FdState.showPage = _FdState.showPage == 1 ? 2 : 1; // toggle between page 1 and page 2
+        _FdState.showPage = _FdState.showPage == 1 ? 2 : 1;
         return true;
-        
     }
 }
 

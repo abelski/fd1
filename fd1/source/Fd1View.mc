@@ -9,6 +9,8 @@ using Toybox.Timer;
 
 class Fd1View extends WatchUi.View {
     static var mFdState;
+    private var _uiTimer;
+    private var _pressureTimer;
 
     function initialize(){
         View.initialize();
@@ -17,17 +19,24 @@ class Fd1View extends WatchUi.View {
     function setvarfd1State(fd1State){
         mFdState = fd1State;
     }
-    function timerCallback() as Void{
-         Ui.requestUpdate();
+
+    function timerCallback() as Void {
+        Ui.requestUpdate();
     }
 
+    function pressureCallback() as Void {
+        mFdState.updatePressure();
+    }
 
     // Load your resources here
     function onLayout(dc as Dc) as Void {
         setLayout(Rez.Layouts.MainLayout(dc));
 
-        var myTimer = new Timer.Timer();
-        myTimer.start(method(:timerCallback), 1000, true);
+        _uiTimer = new Timer.Timer();
+        _uiTimer.start(method(:timerCallback), 1000, true);
+
+        _pressureTimer = new Timer.Timer();
+        _pressureTimer.start(method(:pressureCallback), 1000, true);
     }
 
     // Called when this View is brought to the foreground. Restore
@@ -43,7 +52,6 @@ class Fd1View extends WatchUi.View {
         clearValues(dc);
         mFdState.updateTimer();
         mFdState.updateHeartrate();
-        mFdState.updatePressure();  
         // Determine the position on the screen (centered)
         var x = dc.getWidth() / 2;
         var y = dc.getHeight() / 2;
@@ -109,9 +117,10 @@ class Fd1View extends WatchUi.View {
     // Draw the values on the main screen Page 2 (pressure info)
     function drawPage2Values(dc as Dc,x,y) as Void{
         var margin = dc.getWidth() / 10;
-        dc.drawText(margin, y - 30, Gfx.FONT_SMALL, "Start:" + mFdState.startMode, Gfx.TEXT_JUSTIFY_LEFT);
+        dc.drawText(margin, y - 70, Gfx.FONT_SMALL, "Start:" + mFdState.startMode, Gfx.TEXT_JUSTIFY_LEFT);
         dc.drawText(margin, y - 50, Gfx.FONT_SMALL, "Wait:" + mFdState.waitMode, Gfx.TEXT_JUSTIFY_LEFT);
-        dc.drawText(margin, y - 70, Gfx.FONT_SMALL, "Notify:" + mFdState.notification_option_label, Gfx.TEXT_JUSTIFY_LEFT);
+        dc.drawText(margin, y - 30, Gfx.FONT_SMALL, "Notify:" + mFdState.notification_option_label, Gfx.TEXT_JUSTIFY_LEFT);
+        dc.drawText(margin, y - 10, Gfx.FONT_SMALL, "P:" + mFdState.pressureNow.format("%.1f") + " Base:" + mFdState.autoStartPressure.format("%.1f"), Gfx.TEXT_JUSTIFY_LEFT);
     }
 
 
