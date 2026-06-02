@@ -101,8 +101,8 @@ module Fd1Util {
                 needNotify1min = true;
                 needNotify30sec = true;
                 needNotifyStart = true;
-                
             }
+            saveSettings();
         }
 
         public function setWaitingMode(str) as Void {
