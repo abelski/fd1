@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**fd1** is a Garmin ConnectIQ watch app (Monkey C language) for freediving pool training. It tracks dive/rest intervals, enforces the 2× surface rule, and saves sessions as FIT activities. Target devices: `instinct2s`, `instinct2x`, `fenix6pro`.
+**fd1** is a Garmin ConnectIQ watch app (Monkey C language) for freediving pool training. It tracks dive/rest intervals, enforces the 2× surface rule, and saves sessions as FIT activities. Target devices: `instinct2` (the owner's watch, Instinct 2 Solar), `instinct2s`, `instinct2x`, `fenix6pro`.
 
 ## Build & Run
 

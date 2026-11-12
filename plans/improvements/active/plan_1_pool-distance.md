@@ -66,6 +66,16 @@ Idea: `plans/ideas/idea_1_pool-distance.md`
 - [user:high] What is a turn? → not only a push-off from the wall, but the direction of motion flipping to
   roughly the opposite. Count it from the compass, in DYN and in DNF, with the push-off spike as a fallback, and
   log raw data to FIT to tune it in the pool (items 31–32).
+- [user:high] Install the new version on my watch → done (item 33). The watch turned out to be an Instinct 2
+  Solar (`instinct2`), which was not in the manifest.
+- [user:high] Correction of the flow, in the user's words:
+  - The diver sets things up, dives and swims, and feels a light vibration at each turn.
+  - After surfacing, the distance screen with the estimated distance opens by itself, to confirm or fix.
+  - Then the diver rests and dives again.
+  - Laps carry the distance like they carry heart rate and time; speed is the average while moving.
+  - In STA there is no distance screen and no speed.
+  - The bottom row should be centred, and the UP screen should look better.
+  → items 34–38.
 
 ### Requirements
 - Pool Length menu: 25 m, 50 m and STA (stored as 0). Default 25. Persisted under the `poolLength` key.
@@ -218,13 +228,37 @@ From `CLAUDE.md`:
   every second in a dive through `logSample`.
   - Checked in the simulator with Activity Data: 13 records for a 12 s dive, heading 354–46°, accel_peak 999,
     and `min_hr=130`.
+- [x] 33. `fd1/manifest.xml` — `instinct2` added (the owner's watch: Instinct 2 Solar, part number 006-B3888-00).
+  - Its screen and keys are identical to instinct2x, so all 2X layout work applies.
+  - A release build `fd1/bin/release/fd1_instinct2.prg` passes 25/25 tests and the simulator smoke run.
+  - It was copied over `GARMIN/APPS/fd1.prg` on the watch (USB drive), checked with `cmp`, and the watch was
+    ejected. The old file is backed up in `tmp/watch_backup/fd1_watch_2026-03-05.prg`.
+- [x] 34. Distance confirmation after every dive (not STA).
+  - `changeMode` sets `distanceToConfirm` at DIVE→REST when pool > 0 and clears it at dive start.
+  - `showDistanceConfirmIfDue` runs from `Fd1Delegate.onSelect` and from `Fd1View.timerCallback`, for a dive
+    ended by auto start. It pushes `AdjustDistanceView`: "OK" in the circle next to GPS; GPS or BACK confirms.
+  - The "Adjust Distance" menu item, its string and its menu handler are removed.
+  - Tests: `testDiveEndAsksToConfirmDistance`, and the STA test checks that no screen is asked for.
+  - Simulator: the screen opens by itself after a dive on instinct2 and on 2S, and not after an STA dive.
+- [x] 35. A light vibration (40 %, 300 ms) on every counted turn (`onAccelSamples`). It runs in the compass tests;
+  how it feels is to be checked in the pool.
+- [x] 36. Page 1: the clock icon and the timer are centred together, using the measured text width.
+- [x] 37. Page 2 redesigned:
+  - "Settings" with a line under it, and the pool length in the white subscreen circle.
+  - Rows Start / Wait / Notify, with the value right-aligned ("Manual", "x2", "CO2", "Off").
+  - "<now> / <baseline> kPa" at the bottom.
+  - Checked on instinct2 and 2S.
+- [x] 38. FIT: `dive_distance` and `dive_speed` lap fields get `:nativeNum` 9 (lap total_distance) and 13 (lap
+  avg_speed).
+  - Checked in the simulator FIT: `field_description` has native_mesg_num 19 and native_field_num 9 and 13.
+  - Not checked: whether Garmin Connect then shows them in its lap table. That needs a real upload.
 
 ## Validation
 
 - [x] Build each target with no errors: `monkeyc -f fd1/monkey.jungle -y ~/Documents/src/developer_key -o fd1/bin/fd1_<device>.prg -d <device>`
   for `instinct2s` and `instinct2x`. `fenix6pro` is deferred (see Decisions).
   - 2026-11-12, SDK 9.3.0: instinct2s and instinct2x → BUILD SUCCESSFUL, with no new warnings.
-- [x] Unit and simulation tests pass (2026-11-12, after items 14–32: 25 of 25 on instinct2s and on instinct2x):
+- [x] Unit and simulation tests pass (2026-11-12, after items 14–38: 26 of 26 on instinct2, instinct2s and instinct2x):
   `monkeyc … -d instinct2s -t -o fd1/bin/fd1_test.prg`, then `monkeydo fd1/bin/fd1_test.prg instinct2s -t` with the
   simulator running.
 - [x] Layout with worst-case values fits on both Instincts (item 15 screenshots).

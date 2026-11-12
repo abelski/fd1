@@ -123,6 +123,7 @@ Scenario: STA (static apnea) pool setting
   When a dive starts
   Then no accelerometer listener is registered and the distance stays 0
   And each dive's FIT lap records 0 m and 0 m/s
+  And no distance screen opens after a dive
 ```
 
 ```gherkin
@@ -192,6 +193,7 @@ Scenario: Turn counted by the compass
   Then the length count increases by one and distance is recomputed as lengths times pool length plus the correction
   And the next length's heading is the first clear 8-second mean after the next pool length x 2/3 seconds
   And push-off spikes are ignored while compass data is coming in, and a DNF stroke cycle (watch pointing back at the hips) averages out
+  And the watch gives a light vibration (40 %, 300 ms) so the diver feels the turn was counted, a few seconds after the turn
 ```
 
 ```gherkin
@@ -201,6 +203,7 @@ Scenario: Turn counted by push-off spike without compass data
   When any sample in a one-second batch has an acceleration magnitude of at least 1800 milli-g
   Then the length count increases by one and distance is recomputed
   And spikes in the next pool length x 2/3 seconds are ignored: the touch, tumble and push-off of one turn, or a hard kick or stroke
+  And the watch gives the same light vibration
 ```
 
 ```gherkin
@@ -220,25 +223,25 @@ Scenario: Accelerometer ignored outside a dive
 ```
 
 ```gherkin
-Scenario: Manually adjusting the distance
-  Given the user opens Menu, then Adjust Distance
-  Then a correction screen replaces the menu, showing "Distance", the current distance and "UP +10  DOWN -10"
+Scenario: Confirming the distance after a dive
+  Given the pool length is 25 m or 50 m
+  When a dive ends, by Select or by auto start detecting the surface
+  Then the distance screen opens by itself, showing "Distance", the counted distance, "UP +10  DOWN -10" and "OK" in the white circle next to the GPS button
   When the user presses Up or Down, any number of times
-  Then each press adds or removes 10 m (never below 0) on top of the counted lengths, sets the manual-override flag and redraws the screen, which stays open
-  When the user presses Select or Back
-  Then the main screen is shown again
-  And wall turns counted later in the same dive still add a pool length each
-  And on page 1 an asterisk follows the distance until the next dive starts, when the correction is cleared
+  Then each press adds or removes 10 m (never below 0), sets the manual-override flag and redraws the screen, which stays open
+  When the user presses Select (GPS) or Back
+  Then the distance is confirmed and the main screen shows the rest countdown, which kept running meanwhile
+  And on page 1 an asterisk follows a changed distance until the next dive starts
+  When the next dive starts before the screen was shown
+  Then the screen is not shown any more
 ```
 
 ```gherkin
-Scenario: Correcting the distance after surfacing
-  Given at least one dive has ended and the app is in REST mode
-  When the user adjusts the distance, for example from 50 m (one turn in a 25 m pool) down twice to 30 m
+Scenario: The confirmed distance goes into the dive's lap
+  Given a dive has ended and its distance screen is open
+  When the user changes the distance, for example from 50 m (one turn in a 25 m pool) down twice to 30 m
   Then speed is recomputed from that dive's hold time (0 when the hold time was 0)
   And the corrected distance and speed are written to the FIT lap fields, before the next dive closes the lap
-  When no dive has ended yet
-  Then only the displayed distance changes
 ```
 
 ```gherkin
@@ -254,7 +257,8 @@ Scenario: Heart rate display
 Scenario: Page 1 layout
   Given page 1 is showing
   When the view refreshes each second
-  Then it shows heart rate, the mode text (REST or DIVE), the timer as M:SS, clock time HH:MM, "cycles/total dive time", and "<distance>m[*] <speed>m/s" (speed shows "--m/s" when zero; no length count, so "300m* 1.2m/s" fits beside the subscreen)
+  Then it shows heart rate, the mode text (REST or DIVE), the timer as M:SS, clock time HH:MM, "cycles/total dive time", and "<distance>m[*] <speed>m/s" (speed shows "--m/s" when zero; no length count, so "300m* 1.2m/s" fits beside the subscreen; "STA" instead in STA)
+  And the clock icon and the timer are centred together as one group on the bottom row
 ```
 
 ```gherkin
@@ -262,15 +266,15 @@ Scenario: Switching pages
   Given the user is on page 1 or page 2
   When the user presses Up or Down
   Then the other page is shown
-  And page 2 lists the start mode, wait mode, notification option, current pressure and baseline pressure
-  And on a square screen (instinct2x) the page 2 rows start below the subscreen
+  And page 2 shows "Settings" with a line under it, the pool length ("25m", "50m" or "STA") in the white subscreen circle,
+      rows Start / Wait / Notify with the value right-aligned ("Manual", "x2", "CO2", "Off"), and "<now> / <baseline> kPa" for auto start
 ```
 
 ```gherkin
 Scenario: Opening the settings menu
   Given the main screen is showing
   When the user presses Menu
-  Then a menu is shown with Wait Mode, Start Mode, Notification Options, Pool Length and Adjust Distance
+  Then a menu is shown with Wait Mode, Start Mode, Notifications and Pool Length
 ```
 
 ```gherkin
@@ -296,6 +300,8 @@ Scenario: Heart-rate tracking in the recorded session
 Scenario: Custom FIT fields
   Given the recorder is created
   Then it registers a "min_hr" session field (bpm, initialised to 0) and "dive_distance" (m) and "dive_speed" (m/s) lap fields (initialised to 0)
+  And the lap fields carry FIT native field numbers 9 (lap total_distance) and 13 (lap avg_speed), so they can stand in the lap table next to heart rate and time
+  And "heading" (deg) and "accel_peak" (mg) record fields log every second of a dive
 ```
 
 ```gherkin

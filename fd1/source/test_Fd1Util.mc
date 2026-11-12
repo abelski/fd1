@@ -196,7 +196,18 @@ function testSimulatedStaHoldRecordsNoDistance(logger as Logger) as Boolean {
     var state = new Fd1Util.Fd1State(session);
     state.poolLength = 0;
     Sim.dive(state, session, 120, {});
-    return state.currentDistance == 0.0 && session.lastDistance == 0.0 && session.lastSpeed == 0.0;
+    return state.currentDistance == 0.0 && session.lastDistance == 0.0 && session.lastSpeed == 0.0
+        && !state.distanceToConfirm;   // no distance screen in STA
+}
+
+(:test)
+function testDiveEndAsksToConfirmDistance(logger as Logger) as Boolean {
+    var session = new StubSession();
+    var state = new Fd1Util.Fd1State(session);
+    Sim.dive(state, session, 30, {});
+    var asked = state.distanceToConfirm;
+    state.changeMode(session);   // next dive starts before the screen was shown
+    return asked && !state.distanceToConfirm;
 }
 
 // --- compass: a turn is the direction flipping ------------------------------

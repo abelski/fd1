@@ -22,6 +22,7 @@ class Fd1Delegate extends WatchUi.BehaviorDelegate {
         
         _FdState.changeMode(_session);
         _FdState.informNotice();
+        showDistanceConfirmIfDue(_FdState);
          return true;
     }
 

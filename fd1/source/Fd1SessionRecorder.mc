@@ -80,12 +80,14 @@ module Fd1SessionRecorder {
 	        me.mMinHrField.setData(0);
 		}
 
+		// :nativeNum marks them as the FIT lap's own total_distance (9) and avg_speed (13), so the lap
+		// table can show them next to heart rate and time. Speed is the dive's average: distance / dive time.
 		private function createDiveMetricFields() as Void{
 			me.mDiveDistanceField = me._FitSession.createField(
 	            "dive_distance",
 	            me.DiveDistanceFieldId,
 	            FitContributor.DATA_TYPE_FLOAT,
-	            {:mesgType=>FitContributor.MESG_TYPE_LAP, :units=> "m"}
+	            {:mesgType=>FitContributor.MESG_TYPE_LAP, :units=> "m", :nativeNum=> 9}
 	        );
 			me.mDiveDistanceField.setData(0.0);
 
@@ -93,7 +95,7 @@ module Fd1SessionRecorder {
 	            "dive_speed",
 	            me.DiveSpeedFieldId,
 	            FitContributor.DATA_TYPE_FLOAT,
-	            {:mesgType=>FitContributor.MESG_TYPE_LAP, :units=> "m/s"}
+	            {:mesgType=>FitContributor.MESG_TYPE_LAP, :units=> "m/s", :nativeNum=> 13}
 	        );
 			me.mDiveSpeedField.setData(0.0);
 		}

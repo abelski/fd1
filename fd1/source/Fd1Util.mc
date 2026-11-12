@@ -60,8 +60,9 @@ module Fd1Util {
         public var distanceOffset = 0;      // meters, sum of the diver's +/-10 m corrections this dive
         public var currentDistance = 0.0;   // meters, currentLengths * poolLength + distanceOffset
         public var currentSpeed = 0.0;      // m/s, set at dive end and again on a distance fix during REST
-        public var manualOverrideActive = false; // true once user has used Adjust Distance this dive
+        public var manualOverrideActive = false; // true once the diver changed the distance on the confirm screen
         public var lastDiveTime = 0;        // seconds of the most recent dive; holdTime is reused for the rest countdown
+        public var distanceToConfirm = false; // a dive just ended (not STA): the UI shows the distance screen once
 
         private const ACCEL_TURN_THRESHOLD_MILLIG = 1800; // magnitude spike; needs pool tuning
         private const ACCEL_SAMPLE_RATE_HZ = 25;           // a push-off spike is shorter than the gap of a 1 Hz poll
@@ -283,6 +284,7 @@ module Fd1Util {
                 recomputeDistance();
                 _accelRefractoryCounter = minLengthTicks();
                 _refSet = false;
+                Attention.vibrate([new Attention.VibeProfile(40, 300)]);   // light: "turn counted"
             }
         }
 
@@ -356,6 +358,7 @@ module Fd1Util {
             if ("REST".equals(mode)){
                 session.startSession();
                 holdTime = 0;
+                distanceToConfirm = false;
                 // A dive starts on its first length: auto start fires ~3 s after
                 // submerging, long after the push-off spike, so that spike can't be counted.
                 currentLengths = 1;
@@ -377,6 +380,7 @@ module Fd1Util {
                 finalizeDiveMetrics(session);
                 stopAccel();
                 session.stopSession();
+                distanceToConfirm = poolLength > 0;
                 sessionCycle=sessionCycle + 1;
                 sessionTime =sessionTime+holdTime;
 

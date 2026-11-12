@@ -28,9 +28,6 @@ class Fd1MenuDelegate extends WatchUi.MenuInputDelegate {
         if (item == :pool_length) {
             showSelectPoolLengthMenu();
         }
-        if (item == :adjust_distance) {
-            showAdjustDistanceMenu();
-        }
 
     }
 
@@ -48,11 +45,6 @@ class Fd1MenuDelegate extends WatchUi.MenuInputDelegate {
 
     function showSelectPoolLengthMenu() {
         WatchUi.pushView(new Rez.Menus.PoolLengthMenu(), new PoolLengthMenuDelegate(_FdState), WatchUi.SLIDE_IMMEDIATE);
-    }
-
-    // replaces the main menu (it stays on the stack otherwise), so GPS/BACK there return to the main screen
-    function showAdjustDistanceMenu() {
-        WatchUi.switchToView(new AdjustDistanceView(_FdState), new AdjustDistanceDelegate(_FdState), WatchUi.SLIDE_IMMEDIATE);
     }
 
 }

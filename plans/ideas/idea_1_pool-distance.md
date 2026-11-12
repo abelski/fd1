@@ -19,9 +19,12 @@ FIT file had no distance for each dive.
 - Page 1 shows the distance and speed of the current or most recent dive, for example `100m* 1.1m/s`. There is no
   length count, because `4L 100m* 1.1m/s` does not fit beside the Instinct subscreen.
 - The app counts lengths from wall-turn spikes on the accelerometer.
-- The diver can fix the distance on a correction screen (Menu → Adjust Distance): UP +10 m, DOWN −10 m, pressed as
-  often as needed. For example, one turn in a 25 m pool shows 50 m; the diver swam 35 m and presses DOWN twice to
-  keep 30 m. A `*` marks a distance that was corrected by hand.
+- The diver feels a light vibration at each counted turn.
+- After every dive (not STA) the distance screen opens by itself with the estimated distance: UP +10 m, DOWN −10 m,
+  pressed as often as needed, and GPS confirms. For example, one turn in a 25 m pool shows 50 m; the diver swam
+  35 m and presses DOWN twice to keep 30 m. A `*` marks a distance that was changed by hand.
+- Laps carry distance and average speed like they carry heart rate and time (FIT native lap fields 9 and 13).
+- In STA there is no distance screen and no speed.
 - The diver sets the pool length (25 m, 50 m, or STA for static holds without distance). Like every setting, it
   persists in device storage.
 - Each dive's FIT lap carries `dive_distance` (m) and `dive_speed` (m/s), so Garmin Connect has the data after the

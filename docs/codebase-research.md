@@ -74,8 +74,9 @@ FIT activity with one lap per dive.
 1. Menu → `Fd1Delegate.onMenu` (`fd1/source/Fd1Delegate.mc:33-38`) pushes `MainMenu` (`fd1/resources/menus/main_menu.xml`).
 2. `Fd1MenuDelegate.onMenuItem` (`fd1/source/Fd1MenuDelegate.mc:17-35`) pushes a sub-menu.
 3. The sub-menu delegate (`fd1/source/Fd1MenuDelegate.mc:59-133`) calls `Fd1State.setNotificationOption`,
-   `setWaitingMode`, `setStartMode`, `setPoolLength` (`fd1/source/Fd1Util.mc:129-227`). Adjust Distance instead switches to the correction screen
-   `AdjustDistanceView` (`fd1/source/Fd1AdjustDistanceView.mc`), where UP and DOWN call `adjustDistance(±10)`.
+   `setWaitingMode`, `setStartMode`, `setPoolLength` (`fd1/source/Fd1Util.mc:129-227`). Distance is not in the menu.
+   - After every dive (not STA), `showDistanceConfirmIfDue` pushes `AdjustDistanceView`
+     (`fd1/source/Fd1AdjustDistanceView.mc`), where UP and DOWN call `adjustDistance(±10)` and GPS confirms.
 4. Each setter except the length adjusters calls `saveSettings` (`fd1/source/Fd1Util.mc:81-91`).
 
 **D. Save and exit**

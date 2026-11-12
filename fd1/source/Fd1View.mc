@@ -1,4 +1,5 @@
 import Toybox.Graphics;
+import Toybox.Lang;
 import Toybox.WatchUi;
 import Fd1Util;
 using Toybox.WatchUi as Ui;
@@ -24,6 +25,7 @@ class Fd1View extends WatchUi.View {
     // covers this view (the clock froze) and runs extra on redraws (extra ticks).
     function timerCallback() as Void {
         mFdState.updateTimer();
+        showDistanceConfirmIfDue(mFdState);   // a dive ended by auto start (surfacing) has no button press
         Ui.requestUpdate();
     }
 
@@ -90,10 +92,6 @@ class Fd1View extends WatchUi.View {
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
         dc.fillRectangle(0, y-10, dc.getWidth(), 51);
         dc.drawBitmap(margin, y-15 , Ui.loadResource( Rez.Drawables.DivingMask));
-
-        //time area
-        var timeRowY = y + 44;
-        dc.drawBitmap(margin, timeRowY, Ui.loadResource( Rez.Drawables.Clock));
     }
     // Draw the values on the main screen Page 1 (main session info)
     function drawPage1Values(dc as Dc,x,y) {
@@ -103,8 +101,15 @@ class Fd1View extends WatchUi.View {
         //-------------------------------------
         dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
 
+        //time row: clock icon and timer centred together as one group
         var timeRowY = y + 44;
-        dc.drawText(x - margin / 2, timeRowY, Gfx.FONT_LARGE, Fd1Util.formatSecundes(mFdState.holdTime), Gfx.TEXT_JUSTIFY_CENTER);
+        var clock = Ui.loadResource(Rez.Drawables.Clock);
+        var timeText = Fd1Util.formatSecundes(mFdState.holdTime);
+        var gap = 6;
+        var groupX = (dc.getWidth() - clock.getWidth() - gap - dc.getTextWidthInPixels(timeText, Gfx.FONT_LARGE)) / 2;
+        dc.drawBitmap(groupX, timeRowY, clock);
+        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);   //drawBitmap can leave the pen changed
+        dc.drawText(groupX + clock.getWidth() + gap, timeRowY, Gfx.FONT_LARGE, timeText, Gfx.TEXT_JUSTIFY_LEFT);
 
         //top-left info column: three XTINY rows stacked upward from the mask
         //bitmap (drawn at y-15), so row bottoms can never reach the mode band.
@@ -141,20 +146,39 @@ class Fd1View extends WatchUi.View {
         dc.drawText(x + 60, y - 70, Gfx.FONT_SYSTEM_MEDIUM, mFdState.heartRate, Gfx.TEXT_JUSTIFY_CENTER);
         dc.drawText(x + 30, y, Gfx.FONT_LARGE, mFdState.mode, Gfx.TEXT_JUSTIFY_CENTER);
     }
-    // Draw the UI elements on the main screen Page 2 (pressure info)
+    // Page 2 (UP/DOWN): the settings at a glance. The pool length sits in the white
+    // subscreen circle like the heart rate on page 1; rows of label/value start below it.
     function drawPage2UI(dc as Dc,x,y) as Void{
-        
+        var w = dc.getWidth();
+        var margin = w / 10;
+        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
+        dc.fillCircle(x+57, y-57, 30);
+        dc.drawLine(margin, y - 24, w - margin, y - 24);   //under the title
     }
-    // Draw the values on the main screen Page 2 (pressure info)
     function drawPage2Values(dc as Dc,x,y) as Void{
-        var margin = dc.getWidth() / 10;
-        //instinct2x (176x176): rows from y-70 ran under the subscreen ("Start:manu"), so start below it
-        //shortcut: square screen = instinct2x, tuned by eye there; use per-device resources if more square targets are checked.
-        var top = dc.getWidth() == dc.getHeight() ? y - 26 : y - 70;
-        dc.drawText(margin, top, Gfx.FONT_SMALL, "Start:" + mFdState.startMode, Gfx.TEXT_JUSTIFY_LEFT);
-        dc.drawText(margin, top + 20, Gfx.FONT_SMALL, "Wait:" + mFdState.waitMode, Gfx.TEXT_JUSTIFY_LEFT);
-        dc.drawText(margin, top + 40, Gfx.FONT_SMALL, "Notify:" + mFdState.notification_option_label, Gfx.TEXT_JUSTIFY_LEFT);
-        dc.drawText(margin, top + 60, Gfx.FONT_SMALL, "P:" + mFdState.pressureNow.format("%.1f") + " Base:" + mFdState.autoStartPressure.format("%.1f"), Gfx.TEXT_JUSTIFY_LEFT);
+        var w = dc.getWidth();
+        var margin = w / 10;
+        dc.setColor(Gfx.COLOR_BLACK, Gfx.COLOR_WHITE);
+        var pool = mFdState.poolLength == 0 ? "STA" : mFdState.poolLength + "m";
+        dc.drawText(x+57, y-57, Gfx.FONT_SMALL, pool, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+
+        dc.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_BLACK);
+        dc.drawText(margin, y - 62, Gfx.FONT_SMALL, "Settings", Gfx.TEXT_JUSTIFY_LEFT);
+        var labels = ["Start", "Wait", "Notify"];
+        var wait = "co2".equals(mFdState.waitMode) ? "CO2" : mFdState.waitMode;
+        var values = [capitalized(mFdState.startMode), wait, capitalized(mFdState.notification_option_label)];
+        for (var i = 0; i < 3; i++) {
+            var rowMid = y - 10 + i * 24;
+            dc.drawText(margin, rowMid, Gfx.FONT_XTINY, labels[i], Gfx.TEXT_JUSTIFY_LEFT | Gfx.TEXT_JUSTIFY_VCENTER);
+            dc.drawText(w - margin, rowMid, Gfx.FONT_SMALL, values[i], Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER);
+        }
+        //auto start: pressure now / baseline
+        dc.drawText(x, y + 54, Gfx.FONT_XTINY, mFdState.pressureNow.format("%.1f") + " / " + mFdState.autoStartPressure.format("%.1f") + " kPa", Gfx.TEXT_JUSTIFY_CENTER);
+    }
+
+    // "manual" -> "Manual", "off" -> "Off"; "1min", "30sec" stay as they are
+    function capitalized(s) as String {
+        return s.substring(0, 1).toUpper() + s.substring(1, s.length());
     }
 
 
