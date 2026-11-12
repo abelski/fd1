@@ -11,3 +11,9 @@ fd1/bin/
 
 # Claude Code project settings
 fd1/.claude/settings.json
+
+# Secrets
+.env
+
+# Scratch files (screenshots, logs, one-off scripts)
+tmp/

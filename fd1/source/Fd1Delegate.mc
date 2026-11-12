@@ -1,4 +1,5 @@
 import Toybox.Lang;
+import Toybox.System;
 import Toybox.WatchUi;
 
 class Fd1Delegate extends WatchUi.BehaviorDelegate {
@@ -55,8 +56,9 @@ class ConfirmationDelegate extends WatchUi.ConfirmationDelegate {
 
     function onResponse(response) as Boolean {
         if (response == WatchUi.CONFIRM_YES) {
-            // User pressed Yes - exit or perform action
-            WatchUi.popView(WatchUi.SLIDE_DOWN);
+            // User pressed Yes - exit; onStop saves the FIT session.
+            // Popping the main view from here crashed the simulator before the save.
+            System.exit();
         } else {
             // User pressed No - stay on current view
         }

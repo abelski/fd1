@@ -1,0 +1,5 @@
+<menu id="PoolLengthMenu">
+    <menu-item id="pool_length_25" label="@Strings.pool_length_25" />
+    <menu-item id="pool_length_50" label="@Strings.pool_length_50" />
+    <menu-item id="pool_length_sta" label="@Strings.pool_length_sta" />
+</menu>

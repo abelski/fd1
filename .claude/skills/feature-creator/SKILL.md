@@ -1,4 +1,5 @@
 ---
+name: feature-creator
 description: Guided feature development for the fd1 Garmin ConnectIQ watch app. Interviews the user, plans with Opus in plan mode, stores plan, implements, builds, and runs the emulator for validation.
 ---
 

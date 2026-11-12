@@ -14,9 +14,16 @@
     <string id="start_mode_manual">Manual Start</string>
 
 
-    <string id="notification_options">Notification Options</string>
+    <string id="notification_options">Notifications</string>
     
     <string id="notification_mode_off">Off</string>
     <string id="notification_mode_1min">1min</string>
     <string id="notification_mode_30sec">30sec</string>
+
+    <string id="pool_length">Pool Length</string>
+    <string id="pool_length_25">25m</string>
+    <string id="pool_length_50">50m</string>
+    <string id="pool_length_sta">STA</string>
+
+    <string id="adjust_distance">Adjust Distance</string>
 </strings>

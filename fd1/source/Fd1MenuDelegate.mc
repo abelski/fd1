@@ -23,9 +23,15 @@ class Fd1MenuDelegate extends WatchUi.MenuInputDelegate {
             showSelectNotificationMenu();
         }
         if (item == :wait_mode) {
-            showSelectWaitModeMenu(); 
+            showSelectWaitModeMenu();
         }
-        
+        if (item == :pool_length) {
+            showSelectPoolLengthMenu();
+        }
+        if (item == :adjust_distance) {
+            showAdjustDistanceMenu();
+        }
+
     }
 
         function showSelectNotificationMenu() {
@@ -38,6 +44,15 @@ class Fd1MenuDelegate extends WatchUi.MenuInputDelegate {
 
     function showSelectModeMenu() {
         WatchUi.pushView(new Rez.Menus.StartModeMenu(), new StartModeMenuDelegate(_FdState), WatchUi.SLIDE_IMMEDIATE);
+    }
+
+    function showSelectPoolLengthMenu() {
+        WatchUi.pushView(new Rez.Menus.PoolLengthMenu(), new PoolLengthMenuDelegate(_FdState), WatchUi.SLIDE_IMMEDIATE);
+    }
+
+    // replaces the main menu (it stays on the stack otherwise), so GPS/BACK there return to the main screen
+    function showAdjustDistanceMenu() {
+        WatchUi.switchToView(new AdjustDistanceView(_FdState), new AdjustDistanceDelegate(_FdState), WatchUi.SLIDE_IMMEDIATE);
     }
 
 }
@@ -83,3 +98,18 @@ class StartModeMenuDelegate extends WatchUi.MenuInputDelegate {
         WatchUi.popView(WatchUi.SLIDE_IMMEDIATE); // назад
     }
 }
+
+class PoolLengthMenuDelegate extends WatchUi.MenuInputDelegate {
+    var _FdState;
+
+    function initialize(fdState) {
+        _FdState = fdState;
+        MenuInputDelegate.initialize();
+    }
+
+    function onMenuItem(item) {
+        _FdState.setPoolLength(item.toString());
+        WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
+    }
+}
+

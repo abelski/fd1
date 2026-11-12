@@ -1,6 +1,7 @@
 using Toybox.Timer;
 using Toybox.FitContributor;
 using Toybox.ActivityRecording;
+using Toybox.Math;
 using Toybox.Sensor;
 using Toybox.System as Sys;
 using  Toybox.FitContributor;
@@ -29,6 +30,16 @@ module Fd1SessionRecorder {
 		private var mMinHrField;
 		private var mMinHr;
 		private var mHRHistory = [];
+
+		private const DiveDistanceFieldId = 1;
+		private const DiveSpeedFieldId = 2;
+		private var mDiveDistanceField;
+		private var mDiveSpeedField;
+
+		private const HeadingFieldId = 3;
+		private const AccelPeakFieldId = 4;
+		private var mHeadingField;
+		private var mAccelPeakField;
 
 		private var _isItFirstLap = true;
         
@@ -69,6 +80,58 @@ module Fd1SessionRecorder {
 	        me.mMinHrField.setData(0);
 		}
 
+		private function createDiveMetricFields() as Void{
+			me.mDiveDistanceField = me._FitSession.createField(
+	            "dive_distance",
+	            me.DiveDistanceFieldId,
+	            FitContributor.DATA_TYPE_FLOAT,
+	            {:mesgType=>FitContributor.MESG_TYPE_LAP, :units=> "m"}
+	        );
+			me.mDiveDistanceField.setData(0.0);
+
+			me.mDiveSpeedField = me._FitSession.createField(
+	            "dive_speed",
+	            me.DiveSpeedFieldId,
+	            FitContributor.DATA_TYPE_FLOAT,
+	            {:mesgType=>FitContributor.MESG_TYPE_LAP, :units=> "m/s"}
+	        );
+			me.mDiveSpeedField.setData(0.0);
+		}
+
+		// Raw per-second signals in the FIT records, to tune turn detection from a pool
+		// session: compass heading (deg, 0xFFFF = none) and the second's peak acceleration (milli-g).
+		private function createSampleFields() as Void {
+			me.mHeadingField = me._FitSession.createField(
+	            "heading",
+	            me.HeadingFieldId,
+	            FitContributor.DATA_TYPE_UINT16,
+	            {:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=> "deg"}
+	        );
+			me.mAccelPeakField = me._FitSession.createField(
+	            "accel_peak",
+	            me.AccelPeakFieldId,
+	            FitContributor.DATA_TYPE_UINT16,
+	            {:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=> "mg"}
+	        );
+		}
+
+		// Called once a second while diving, from Fd1State.onAccelSamples().
+		public function logSample(heading, accelPeak) as Void {
+			me.mHeadingField.setData(heading == null ? 0xFFFF : ((heading * 180.0 / Math.PI).toNumber() + 360) % 360);
+			me.mAccelPeakField.setData(accelPeak > 0xFFFE ? 0xFFFE : accelPeak);
+		}
+
+		// Called from Fd1State.changeMode() at the DIVE->REST edge, before the
+		// next startSession()/addLap() call snapshots the lap boundary.
+		public function updateDiveMetrics(distance, speed) as Void {
+			if (me.mDiveDistanceField != null) {
+				me.mDiveDistanceField.setData(distance);
+			}
+			if (me.mDiveSpeedField != null) {
+				me.mDiveSpeedField.setData(speed);
+			}
+		}
+
         protected function onRefreshHrActivityStats(activityInfo, minHr) {
 		}
         
@@ -84,6 +147,7 @@ module Fd1SessionRecorder {
 
 				if (activityInfo.currentHeartRate != null && (me.mMinHr == null || me.mMinHr > activityInfo.currentHeartRate)) {
 					me.mMinHr = activityInfo.currentHeartRate;
+					me.mMinHrField.setData(me.mMinHr);   // the session field kept its initial 0 before
 				}
 
 				mHRHistory.add(activityInfo.currentHeartRate);
@@ -97,6 +161,8 @@ module Fd1SessionRecorder {
         function initialize() {
              me._FitSession = ActivityRecording.createSession(Fd1SessionSpec.createFdSession("Freediving"));
 			 me.createMinHrDataField();	
+			 me.createDiveMetricFields();
+			 me.createSampleFields();
 			 me.onBeforeStart(me._FitSession);
 			//  me._FitSession.start(); 
 		     me._RefreshActivityTimer = new Timer.Timer();		
@@ -104,8 +170,10 @@ module Fd1SessionRecorder {
              System.println("Session started:" + me._FitSession);
         }
 
-        function finish() {	
-            me._FitSession.stop();	
+        function finish() {
+			// the 1 s stats timer would otherwise call into the nulled session while the app exits
+			me._RefreshActivityTimer.stop();
+            me._FitSession.stop();
 			me._FitSession.save();
 			me._FitSession = null;
 		}
