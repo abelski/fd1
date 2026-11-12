@@ -10,6 +10,7 @@ class StubSession {
     var lastSpeed = null;
     var lastHeading = null;
     var lastPeak = null;
+    var lastDepthPa = null;
 
     function initialize() {
     }
@@ -25,9 +26,10 @@ class StubSession {
         lastSpeed = speed;
     }
 
-    function logSample(heading, peak) {
+    function logSample(heading, peak, depthPa) {
         lastHeading = heading;
         lastPeak = peak;
+        lastDepthPa = depthPa;
     }
 }
 
@@ -90,6 +92,34 @@ class Sim {
     static function near(a, b) as Boolean {
         return (a - b).abs() < 0.001;
     }
+
+    static function autoState(session, pool as Number) {
+        var state = new Fd1Util.Fd1State(session);
+        state.startMode = "auto";
+        state.poolLength = pool;
+        return state;
+    }
+
+    // One second with the wrist `level` kPa under Wednesday's 100.56 kPa surface (~10 kPa per
+    // metre): pressure poll, sensor batch, clock tick.
+    static function tick(state, level as Float, heading) as Void {
+        state.onPressure(100.56 + level);
+        var b = batch(-1);
+        state.onAccelSamples(b[0], b[1], b[2], heading);
+        state.updateTimer();
+    }
+
+    static function hold(state, level as Float, seconds as Number) as Void {
+        for (var s = 0; s < seconds; s++) {
+            tick(state, level, null);
+        }
+    }
+
+    static function trace(state, levels as Array) as Void {
+        for (var s = 0; s < levels.size(); s++) {
+            tick(state, levels[s], null);
+        }
+    }
 }
 
 // --- simulated dives -------------------------------------------------------
@@ -120,11 +150,12 @@ function testSimulated150mDiveIn50mPoolTurnAcrossBatches(logger as Logger) as Bo
 
 (:test)
 function testSimulatedMidLengthSpikeIn50mPoolIgnored(logger as Logger) as Boolean {
-    // 50 m pool, one length in 50 s; a hard kick/stroke spike at 20 s is not a wall
+    // 50 m pool, one length in 50 s; a hard kick/stroke spike at 15 s is not a wall. Without a
+    // compass, spikes after the 20 s window would count; the Instincts always give a heading.
     var session = new StubSession();
     var state = new Fd1Util.Fd1State(session);
     state.poolLength = 50;
-    Sim.dive(state, session, 50, {1 => 5, 20 => 12});
+    Sim.dive(state, session, 50, {1 => 5, 15 => 12});
     return state.currentLengths == 1 && session.lastDistance == 50.0 && Sim.near(session.lastSpeed, 1.0);
 }
 
@@ -224,7 +255,7 @@ function testCompassCountsSoftTurnsWithoutPushOff(logger as Logger) as Boolean {
 
 (:test)
 function testCompassIgnoresKickSpikes(logger as Logger) as Boolean {
-    // one 25 m length, hard kicks after the 16 s window; the direction never flips
+    // one 25 m length, hard kicks after the 10 s window; the direction never flips
     var session = new StubSession();
     var state = new Fd1Util.Fd1State(session);
     Sim.diveCourse(state, session, 28, {18 => 12, 22 => 12}, Sim.course(28, [], false));
@@ -245,10 +276,111 @@ function testCompassCountsTurnsInDnf(logger as Logger) as Boolean {
 function testEverySecondIsLoggedForTuning(logger as Logger) as Boolean {
     var session = new StubSession();
     var state = new Fd1Util.Fd1State(session);
+    state.onPressure(101.0);   // REST: the surface
     state.mode = "DIVE";
+    state.onPressure(101.5);   // 0.5 kPa under it
     var b = Sim.batch(12);
     state.onAccelSamples(b[0], b[1], b[2], 1.0);
-    return session.lastHeading == 1.0 && session.lastPeak >= 2500;
+    return session.lastHeading == 1.0 && session.lastPeak >= 2500 && session.lastDepthPa == 500;
+}
+
+// --- auto start/stop on real wrist depths --------------------------------------
+// Levels are kPa under the surface, taken from the logged sessions. Their FIT altitude stops at
+// ~0.7 m (^ in the logs), so swimming deeper is played at 8 kPa.
+
+(:test)
+function testAutoStartCountsThePauseAtTheWall(logger as Logger) as Boolean {
+    var session = new StubSession();
+    var state = Sim.autoState(session, 50);
+    Sim.hold(state, 0.0, 5);   // resting, hand at the surface
+    // Wednesday dive 5: under, a 25 s pause at the wall that comes back up to 0.2 m, then the push-off
+    Sim.trace(state, [5.6, 5.9, 4.1, 5.3, 5.3, 5.3, 5.3, 5.2, 5.2, 4.6, 3.8, 2.9, 2.4, 2.1,
+        2.0, 2.0, 2.0, 2.0, 2.0, 2.1, 2.1, 2.1, 2.2, 2.2, 2.2, 4.0, 6.3]);
+    var inDive = "DIVE".equals(state.mode);
+    Sim.hold(state, 8.0, 49);       // the 50 m swim
+    Sim.trace(state, [2.5, 1.5]);   // surfaced, the hand still in the water
+    logger.debug("dive " + state.lastDiveTime + " s");
+    // logged by hand as 81 s: 5 s at the surface before going under, then 1 s to confirm each end
+    return inDive && "REST".equals(state.mode) && state.sessionCycle == 1 && state.lastDiveTime == 76;
+}
+
+(:test)
+function testHandInTheWaterDuringRestWaitsForTheCountdown(logger as Logger) as Boolean {
+    var session = new StubSession();
+    var state = Sim.autoState(session, 25);
+    state.waitMode = "x2";
+    Sim.hold(state, 0.0, 3);
+    Sim.hold(state, 8.0, 30);       // a 30 s dive
+    Sim.trace(state, [2.5, 2.0]);   // surfaced: 60 s rest
+    Sim.hold(state, 3.0, 40);       // hanging at the wall, hand 0.3 m under water
+    var rested = "REST".equals(state.mode) && state.sessionCycle == 1;
+    // the countdown is over: that hand now starts the next dive at once (known limit)
+    Sim.hold(state, 3.0, 21);
+    return rested && "DIVE".equals(state.mode);
+}
+
+(:test)
+function testShallowEndSwimDoesNotStopTheDive(logger as Logger) as Boolean {
+    // 2026-04-19 dive 21: pushed off deep, then swam the second half at ~0.5 m
+    var state = Sim.autoState(new StubSession(), 25);
+    Sim.hold(state, 0.2, 3);
+    Sim.trace(state, [5.3, 8.0, 8.0, 4.9, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0, 8.0,
+        5.4, 5.3, 5.2, 5.0, 5.0, 5.0, 4.9, 4.9, 4.9, 4.9, 4.9, 4.9, 4.9, 4.9, 4.8, 4.4]);
+    var swimming = "DIVE".equals(state.mode);
+    Sim.trace(state, [3.5, 3.0]);
+    return swimming && "REST".equals(state.mode) && state.sessionCycle == 1;
+}
+
+(:test)
+function testManualStartInAutoModeWaitsForTheWater(logger as Logger) as Boolean {
+    var session = new StubSession();
+    var state = Sim.autoState(session, 50);
+    Sim.hold(state, 0.0, 2);
+    state.changeMode(session);      // Select at the wall, hand in the air
+    Sim.hold(state, 0.0, 8);        // last breaths: not a surfacing
+    var waited = "DIVE".equals(state.mode);
+    Sim.hold(state, 8.0, 40);
+    Sim.trace(state, [2.0, 1.5]);
+    return waited && "REST".equals(state.mode) && state.lastDiveTime == 49;
+}
+
+(:test)
+function testStaStopsWhenTheHandLeavesTheWater(logger as Logger) as Boolean {
+    var state = Sim.autoState(new StubSession(), 0);
+    Sim.hold(state, 0.0, 2);
+    Sim.hold(state, 3.0, 120);      // static hold, wrist 0.3 m down
+    Sim.hold(state, 2.0, 10);       // head up, hand still in the water: looks like a pause
+    var holding = "DIVE".equals(state.mode);
+    Sim.hold(state, 0.5, 5);        // hand on the edge
+    return holding && "REST".equals(state.mode);
+}
+
+(:test)
+function testSurfaceIsTheLowestRestReadingAndNotStored(logger as Logger) as Boolean {
+    var state = new Fd1Util.Fd1State(new StubSession());
+    state.onPressure(103.20);       // hand in the water
+    state.onPressure(102.85);       // in the air: the surface on 2026-11-04
+    state.onPressure(103.00);
+    var restarted = new Fd1Util.Fd1State(new StubSession());
+    restarted.loadSettings();       // the logged surfaces differ by up to 2.8 kPa between days
+    return Sim.near(state.surfacePressure, 102.85) && restarted.surfacePressure == 0;
+}
+
+(:test)
+function testPauseFacingTheWallIsNotATurn(logger as Logger) as Boolean {
+    // manual 25 m dive: a 25 s pause facing the wall outlasts the 10 s turn window, then the push-off
+    var session = new StubSession();
+    var state = new Fd1Util.Fd1State(session);
+    Sim.hold(state, 0.0, 2);
+    state.changeMode(session);
+    for (var s = 0; s < 25; s++) {
+        Sim.tick(state, 3.0, 0.3 + Math.PI);
+    }
+    for (var s = 0; s < 25; s++) {
+        Sim.tick(state, 8.0, 0.3);
+    }
+    state.changeMode(session);
+    return state.currentLengths == 1;
 }
 
 // --- distance correction -----------------------------------------------------
@@ -311,18 +443,18 @@ function testCorrectionBeforeFirstDiveSkipsFit(logger as Logger) as Boolean {
 
 // Mode is set directly so no real sensor listener is registered.
 (:test)
-function testTurnsAreAtLeastTwoThirdsOfAPoolLengthApart(logger as Logger) as Boolean {
+function testTurnsAreAtLeastTwoFifthsOfAPoolLengthApart(logger as Logger) as Boolean {
     var state = new Fd1Util.Fd1State(new StubSession());
     state.mode = "DIVE";
     var xs = [0, 1900, 1900];   // two spike samples in one batch
     var ys = [0, 0, 0];
     var zs = [1000, 1000, 1000];
     state.onAccelSamples(xs, ys, zs, null);   // counts 1
-    for (var i = 0; i < 16; i++) {
-        state.onAccelSamples(xs, ys, zs, null);   // 25 m pool: the next 16 s are the same wall
+    for (var i = 0; i < 10; i++) {
+        state.onAccelSamples(xs, ys, zs, null);   // 25 m pool: the next 10 s are the same wall
     }
     var held = state.currentLengths == 1;
-    state.onAccelSamples(xs, ys, zs, null);   // 17 s later: a new wall
+    state.onAccelSamples(xs, ys, zs, null);   // 11 s later: a new wall
     return held && state.currentLengths == 2 && state.currentDistance == 50.0;
 }
 
@@ -357,35 +489,50 @@ function testAllSettingsPersist(logger as Logger) as Boolean {
     // every setting must survive an app restart (a fresh state loading from Storage)
     var state = new Fd1Util.Fd1State(new StubSession());
     state.loadSettings();
-    state.setStartMode("start_mode_auto");
-    state.setWaitingMode("wait_mode_co2");
-    state.setNotificationOption("notification_mode_30sec");
-    state.setPoolLength("pool_length_50");
+    state.setStartMode(:start_mode_auto);
+    state.setWaitingMode(:wait_mode_co2);
+    state.setNotificationOption(:notification_mode_30sec);
+    state.setPoolLength(:pool_length_50);
     var reloaded = new Fd1Util.Fd1State(new StubSession());
     reloaded.loadSettings();
     var ok = "auto".equals(reloaded.startMode) && "co2".equals(reloaded.waitMode)
         && "30sec".equals(reloaded.notification_option_label) && reloaded.poolLength == 50;
     // leave the simulator's storage at the defaults
-    state.setStartMode("start_mode_manual");
-    state.setWaitingMode("wait_mode_x2");
-    state.setNotificationOption("notification_mode_off");
-    state.setPoolLength("pool_length_25");
+    state.setStartMode(:start_mode_manual);
+    state.setWaitingMode(:wait_mode_x2);
+    state.setNotificationOption(:notification_mode_off);
+    state.setPoolLength(:pool_length_25);
     return ok;
 }
 
-// The menu delegates pass item.toString(); the setters only work if a menu
-// symbol turns into its resource id string on the device.
+// The menu delegates pass the item's id symbol as it is: a watch build keeps no symbol names,
+// so the old item.toString() matched nothing there (the simulator's debug build hid that).
 (:test)
-function testMenuSymbolsReachTheSetters(logger as Logger) as Boolean {
+function testEveryMenuItemSetsItsValue(logger as Logger) as Boolean {
     var state = new Fd1Util.Fd1State(new StubSession());
     state.loadSettings();
-    var sta = :pool_length_sta;
-    var co2 = :wait_mode_co2;
-    logger.debug("symbol toString: " + sta.toString());
-    state.setPoolLength(sta.toString());
-    state.setWaitingMode(co2.toString());
-    var ok = state.poolLength == 0 && "co2".equals(state.waitMode);
-    state.setPoolLength("pool_length_25");   // leave the simulator's storage at the defaults
-    state.setWaitingMode("wait_mode_x2");
-    return ok;
+    var pools = [] as Array<Number>;
+    var pick = [:pool_length_sta, :pool_length_50, :pool_length_25];
+    for (var i = 0; i < pick.size(); i++) {
+        state.setPoolLength(pick[i]);
+        pools.add(state.poolLength);
+    }
+    var waits = "";
+    pick = [:wait_mode_1min, :wait_mode_30sec, :wait_mode_co2, :wait_mode_x2];
+    for (var i = 0; i < pick.size(); i++) {
+        state.setWaitingMode(pick[i]);
+        waits = waits + state.waitMode + " ";
+    }
+    var notes = "";
+    pick = [:notification_mode_1min, :notification_mode_30sec, :notification_mode_off];
+    for (var i = 0; i < pick.size(); i++) {
+        state.setNotificationOption(pick[i]);
+        notes = notes + state.notification_option_label + " ";
+    }
+    state.setStartMode(:start_mode_auto);
+    var auto = state.startMode;
+    state.setStartMode(:start_mode_manual);   // the rest already ended at the defaults
+    logger.debug("pools " + pools + " waits " + waits + "notes " + notes + auto);
+    return pools[0] == 0 && pools[1] == 50 && pools[2] == 25 && waits.equals("1min 30sec co2 x2 ")
+        && notes.equals("1min 30sec off ") && "auto".equals(auto) && "manual".equals(state.startMode);
 }

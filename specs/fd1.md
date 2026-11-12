@@ -1,7 +1,7 @@
 # fd1 — current behavior
 
 ## Purpose
-fd1 is a Garmin ConnectIQ watch app (Monkey C, targets instinct2s, instinct2x, fenix6pro) for freediving pool training. The diver alternates DIVE and REST intervals; the app shows a hold/rest timer, heart rate, session totals and per-dive length/distance/speed, gives vibration/tone notifications, and records the whole session as a FIT activity (generic sport, breathwork sub-sport) with one lap per dive. It is driven entirely by watch buttons (Select, Menu, Back, Up/Down) and by the pressure sensor and accelerometer polled once per second; there is no network or phone interface. User settings persist in on-device key-value storage.
+fd1 is a Garmin ConnectIQ watch app (Monkey C, targets instinct2, instinct2s, instinct2x, fenix6pro) for freediving pool training. The diver alternates DIVE and REST intervals; the app shows a hold/rest timer, heart rate, session totals and per-dive length/distance/speed, gives vibration/tone notifications, and records the whole session as a FIT activity (generic sport, breathwork sub-sport) with one lap per dive. It is driven entirely by watch buttons (Select, Menu, Back, Up/Down) and by the pressure sensor and accelerometer polled once per second; there is no network or phone interface. User settings persist in on-device key-value storage.
 
 ## Scenarios
 
@@ -9,7 +9,7 @@ fd1 is a Garmin ConnectIQ watch app (Monkey C, targets instinct2s, instinct2x, f
 Scenario: App starts with no saved settings
   Given the app has never stored any settings
   When the app launches
-  Then start mode is "manual", wait mode is "x2", notifications are "off", pool length is 25 m, and auto-start baseline pressure is 0
+  Then start mode is "manual", wait mode is "x2", notifications are "off", pool length is 25 m, and the surface pressure is 0 until the first reading
   And the app begins in REST mode with the timer showing "0:00" on page 1 (times are M:SS)
   And a FIT activity session named "Freediving" is created but not yet started
 ```
@@ -134,47 +134,62 @@ Scenario: Dive and rest clock under menus
 ```
 
 ```gherkin
-Scenario: Switching to auto start
+Scenario: Switching start mode
   Given the user opens Menu, then Start Mode
-  When the user picks "Auto Start"
-  Then start mode becomes "auto" and the current ambient pressure (kPa) is captured as the baseline
-  And the setting is saved and the pressure confirmation counter is reset
+  When the user picks "Auto Start" or "Manual Start"
+  Then start mode becomes "auto" or "manual" and is saved
 ```
 
 ```gherkin
-Scenario: Switching to manual start
-  Given start mode is "auto"
-  When the user picks "Manual Start" in the Start Mode menu
-  Then start mode becomes "manual" and the baseline pressure is reset to 0 and saved
+Scenario: Surface pressure
+  Given the app is running, in either start mode
+  When an ambient pressure reading (kPa, polled once a second) comes in outside a dive
+  Then the lowest such reading since the app started is the surface pressure
+  And it is never stored, so each session starts from its own surface (the weather moves it by kPa between days)
 ```
 
 ```gherkin
-Scenario: Auto start detects a dive
-  Given start mode is "auto", a baseline pressure is set, and the app is in REST mode
-  When the ambient pressure stays at or above the baseline plus 5 kPa for 3 consecutive one-second polls
-  Then the mode changes to DIVE exactly as if Select had been pressed (but without the start tone or vibration from the button handler)
-  And the dive still starts on length 1, although its push-off happened about 3 s before the mode changed
+Scenario: Auto start when going under
+  Given start mode is "auto", the app is in REST mode and the rest countdown has reached 0:00
+  When the pressure is 2 kPa (about 0.2 m) or more over the surface for 2 consecutive polls
+  Then the mode changes to DIVE as if Select had been pressed (without the button's tone and vibration)
+  And a pause at the wall before swimming is part of the dive, and the dive starts on length 1
 ```
 
 ```gherkin
-Scenario: Auto start detects surfacing
-  Given start mode is "auto" and the app is in DIVE mode
-  When the ambient pressure is at or below the baseline plus 1 kPa for 3 consecutive polls
+Scenario: No auto start while the rest countdown runs
+  Given start mode is "auto", the app is in REST mode and the rest countdown is above 0:00
+  When the hand is under water, for example hanging at the wall
+  Then no dive starts; Select still starts one
+```
+
+```gherkin
+Scenario: Auto stop after the swim
+  Given start mode is "auto", the app is in DIVE mode, and the pressure has been 6 kPa (about 0.6 m) or more over the surface for 2 consecutive polls in this dive
+  When the pressure is 3.5 kPa (about 0.35 m) or less over the surface for 2 consecutive polls
   Then the mode changes to REST as if Select had been pressed
 ```
 
 ```gherkin
-Scenario: Pressure condition interrupted
-  Given auto start has counted one or two qualifying polls
-  When a poll does not meet the condition
-  Then the consecutive counter resets to 0
+Scenario: Auto stop without a swim
+  Given start mode is "auto", the app is in DIVE mode, and this dive has been 2 kPa or more under for 2 polls but never 6 kPa (STA, a shallow pool, or a pause before the swim)
+  When the pressure is 1 kPa or less over the surface for 5 consecutive polls (the hand out of the water)
+  Then the mode changes to REST
+  And a wrist that comes back up to 0.2 m during a pause, or stays in the water after an STA, does not stop the dive
 ```
 
 ```gherkin
-Scenario: Baseline recaptured after restart in auto mode
-  Given start mode is "auto" but the stored baseline is 0
-  When the first valid pressure reading arrives
-  Then that reading becomes the baseline and is saved, and no mode change is evaluated on that poll
+Scenario: Select starts a dive in auto mode
+  Given start mode is "auto" and Select started the dive with the hand out of the water
+  When the hand stays out of the water
+  Then the dive does not stop by itself until it has been 2 kPa under for 2 polls
+```
+
+```gherkin
+Scenario: The swim restarts the turn window
+  Given a dive in either start mode was under water before swimming, for example a pause facing the wall
+  When the pressure first reaches 6 kPa over the surface for 2 consecutive polls in this dive
+  Then the turn window (pool length x 2/5 s) and the length's heading start again from that poll
 ```
 
 ```gherkin
@@ -182,35 +197,35 @@ Scenario: No pressure reading available or manual mode
   Given the ambient pressure is unavailable, or start mode is "manual"
   When the pressure poll runs
   Then no automatic mode change happens
-  And if the pressure is unavailable the displayed pressure is 0
+  And if the pressure is unavailable the displayed pressure is 0 and the counters keep their values
 ```
 
 ```gherkin
 Scenario: Turn counted by the compass
   Given the app is in DIVE mode and the watch gives a compass heading with each one-second accelerometer batch
-  And at least pool length x 2/3 seconds have passed since the dive started or since the last counted turn (25 m: 16 s, 50 m: 33 s)
+  And at least pool length x 2/5 seconds have passed since the dive started or since the last counted turn (25 m: 10 s, 50 m: 20 s), so a fast 25 m of 15 s still counts
   When the mean of the last 8 headings (as unit vectors, mean length at least 0.3) points more than 120 degrees away from the current length's heading
   Then the length count increases by one and distance is recomputed as lengths times pool length plus the correction
-  And the next length's heading is the first clear 8-second mean after the next pool length x 2/3 seconds
+  And the next length's heading is the first clear 8-second mean after the next pool length x 2/5 seconds
   And push-off spikes are ignored while compass data is coming in, and a DNF stroke cycle (watch pointing back at the hips) averages out
-  And the watch gives a light vibration (40 %, 300 ms) so the diver feels the turn was counted, a few seconds after the turn
+  And the watch gives a light vibration (40 %, 300 ms) and a loud beep so the diver knows the turn was counted, a few seconds after the turn
 ```
 
 ```gherkin
 Scenario: Turn counted by push-off spike without compass data
   Given the app is in DIVE mode and no compass heading has come in during this dive
-  And at least pool length x 2/3 seconds have passed since the dive started or since the last counted turn
+  And at least pool length x 2/5 seconds have passed since the dive started or since the last counted turn
   When any sample in a one-second batch has an acceleration magnitude of at least 1800 milli-g
   Then the length count increases by one and distance is recomputed
-  And spikes in the next pool length x 2/3 seconds are ignored: the touch, tumble and push-off of one turn, or a hard kick or stroke
-  And the watch gives the same light vibration
+  And spikes in the next pool length x 2/5 seconds are ignored: the touch, tumble and push-off of one turn, or a hard kick or stroke
+  And the watch gives the same vibration and beep
 ```
 
 ```gherkin
-Scenario: Per-second log for tuning turn detection
+Scenario: Per-second log for tuning turn detection and auto start
   Given the app is in DIVE mode
   When a one-second accelerometer batch arrives
-  Then the compass heading in degrees (65535 when none) and the batch's peak acceleration in milli-g are written to the FIT record fields "heading" and "accel_peak"
+  Then the compass heading in degrees (65535 when none), the batch's peak acceleration in milli-g and the pressure over the surface in Pa (0 to 65534) are written to the FIT record fields "heading", "accel_peak" and "depth_pa"
 ```
 
 ```gherkin
@@ -267,7 +282,7 @@ Scenario: Switching pages
   When the user presses Up or Down
   Then the other page is shown
   And page 2 shows "Settings" with a line under it, the pool length ("25m", "50m" or "STA") in the white subscreen circle,
-      rows Start / Wait / Notify with the value right-aligned ("Manual", "x2", "CO2", "Off"), and "<now> / <baseline> kPa" for auto start
+      rows Start / Wait / Notify with the value right-aligned ("Manual", "x2", "CO2", "Off"), and "<now> / <surface> kPa" for auto start
 ```
 
 ```gherkin
@@ -301,7 +316,7 @@ Scenario: Custom FIT fields
   Given the recorder is created
   Then it registers a "min_hr" session field (bpm, initialised to 0) and "dive_distance" (m) and "dive_speed" (m/s) lap fields (initialised to 0)
   And the lap fields carry FIT native field numbers 9 (lap total_distance) and 13 (lap avg_speed), so they can stand in the lap table next to heart rate and time
-  And "heading" (deg) and "accel_peak" (mg) record fields log every second of a dive
+  And "heading" (deg), "accel_peak" (mg) and "depth_pa" (Pa) record fields log every second of a dive
 ```
 
 ```gherkin

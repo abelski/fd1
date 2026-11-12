@@ -50,8 +50,10 @@ FIT activity with one lap per dive.
 
 **B. Dive / rest cycle (manual and auto)**
 1. Manual: Select → `Fd1Delegate.onSelect` (`fd1/source/Fd1Delegate.mc:20-25`).
-   Auto: `Fd1View.pressureCallback` (`fd1/source/Fd1View.mc:29-32`) → `Fd1State.updatePressure`
-   (`fd1/source/Fd1Util.mc:335-376`). This fires after 3 matching ticks (`fd1/source/Fd1Util.mc:55`).
+   Auto: `Fd1View.pressureCallback` (`fd1/source/Fd1View.mc:32-34`) → `Fd1State.updatePressure` →
+   `Fd1State.onPressure` (`fd1/source/Fd1Util.mc:456-490`). It starts a dive 2 kPa under the surface once the
+   rest countdown is over, and stops it near the surface after the swim; the thresholds and the logs they were
+   tuned on are in `fd1/source/Fd1Util.mc:53-72`.
 2. `Fd1State.changeMode` (`fd1/source/Fd1Util.mc:252-289`):
    - REST→DIVE: `session.startSession()` (`fd1/source/Fd1SessionRecorder.mc:49-58`), resets the dive counters and
      turns on sensor events.
@@ -67,7 +69,7 @@ FIT activity with one lap per dive.
      (`logSample`) and counts at most one turn.
    - A turn is the 8 s mean heading flipping by more than 120° (`headingFlipped`). The push-off spike is used only
      when no heading came in.
-   - After the start and after each turn, `minLengthTicks()` (pool length × 2/3 s) blocks a new turn.
+   - After the start and after each turn, `minLengthTicks()` (pool length × 2/5 s) blocks a new turn.
    - A dive starts on length 1.
 
 **C. Settings menu**
@@ -89,9 +91,9 @@ FIT activity with one lap per dive.
 
 - No database and no migrations.
 - Settings live in `Toybox.Application.Storage`, a key-value store (`fd1/source/Fd1Util.mc:5`). The keys are
-  `startMode`, `autoStartPressure`, `waitMode`, `poolLength`, `notification_option_label`, `needNotify1min`,
-  `needNotify30sec` and `needNotifyStart` (`fd1/source/Fd1Util.mc:81-91`). The defaults are in
-  `fd1/source/Fd1Util.mc:94-127`.
+  `startMode`, `waitMode`, `poolLength`, `notification_option_label`, `needNotify1min`, `needNotify30sec` and
+  `needNotifyStart` (`fd1/source/Fd1Util.mc:116-125`). The defaults are in `fd1/source/Fd1Util.mc:128-158`. The
+  surface pressure is not stored (`fd1/source/Fd1Util.mc:40-42`).
 - The session is a FIT activity: sport `SPORT_GENERIC`, sub-sport 62 "breathworks" (`fd1/source/Fd1SessionRecorder.mc:11-19`).
 - Custom FIT fields (`fd1/source/Fd1SessionRecorder.mc:66-93`):
   - `min_hr`: id 0, UINT16, session message.
@@ -104,7 +106,7 @@ FIT activity with one lap per dive.
 
 - No environment variables, no `.env`, no network calls (grep of `fd1/source/`).
 - Device sensors:
-  - Barometer: `Activity.getActivityInfo().ambientPressure` (`fd1/source/Fd1Util.mc:338`).
+  - Barometer: `Activity.getActivityInfo().ambientPressure` (`fd1/source/Fd1Util.mc:457`).
   - Accelerometer: `Sensor.registerSensorDataListener` at 25 Hz, 1 s period, only during a dive (`startAccel` and
     `stopAccel` in `fd1/source/Fd1Util.mc`).
   - Heart rate: `currentHeartRate`, falling back to `ActivityMonitor.getHeartRateHistory` (`fd1/source/Fd1Util.mc:379-389`).
@@ -123,8 +125,9 @@ FIT activity with one lap per dive.
   ConnectIQ simulator's `Toybox.Test` runner (inferred).
 - Coverage:
   - Covered: lengths, distance, speed, turn detection, the ±10 m correction, the FIT values sent, STA, the
-    formatters including `formatSecundes`, and the settings round-trip.
-  - Not covered: the `changeMode` rest lengths, `getCo2Rest` and the `updatePressure` debounce.
+    formatters including `formatSecundes`, the settings round-trip, and auto start/stop replayed on wrist depths
+    from logged pool sessions (`Sim.trace`, `onPressure`).
+  - Not covered: the `changeMode` rest lengths and `getCo2Rest`.
   - CLI run: see `## Build & Run` in CLAUDE.md. The tests need the simulator to be running.
 
 ## 8. Commands
@@ -139,8 +142,9 @@ See `## Build & Run` in `CLAUDE.md`. The file has no `## Commands` heading. The 
   `notification_option_label` (`fd1/source/Fd1Util.mc:44`). Private fields use a `_` prefix
   (`fd1/source/Fd1Util.mc:51`) or an `m` prefix (`fd1/source/Fd1SessionRecorder.mc:29`).
 - Modes are strings, not enums. They are compared as `"REST".equals(mode)` (`fd1/source/Fd1Util.mc:253`).
-- Menu item ids are matched as strings in the state setters, via `item.toString()`
-  (`fd1/source/Fd1MenuDelegate.mc:68`, `fd1/source/Fd1Util.mc:149-161`).
+- Menu item ids reach the state setters as symbols and are compared as `item == :pool_length_50`
+  (`fd1/source/Fd1MenuDelegate.mc:103`, `fd1/source/Fd1Util.mc:159-200`). `item.toString()` gives the name only in
+  the simulator's debug build; on the watch no choice matched, so no setting ever took effect there.
 - State is shared through `static var` plus a `setvarfd1State` setter (`fd1/source/Fd1View.mc:11-21`,
   `fd1/source/Fd1Delegate.mc:5-10`). Sub-menu delegates take the state in their constructor
   (`fd1/source/Fd1MenuDelegate.mc:62-65`).
@@ -180,7 +184,7 @@ See `## Build & Run` in `CLAUDE.md`. The file has no `## Commands` heading. The 
 - Largest file: `fd1/source/Fd1Util.mc`, 391 lines. One class holds the state machine, the sensors, the
   notifications and the settings.
 - Stale docs:
-  - `CLAUDE.md` "Settings persistence" leaves out `autoStartPressure` and `poolLength` (`fd1/source/Fd1Util.mc:83-85`).
+  - `CLAUDE.md` "Settings persistence" leaves out `poolLength` (`fd1/source/Fd1Util.mc:119`).
   - `CLAUDE.md` says the view drives "a 1-second Timer", but it starts two (`fd1/source/Fd1View.mc:38-42`).
   - `CLAUDE.md` does not mention the Pool Length or Adjust Distance menus.
   - `CLAUDE.md` says "no CLI build script", but the skill has CLI commands (`.claude/skills/feature-creator/SKILL.md:16-17`).

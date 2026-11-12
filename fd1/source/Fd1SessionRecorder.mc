@@ -38,8 +38,10 @@ module Fd1SessionRecorder {
 
 		private const HeadingFieldId = 3;
 		private const AccelPeakFieldId = 4;
+		private const DepthFieldId = 5;
 		private var mHeadingField;
 		private var mAccelPeakField;
+		private var mDepthField;
 
 		private var _isItFirstLap = true;
         
@@ -100,8 +102,9 @@ module Fd1SessionRecorder {
 			me.mDiveSpeedField.setData(0.0);
 		}
 
-		// Raw per-second signals in the FIT records, to tune turn detection from a pool
-		// session: compass heading (deg, 0xFFFF = none) and the second's peak acceleration (milli-g).
+		// Raw per-second signals in the FIT records, to tune turn detection and auto start from a pool
+		// session: compass heading (deg, 0xFFFF = none), the second's peak acceleration (milli-g) and
+		// the pressure over the surface (Pa, ~98 per cm; the FIT altitude stops at ~0.7 m deep).
 		private function createSampleFields() as Void {
 			me.mHeadingField = me._FitSession.createField(
 	            "heading",
@@ -115,12 +118,19 @@ module Fd1SessionRecorder {
 	            FitContributor.DATA_TYPE_UINT16,
 	            {:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=> "mg"}
 	        );
+			me.mDepthField = me._FitSession.createField(
+	            "depth_pa",
+	            me.DepthFieldId,
+	            FitContributor.DATA_TYPE_UINT16,
+	            {:mesgType=>FitContributor.MESG_TYPE_RECORD, :units=> "Pa"}
+	        );
 		}
 
 		// Called once a second while diving, from Fd1State.onAccelSamples().
-		public function logSample(heading, accelPeak) as Void {
+		public function logSample(heading, accelPeak, depthPa) as Void {
 			me.mHeadingField.setData(heading == null ? 0xFFFF : ((heading * 180.0 / Math.PI).toNumber() + 360) % 360);
 			me.mAccelPeakField.setData(accelPeak > 0xFFFE ? 0xFFFE : accelPeak);
+			me.mDepthField.setData(depthPa < 0 ? 0 : (depthPa > 0xFFFE ? 0xFFFE : depthPa));
 		}
 
 		// Called from Fd1State.changeMode() at the DIVE->REST edge, before the

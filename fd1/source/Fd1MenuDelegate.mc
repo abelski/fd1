@@ -58,7 +58,7 @@ class NotificationMenuDelegate extends WatchUi.MenuInputDelegate {
     }
 
     function onMenuItem(item) {
-        _FdState.setNotificationOption(item.toString());
+        _FdState.setNotificationOption(item);
         WatchUi.popView(WatchUi.SLIDE_IMMEDIATE); // назад
     }
 }
@@ -72,7 +72,7 @@ class WaitModeMenuDelegate extends WatchUi.MenuInputDelegate {
     }
 
     function onMenuItem(item) {
-        _FdState.setWaitingMode(item.toString());
+        _FdState.setWaitingMode(item);
         WatchUi.popView(WatchUi.SLIDE_IMMEDIATE); // назад
     }
 }
@@ -86,7 +86,7 @@ class StartModeMenuDelegate extends WatchUi.MenuInputDelegate {
     }
 
     function onMenuItem(item) {
-        _FdState.setStartMode(item.toString());
+        _FdState.setStartMode(item);
         WatchUi.popView(WatchUi.SLIDE_IMMEDIATE); // назад
     }
 }
@@ -100,7 +100,7 @@ class PoolLengthMenuDelegate extends WatchUi.MenuInputDelegate {
     }
 
     function onMenuItem(item) {
-        _FdState.setPoolLength(item.toString());
+        _FdState.setPoolLength(item);
         WatchUi.popView(WatchUi.SLIDE_IMMEDIATE);
     }
 }

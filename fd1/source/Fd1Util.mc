@@ -37,7 +37,9 @@ module Fd1Util {
         public var sessionTime = 0;
         
         public var startMode; //will be loaded from storage
-        public var autoStartPressure = 0;
+        // kPa, the lowest reading out of a dive (wrist in the air). Never stored: the
+        // weather moved the surface pressure by up to 2.8 kPa between the logged sessions.
+        public var surfacePressure = 0;
 
         public var waitMode; //will be loaded from storage
 
@@ -50,10 +52,24 @@ module Fd1Util {
         public var pressureNow = 0;
         private var _needBeep = false;
 
-        private const PRESSURE_DIVE_THRESHOLD = 5.0;    // kPa ≈ 0.5 m depth
-        private const PRESSURE_SURFACE_THRESHOLD = 1.0; // kPa deadband at surface
-        private const PRESSURE_CONFIRM_TICKS = 3;        // consecutive ticks before trigger
-        private var _pressureCount = 0;
+        // Auto start/stop, tuned on 17 logged pool sessions (212 dives, FIT altitude read as kPa
+        // over the surface). A dive, its pause at the wall included, starts when the wrist goes
+        // 0.2 m under. Resting, the hand was 0-0.1 m deep in 3 of 4 dives but up to 0.35 m (and
+        // 0.1-0.35 m just after surfacing), so a start waits for the rest countdown to end. A pause
+        // can bring the wrist back up to 0.1 m, like surfacing, so a 0.35 m stop waits for the swim
+        // (below 0.6 m); a dive with no swim (STA) stops once the hand is out of the water.
+        private const PRESSURE_UNDER_THRESHOLD = 2.0;   // kPa over the surface (~0.2 m): under water
+        private const PRESSURE_SWIM_THRESHOLD = 6.0;    // kPa (~0.6 m): swimming
+        private const PRESSURE_SURFACE_THRESHOLD = 3.5; // kPa (~0.35 m): surfaced after the swim
+        private const PRESSURE_AIR_THRESHOLD = 1.0;     // kPa (~0.1 m): hand out of the water
+        private const PRESSURE_CONFIRM_TICKS = 2;       // 1 s polls in a row
+        private const PRESSURE_AIR_TICKS = 5;           // a pause sat at 0.09 m for 4 s
+        private var _underCount = 0;
+        private var _swimCount = 0;
+        private var _shallowCount = 0;
+        private var _airCount = 0;
+        private var _underSeen = false;                 // this dive went under (a manual press can come before)
+        private var _swimSeen = false;
 
         public var poolLength = 25;         // meters, loaded from storage; 0 = STA (static, no distance)
         public var currentLengths = 0;      // accelerometer-counted lengths for the current/most recent dive
@@ -99,7 +115,6 @@ module Fd1Util {
     // Function to save settings
     public function saveSettings() as Void {
         Storage.setValue("startMode", startMode);
-        Storage.setValue("autoStartPressure", autoStartPressure);
         Storage.setValue("waitMode", waitMode);
         Storage.setValue("poolLength", poolLength);
 
@@ -114,10 +129,6 @@ module Fd1Util {
         startMode = Storage.getValue("startMode");
         if (startMode == null) {
             startMode = "manual";
-        }
-        autoStartPressure = Storage.getValue("autoStartPressure");
-        if (autoStartPressure == null) {
-            autoStartPressure = 0;
         }
         waitMode = Storage.getValue("waitMode");
         if (waitMode == null) {
@@ -145,18 +156,20 @@ module Fd1Util {
         }
     }
     
-        public function setNotificationOption(str) as Void {            
-            if ("notification_mode_off".equals(str)) {
+        // The setters take the menu item's id. A watch build keeps no symbol names, so
+        // item.toString() matched nothing there and no menu choice ever took effect.
+        public function setNotificationOption(item as Symbol) as Void {
+            if (item == :notification_mode_off) {
                 notification_option_label="off";
                 needNotifyStart = false;
                 needNotify1min = false;
                 needNotify30sec = false;
-            } else if ("notification_mode_1min".equals(str)) {
+            } else if (item == :notification_mode_1min) {
                 notification_option_label="1min";
                 needNotify1min = true;
                 needNotify30sec = false;
                 needNotifyStart = true;
-            } else if ("notification_mode_30sec".equals(str)) {
+            } else if (item == :notification_mode_30sec) {
                 notification_option_label="30sec";
                 needNotify1min = true;
                 needNotify30sec = true;
@@ -165,25 +178,25 @@ module Fd1Util {
             saveSettings();
         }
 
-        public function setWaitingMode(str) as Void {
-            if ("wait_mode_30sec".equals(str)) {
+        public function setWaitingMode(item as Symbol) as Void {
+            if (item == :wait_mode_30sec) {
                 waitMode = "30sec";
-            } else if ("wait_mode_1min".equals(str)) {
+            } else if (item == :wait_mode_1min) {
                 waitMode = "1min";
-            }else if ("wait_mode_co2".equals(str)) {
+            }else if (item == :wait_mode_co2) {
                 waitMode = "co2";
-            }else if ("wait_mode_x2".equals(str)) {
+            }else if (item == :wait_mode_x2) {
                 waitMode = "x2";
             }
             saveSettings();
 
         }
-        public function setPoolLength(str) as Void {
-            if ("pool_length_25".equals(str)) {
+        public function setPoolLength(item as Symbol) as Void {
+            if (item == :pool_length_25) {
                 poolLength = 25;
-            } else if ("pool_length_50".equals(str)) {
+            } else if (item == :pool_length_50) {
                 poolLength = 50;
-            } else if ("pool_length_sta".equals(str)) {
+            } else if (item == :pool_length_sta) {
                 poolLength = 0;
             }
             saveSettings();
@@ -244,12 +257,12 @@ module Fd1Util {
             }
         }
 
-        // Batches (1 s each) to ignore after the dive start or a counted turn. Divers
-        // swim 50 m in ~40-60 s (0.8-1.25 m/s), so a whole pool length lies between
-        // walls; at a generous 1.5 m/s that is poolLength * 2/3 s (25 m pool: 16 s, 50 m pool: 33 s).
+        // Batches (1 s each) to ignore after the dive start or a counted turn. A fast 25 m takes
+        // ~15 s, and a turn is counted a few seconds after it (the 8 s heading mean must flip), so
+        // the next length's heading must be read within ~12 s: poolLength * 2/5 s (25 m: 10 s, 50 m: 20 s).
         // Inside it, spikes are the same wall (touch, tumble, push-off) or a kick/stroke.
         private function minLengthTicks() as Number {
-            return poolLength * 2 / 3;
+            return poolLength * 2 / 5;
         }
 
         // One 1 s batch while diving: log it to FIT, then look for at most one turn.
@@ -265,7 +278,7 @@ module Fd1Util {
                     peakSq = sq;
                 }
             }
-            _session.logSample(heading, Math.sqrt(peakSq).toNumber());
+            _session.logSample(heading, Math.sqrt(peakSq).toNumber(), ((pressureNow - surfacePressure) * 1000).toNumber());
             if (heading != null) {
                 _headingSeen = true;
                 var slot = _hCount % HEADING_WINDOW;
@@ -284,7 +297,8 @@ module Fd1Util {
                 recomputeDistance();
                 _accelRefractoryCounter = minLengthTicks();
                 _refSet = false;
-                Attention.vibrate([new Attention.VibeProfile(40, 300)]);   // light: "turn counted"
+                Attention.vibrate([new Attention.VibeProfile(40, 300)]);   // "turn counted": felt under water,
+                Attention.playTone(Attention.TONE_LOUD_BEEP);              // heard when testing on land
             }
         }
 
@@ -321,15 +335,12 @@ module Fd1Util {
             return (mx * _refX + my * _refY) / norm <= HEADING_TURN_COS;
         }
 
-        public function setStartMode(str) as Void {
-            if ("start_mode_auto".equals(str)) {
+        public function setStartMode(item as Symbol) as Void {
+            if (item == :start_mode_auto) {
                 startMode = "auto";
-                autoStartPressure = pressureNow.toFloat();
             } else {
                 startMode = "manual";
-                autoStartPressure = 0;
             }
-            _pressureCount = 0;
             saveSettings();
         }
 
@@ -359,8 +370,8 @@ module Fd1Util {
                 session.startSession();
                 holdTime = 0;
                 distanceToConfirm = false;
-                // A dive starts on its first length: auto start fires ~3 s after
-                // submerging, long after the push-off spike, so that spike can't be counted.
+                // A dive starts on its first length; its push-off falls in the turn window
+                // below, which startSwim() restarts after a pause at the wall.
                 currentLengths = 1;
                 distanceOffset = 0;
                 recomputeDistance();
@@ -370,6 +381,8 @@ module Fd1Util {
                 manualOverrideActive = false;
                 _accelRefractoryCounter = minLengthTicks();
                 resetHeading();
+                _underSeen = _underCount >= PRESSURE_CONFIRM_TICKS;
+                _swimSeen = _swimCount >= PRESSURE_CONFIRM_TICKS;
                 if (poolLength > 0) {   // STA: nothing to count, spare the battery
                     startAccel();
                 }
@@ -444,46 +457,45 @@ module Fd1Util {
 
 
         public function updatePressure() as Void {
-            var rawPressure;
-
             var ap = Activity.getActivityInfo().ambientPressure;
             if (ap == null) {
                 pressureNow = 0;
                 return;
             }
-            rawPressure = ap / 1000.0;
+            onPressure(ap / 1000.0);
+        }
 
-            pressureNow = rawPressure;
-
-            // Re-capture baseline on first valid reading after restart with auto mode
-            if ("auto".equals(startMode) && autoStartPressure == 0 && rawPressure > 0) {
-                autoStartPressure = rawPressure.toFloat();
-                saveSettings();
-                return;
+        // One reading a second (kPa). Runs in manual mode too: the swim restarts the turn window.
+        public function onPressure(kPa as Float) as Void {
+            pressureNow = kPa;
+            if (!"DIVE".equals(mode) && (surfacePressure <= 0 || kPa < surfacePressure)) {
+                surfacePressure = kPa;
             }
-
-            if (autoStartPressure <= 0 || !"auto".equals(startMode)) {
-                return;
-            }
-
-            var conditionMet = false;
-            if ("REST".equals(mode)) {
-                // diver went deep enough: pressure rose by at least PRESSURE_DIVE_THRESHOLD
-                conditionMet = pressureNow >= autoStartPressure + PRESSURE_DIVE_THRESHOLD;
-            } else {
-                // diver surfaced: pressure returned within PRESSURE_SURFACE_THRESHOLD of baseline
-                conditionMet = pressureNow <= autoStartPressure + PRESSURE_SURFACE_THRESHOLD;
-            }
-
-            if (conditionMet) {
-                _pressureCount = _pressureCount + 1;
-                if (_pressureCount >= PRESSURE_CONFIRM_TICKS) {
-                    _pressureCount = 0;
+            var depth = kPa - surfacePressure;
+            _underCount = depth >= PRESSURE_UNDER_THRESHOLD ? _underCount + 1 : 0;
+            _swimCount = depth >= PRESSURE_SWIM_THRESHOLD ? _swimCount + 1 : 0;
+            _shallowCount = depth <= PRESSURE_SURFACE_THRESHOLD ? _shallowCount + 1 : 0;
+            _airCount = depth <= PRESSURE_AIR_THRESHOLD ? _airCount + 1 : 0;
+            if ("DIVE".equals(mode)) {
+                _underSeen = _underSeen || _underCount >= PRESSURE_CONFIRM_TICKS;
+                if (!_swimSeen && _swimCount >= PRESSURE_CONFIRM_TICKS) {
+                    _swimSeen = true;
+                    startSwim();
+                }
+                var surfaced = _swimSeen ? _shallowCount >= PRESSURE_CONFIRM_TICKS
+                    : (_underSeen && _airCount >= PRESSURE_AIR_TICKS);
+                if ("auto".equals(startMode) && surfaced) {
                     changeMode(_session);
                 }
-            } else {
-                _pressureCount = 0;
+            } else if ("auto".equals(startMode) && holdTime == 0 && _underCount >= PRESSURE_CONFIRM_TICKS) {
+                changeMode(_session);
             }
+        }
+
+        // Facing the wall during a pause and then pushing off the other way is not a turn.
+        private function startSwim() as Void {
+            _accelRefractoryCounter = minLengthTicks();
+            resetHeading();
         }
 
         public function updateHeartrate() as Void {

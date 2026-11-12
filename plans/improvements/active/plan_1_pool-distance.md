@@ -252,6 +252,12 @@ From `CLAUDE.md`:
   avg_speed).
   - Checked in the simulator FIT: `field_description` has native_mesg_num 19 and native_field_num 9 and 13.
   - Not checked: whether Garmin Connect then shows them in its lap table. That needs a real upload.
+- [x] 39. Field tests on the owner's watch (2026-11-12):
+  - No menu choice ever took effect on the watch. The setters matched `item.toString()`, which gives the name
+    only in the simulator's debug build. They now compare symbols, and every menu item is tested.
+  - Room test: turns every 8-14 s, 1 counted per dive. A fast 25 m takes 15 s, so the turn window is now
+    pool length × 2/5 s (25 m: 10 s, 50 m: 20 s), down from 2/3.
+  - A loud beep joins the turn vibration, so a turn can be heard when testing on land.
 
 ## Validation
 

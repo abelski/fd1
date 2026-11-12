@@ -172,8 +172,8 @@ class Fd1View extends WatchUi.View {
             dc.drawText(margin, rowMid, Gfx.FONT_XTINY, labels[i], Gfx.TEXT_JUSTIFY_LEFT | Gfx.TEXT_JUSTIFY_VCENTER);
             dc.drawText(w - margin, rowMid, Gfx.FONT_SMALL, values[i], Gfx.TEXT_JUSTIFY_RIGHT | Gfx.TEXT_JUSTIFY_VCENTER);
         }
-        //auto start: pressure now / baseline
-        dc.drawText(x, y + 54, Gfx.FONT_XTINY, mFdState.pressureNow.format("%.1f") + " / " + mFdState.autoStartPressure.format("%.1f") + " kPa", Gfx.TEXT_JUSTIFY_CENTER);
+        //auto start: pressure now / surface
+        dc.drawText(x, y + 54, Gfx.FONT_XTINY, mFdState.pressureNow.format("%.1f") + " / " + mFdState.surfacePressure.format("%.1f") + " kPa", Gfx.TEXT_JUSTIFY_CENTER);
     }
 
     // "manual" -> "Manual", "off" -> "Off"; "1min", "30sec" stay as they are
