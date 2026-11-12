@@ -1,6 +1,6 @@
 ---
 kind: feature
-status: draft
+status: done
 iteration: 0
 max_iterations: 30
 suggested_model: sonnet
@@ -264,7 +264,8 @@ From `CLAUDE.md`:
 - [x] Build each target with no errors: `monkeyc -f fd1/monkey.jungle -y ~/Documents/src/developer_key -o fd1/bin/fd1_<device>.prg -d <device>`
   for `instinct2s` and `instinct2x`. `fenix6pro` is deferred (see Decisions).
   - 2026-11-12, SDK 9.3.0: instinct2s and instinct2x → BUILD SUCCESSFUL, with no new warnings.
-- [x] Unit and simulation tests pass (2026-11-12, after items 14–38: 26 of 26 on instinct2, instinct2s and instinct2x):
+- [x] Unit and simulation tests pass (2026-11-12, after items 14–38: 26 of 26 on instinct2, instinct2s and instinct2x;
+  after item 39: 33 of 33, with auto start replayed on logged pool dives):
   `monkeyc … -d instinct2s -t -o fd1/bin/fd1_test.prg`, then `monkeydo fd1/bin/fd1_test.prg instinct2s -t` with the
   simulator running.
 - [x] Layout with worst-case values fits on both Instincts (item 15 screenshots).
@@ -288,7 +289,8 @@ From `CLAUDE.md`:
   - Exiting through Confirm saves a closed file.
   - An exit mid-dive saves that dive's own start values.
   - `min_hr=151` with simulated HR (item 30).
-- [ ] Pool, done by the user on a real watch, in DYN and in DNF: 4 turns count 4 lengths.
+- [ ] Pool, done by the user on a real watch, in DYN and in DNF: 4 turns count 4 lengths. Still open: on
+  2026-11-12 the owner accepted the work after room tests on the watch ("вроде работает"), before any pool session.
   - Send the FIT file. Its `heading` and `accel_peak` records show what to tune: `HEADING_WINDOW`,
     `HEADING_CONFIDENCE`, `HEADING_TURN_COS`, and `ACCEL_TURN_THRESHOLD_MILLIG` for watches without compass data.
 
@@ -301,3 +303,9 @@ for d in instinct2s instinct2x; do "$SDK/bin/monkeyc" -f fd1/monkey.jungle -y ~/
 "$SDK/bin/monkeyc" -f fd1/monkey.jungle -y ~/Documents/src/developer_key -o fd1/bin/fd1_test.prg -d instinct2s -t
 "$SDK/bin/monkeydo" fd1/bin/fd1_test.prg instinct2s -t
 ```
+
+## Closed
+
+2026-11-12, at the owner's request. Merged into `main`. Installed on the owner's Instinct 2 Solar (`instinct2`) and
+on an Instinct 2S Surf (`instinct2s`). Open follow-up: the pool check above, then tuning from its FIT `heading`,
+`accel_peak` and `depth_pa` records.

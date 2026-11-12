@@ -1,7 +1,7 @@
 ---
 number: 1
 slug: pool-distance
-status: draft
+status: done
 ---
 
 # Idea #1 — Pool lengths, distance and speed per dive
